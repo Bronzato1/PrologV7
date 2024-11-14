@@ -17,10 +17,12 @@ import { TransnubelComponent } from './components/clients/transnubel/transnubel.
 import { SchenkComponent } from './components/clients/schenk/schenk.component';
 import { CocaColaComponent } from './components/clients/coca-cola/coca-cola.component';
 import { KjsComponent } from './components/clients/kjs/kjs.component';
+import { EditorComponent } from './components/editor/editor.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'main', pathMatch: 'full' },
     { path: 'main', component: MainComponent },
+    { path: 'editor', component: EditorComponent },
     { path: 'clients/equans', component: EquansComponent },
     { path: 'clients/akzonobel', component: AkzonobelComponent },
     { path: 'clients/olympic', component: OlympicComponent },

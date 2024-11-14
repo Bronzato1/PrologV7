@@ -465,3 +465,11 @@ mark.blue {
 mark.yellow {
   background-color: #fff3d9;
 }
+
+.ck.ck-editor__editable:not(.ck-editor__nested-editable) {
+  border: none !important;
+}
+
+.ck .ck-powered-by {
+  display: none;
+}
