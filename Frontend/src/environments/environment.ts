@@ -3,8 +3,18 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:7071/api/'
+    production: false,
+    apiUrl: 'http://localhost:7071/api/',
+    msalConfig: {
+        auth: {
+            clientId: '175fef89-c02f-4e52-bbfe-426af94dee83',
+            authority: 'https://login.microsoftonline.com/f4f321ee-5728-48e6-85f7-62dc63501868',
+        }
+    },
+    apiConfig: {
+        scopes: ['User.Read'],
+        uri: 'http://localhost:7071/api/',
+      },
 };
 
 /*
