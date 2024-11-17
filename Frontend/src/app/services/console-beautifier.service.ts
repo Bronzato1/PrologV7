@@ -1,18 +1,19 @@
 export class ConsoleBeautifierService {
-    static debug(message: string): any[] {
-        return this.customLog('debug', message);
+
+    static debug(message: string, ...args: any[]): any[] {
+        return this.customLog('debug', message, ...args);
     }
-    static log(message: string): any[] {
-        return this.customLog('log', message);
+    static log(message: string, ...args: any[]): any[] {
+        return this.customLog('log', message, ...args);
     }
     static info(message: string, ...args: any[]): any[] {
         return this.customLog('info', message, ...args);
     }
-    static warn(message: string): any[] {
-        return this.customLog('warn', message);
+    static warn(message: string, ...args: any[]): any[] {
+        return this.customLog('warn', message, ...args);
     }
-    static error(message: string): any[] {
-        return this.customLog('error', message);
+    static error(message: string, ...args: any[]): any[] {
+        return this.customLog('error', message, ...args);
     }
     // Custom log function 
     //  - level: 'debug' | 'log' | 'info' | 'warn' | 'error'
@@ -59,3 +60,4 @@ export class ConsoleBeautifierService {
         return [`%c${badge}%c${message}`, styleBadge, styleMessage, ...args];
     };   
 }
+

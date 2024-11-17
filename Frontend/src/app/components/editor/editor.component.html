@@ -1,3 +1,50 @@
 <app-menu [menuItems]="menuItems"></app-menu>
 
-<ckeditor [editor]="Editor" [config]="config" data="<h1>Hello from CKEditor 5!</h1>"></ckeditor>
+<div id="inner-page">
+    <!-- Background Stars-->
+    <div class="bg">
+        <div class="stars"><img class="animated infinite flash" src="./assets/images/illustrations/stars-inner.svg"
+                alt="stars background"></div>
+    </div>
+    <!-- Single App-->
+    <div id="single-app">
+        <div class="row">
+            <div class="small-16 columns">
+                <!-- Start App Card-->
+                <article class="card">
+                    <a class="back-button"
+                        (click)="navigateWithAnimation(['main'], {queryParams: { scrollTo: 'projects' } })">
+                        <img src="assets/images/icons/icon-close.svg" alt="go back">
+                    </a>
+                    <header>
+                        <h1 class="text-center uppercase">my title...</h1>
+                    </header>
+                    <div>
+                        <ckeditor [editor]="Editor" [config]="config" data="<h1>Hello from CKEditor 5!</h1>"></ckeditor>
+                    </div>
+                    <footer>
+                        <div class="text-center">
+                            <a class="button hollow-button tiny-button" data-open="modal-sql-server">aaa</a>
+                            <a class="button hollow-button tiny-button" data-open="modal-mainframe">bbbbb</a>
+                            <a class="button hollow-button tiny-button" data-open="modal-crystal-reports">cccccc</a>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="main-footer">
+    <div class="copyright">
+        <div class="row">
+            <div class="small-16 columns">
+                <p class="text-center copy">Copyright &copy; 2025 <a href="#/">Prolog.Red</a>
+                    <img src="./assets/images/icons/icon-rocket.svg" alt="">
+                    <span class="hide-on-mobile">
+                        All Rights Reserved
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

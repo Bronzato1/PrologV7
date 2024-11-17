@@ -1,0 +1,6 @@
+<div class="alert-container" [class.alert-visible]="showAlert">
+    <div class="alert alert-bg-{{incommingAlert.type}}" role="alert">
+        <div class="alert-title-{{incommingAlert.type}}"> {{ incommingAlert.title }} </div>
+        {{ incommingAlert.message }}
+    </div>
+</div>

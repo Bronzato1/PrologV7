@@ -4,8 +4,8 @@ import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 @Directive()
 export class BaseComponent implements OnInit {
     
-    private route = inject(ActivatedRoute);
-    private router = inject(Router);
+    protected route = inject(ActivatedRoute);
+    protected router = inject(Router);
 
     constructor() { }
 

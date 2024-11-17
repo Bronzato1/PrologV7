@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, of, throwError, } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, tap } from 'rxjs/operators';
 import { IBackendResponse, IPost } from '@app/interfaces/post.interface';
 import { environment } from '@src/environments/environment';
 import { ConsoleBeautifierService as beautify } from '@app/services/console-beautifier.service';
@@ -22,6 +22,7 @@ export class PostDataService {
     getPosts(): Observable<IPost[]> {
         return this.http.get<IPost[]>(this.basePostUrl)
             .pipe(
+                tap(() => console.debug(...beautify.debug('PostDataService.getPosts >>> posts fetched successfully'))),
                 map(posts => {
                     // You can perform extra calculation here on each element
                     return posts;
@@ -35,8 +36,10 @@ export class PostDataService {
      * @returns An Observable of the IPost object.
      */
     getPost(id: string): Observable<IPost> {
+        debugger;
         return this.http.get<IPost>(this.basePostUrl + '/' + id)
             .pipe(
+                tap(() => console.debug(...beautify.debug(`PostDataService.getPost >>> post id ${id} fetched successfully`))),
                 catchError(this.handleError)
             );
     }
@@ -48,10 +51,8 @@ export class PostDataService {
     insertPost(post: IPost): Observable<IPost> {
         return this.http.post<IBackendResponse>(this.basePostUrl, post)
             .pipe(
-                map((data: IBackendResponse) => {
-                    console.info(...beautify.info('PostDataService.insertPost >>> status: ' + data.status));
-                    return data.post;
-                }),
+                tap((data: IBackendResponse) => console.debug(...beautify.debug('PostDataService.insertPost %c>>> status: ' + data.status, "border: 1px solid lightgray; padding: 1px 5px; border-radius: 5px;"))),
+                map((data: IBackendResponse) => data.post),
                 catchError(this.handleError)
             );
     }
@@ -63,10 +64,8 @@ export class PostDataService {
     updatePost(post: IPost): Observable<IPost> {
         return this.http.put<IBackendResponse>(this.basePostUrl + '/' + post.id, post)
             .pipe(
-                map((data: IBackendResponse) => {
-                    console.info(...beautify.info('PostDataService.updatePost %c>>> status: ' + data.status, "border: 1px solid lightgray; padding: 1px 5px; border-radius: 5px;"));
-                    return data.post;
-                }),
+                tap((data: IBackendResponse) => console.debug(...beautify.debug('PostDataService.updatePost %c>>> status: ' + data.status, "border: 1px solid lightgray; padding: 1px 5px; border-radius: 5px;"))),
+                map((data: IBackendResponse) => data.post),
                 catchError(this.handleError)
             );
     }
@@ -83,6 +82,7 @@ export class PostDataService {
 
         return this.http.delete<IBackendResponse>(this.basePostUrl + '/' + id)
             .pipe(
+                tap(() => console.debug(...beautify.debug(`PostDataService.deletePost >>> post id ${id} deleted successfully`))),
                 catchError(this.handleError)
             )
     }

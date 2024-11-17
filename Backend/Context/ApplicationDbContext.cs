@@ -85,7 +85,7 @@ namespace PrologV7
 
             if (_logger != null)
             {
-                _logger.LogInformation($">>> Called OnConfiguring in class ApplicationDbContext");
+                _logger.LogInformation($">>> Called OnConfiguring in class ${ nameof(ApplicationDbContext)}");
                 _logger.LogInformation($">>> Data Source={(isDevEnv ? database_path : azure_D_DB_path)}");
             }
 

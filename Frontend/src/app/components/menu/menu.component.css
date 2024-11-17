@@ -14,6 +14,8 @@
 
 .menu {
   position: absolute;
+  width: -moz-max-content;
+  width: max-content;
   top: 40px;
   right: 10px;
   background: white;

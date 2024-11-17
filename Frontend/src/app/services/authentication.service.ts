@@ -14,6 +14,9 @@ import {
   RedirectRequest,
 } from '@azure/msal-browser';
 
+// https://alonewolf24.medium.com/how-to-integrate-msal-into-angular-18-standalone-and-net-application-1e1a608fa4c5
+// https://alonewolf24.medium.com/how-to-setup-azure-app-registrations-to-use-entra-ad-from-spa-angular-4770131a7631
+
 @Injectable({
   providedIn: 'root'
 })
@@ -101,7 +104,6 @@ export class AuthenticationService implements OnInit, OnDestroy {
     }
   }
   loginRedirect() {
-    debugger;
     if (this.msalGuardConfig.authRequest) {
       this.authService
         .loginRedirect({

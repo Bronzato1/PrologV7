@@ -17,7 +17,7 @@ export class MainComponent extends BaseComponent implements OnInit, OnDestroy {
 
     private authStatusSubscription!: Subscription;
 
-    menuItems: { label: string; action: () => void; }[] = [];
+    menuItems!: { label: string; action: () => void; }[];
 
     constructor(private authService: AuthenticationService) {
         super();
@@ -25,18 +25,24 @@ export class MainComponent extends BaseComponent implements OnInit, OnDestroy {
     override ngOnInit(): void {
         super.ngOnInit();
         this.authService.ngOnInit();
+        this.initializeMenu();
         this.authStatusSubscription = this.authService.getAuthStatus().subscribe(status => {
             console.log('Authentication status:', status);
-            if (this.authService.isLoggedIn) {
-                this.menuItems.push({ label: 'Logout', action: () => this.authService.logout() });
-            } else {
-                this.menuItems.push({ label: 'Login', action: () => this.authService.loginRedirect() });
-            }
+            this.initializeMenu()
         });
     }
     ngOnDestroy(): void {
         if (this.authStatusSubscription) {
             this.authStatusSubscription.unsubscribe();
+        }
+    }
+    initializeMenu() {
+        this.menuItems = [];
+        if (this.authService.isLoggedIn) {
+            this.menuItems.push({ label: 'Logout', action: () => this.authService.logout() });
+            this.menuItems.push({ label: 'Create new post', action: () => this.router.navigateByUrl('/editor/0') });
+        } else {
+            this.menuItems.push({ label: 'Login', action: () => this.authService.loginRedirect() });
         }
     }
 }

@@ -24,7 +24,7 @@ import { LoginFailedComponent } from './components/login-failed/login-failed.com
 export const routes: Routes = [
     { path: '', redirectTo: 'main', pathMatch: 'full' },
     { path: 'main', component: MainComponent },
-    { path: 'editor', component: EditorComponent, canActivate: [MsalGuard] },
+    { path: 'editor/:id', component: EditorComponent, canActivate: [MsalGuard] },
     { path: 'login-failed', component: LoginFailedComponent },
     { path: 'clients/equans', component: EquansComponent },
     { path: 'clients/akzonobel', component: AkzonobelComponent },

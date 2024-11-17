@@ -4,6 +4,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { AppComponent } from '@src/app/app.component';
 import { IBackendResponse, IPost } from '@src/app/interfaces/post.interface';
 import { PostDataService } from '@src/app/services/post-data-service';
+import { AlertService } from '@src/app/services/alert.service';
 import {
   BalloonEditor,
   Bold,
@@ -23,6 +24,8 @@ import {
 
 import 'ckeditor5/ckeditor5.css';
 import { MenuComponent } from "../menu/menu.component";
+import { BaseComponent } from '../base.component';
+import { AlertType } from '@src/app/enumerations/alert-type.enumeration';
 
 @Component({
   selector: 'app-editor',
@@ -31,9 +34,9 @@ import { MenuComponent } from "../menu/menu.component";
   templateUrl: './editor.component.html',
   styleUrl: './editor.component.scss'
 })
-export class EditorComponent  implements OnInit {
+export class EditorComponent extends BaseComponent  implements OnInit {
 
-  menuItems = [
+  protected menuItems = [
     { label: 'Save', action: () => this.submit() },
   ];
 
@@ -82,14 +85,12 @@ export class EditorComponent  implements OnInit {
   protected errorMessage = '';
   protected deleteMessageEnabled = false;
   protected operationText = 'Insert';
-
-  private router = inject(Router);
-  private route = inject(ActivatedRoute);
   private postDataService = inject(PostDataService);
+  private alertService = inject(AlertService);
   
-  constructor() { }
-
-  public ngOnInit() {
+  public override ngOnInit() {
+    super.ngOnInit();
+    debugger;
     const id = this.route.snapshot.params['id'];
     if (id !== '0') {
       this.operationText = 'Update';
@@ -100,6 +101,7 @@ export class EditorComponent  implements OnInit {
     this.postDataService.getPost(id)
       .subscribe({
         next: (post: IPost) => {
+          debugger;
           this.post = post;
         },
         error: (err) => {
@@ -111,13 +113,18 @@ export class EditorComponent  implements OnInit {
       });
   }
    protected submit() {
+    debugger;
     if (this.post.id) {
       //* Updating the post 
       this.postDataService.updatePost(this.post)
         .subscribe({
           next: (post: IPost) => {
             if (post) {
-              alert(`The post has been updated successfully`);
+              this.alertService.showAlert({
+                title: 'UPDATE',
+                type: AlertType.success,
+                message: 'The post has been updated successfully'
+              });
               this.router.navigate(['/main']);
             } else {
               this.errorMessage = 'Unable to save customer';
@@ -136,7 +143,11 @@ export class EditorComponent  implements OnInit {
         .subscribe({
           next: (post: IPost) => {
             if (post) {
-              alert(`The post has been added successfully`);
+              this.alertService.showAlert({
+                title: 'CREATE',
+                type: AlertType.success,
+                message: 'The post has been added successfully'
+              });
               this.router.navigate(['/main']);
             }
             else {

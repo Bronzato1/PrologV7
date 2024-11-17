@@ -2,24 +2,34 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Attach to .NET Functions",
+      "name": "Backend debug",
       "type": "coreclr",
       "request": "attach",
-      "processId": "${command:azureFunctions.pickProcess}"
+      "processId": "${command:azureFunctions.pickProcess}",
+      "postDebugTask": "Kill Azure Functions Process"
     },
     {
-      "name": "ng serve",
+      "name": "Frontend debug",
       "type": "chrome",
       "request": "launch",
-      "preLaunchTask": "npm: start",
-      "url": "http://localhost:4200/"
-    },
+      "preLaunchTask": "debugproj",
+      "postDebugTask": "killnode",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}/Frontend",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "webpack:/*": "${webRoot}/*",
+        "/./*": "${webRoot}/*",
+        "/src/*": "${webRoot}/*",
+        "/*": "*",
+        "/./~/*": "${webRoot}/node_modules/*"
+      }
+    }
+  ],
+  "compounds": [
     {
-      "name": "ng test",
-      "type": "chrome",
-      "request": "launch",
-      "preLaunchTask": "npm: test",
-      "url": "http://localhost:9876/debug.html"
+      "name": "Full debug",
+      "configurations": ["Backend debug", "Frontend debug"]
     }
   ]
 }

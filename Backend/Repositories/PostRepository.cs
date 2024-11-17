@@ -15,7 +15,7 @@ namespace PrologV7.Repositories
             _context = context;
             _logger = logger;
         }
-        
+
         public async Task<IEnumerable<Post>> GetPostsAsync()
         {
             return await _context.Posts.ToListAsync();
@@ -34,23 +34,36 @@ namespace PrologV7.Repositories
             await _context.SaveChangesAsync();
             return post;
         }
-        public async Task<Post> UpdatePostAsync(Post post)
+        public async Task<bool> UpdatePostAsync(Post post)
         {
             post.ModificationDate = DateTime.Now;
             _context.Update(post);
-            await _context.SaveChangesAsync();
-            return post;
+            try
+            {
+                return (await _context.SaveChangesAsync() > 0 ? true : false);
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError($"Error in {nameof(UpdatePostAsync)}: " + exp.Message);
+            }
+            return false;
         }
-        public async Task<Post?> DeletePostAsync(int id)
+        public async Task<bool> DeletePostAsync(int id)
         {
             var post = await _context.Posts.FirstOrDefaultAsync(f => f.Id == id);
             if (post is not null)
             {
                 _context.Posts.Remove(post);
-                await _context.SaveChangesAsync();
-                return post;
             }
-            return null;
+            try
+            {
+                return (await _context.SaveChangesAsync() > 0 ? true : false);
+            }
+            catch (System.Exception exp)
+            {
+                _logger.LogError($"Error in {nameof(DeletePostAsync)}: " + exp.Message);
+            }
+            return false;
         }
     }
 }

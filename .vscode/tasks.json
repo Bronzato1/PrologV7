@@ -78,40 +78,74 @@
       "problemMatcher": "$func-dotnet-watch"
     },
     {
+      "label": "debugproj",
       "type": "npm",
       "script": "start",
       "isBackground": true,
+      "presentation": {
+          "focus": true,
+          "panel": "dedicated"
+      },
+      "group": {
+          "kind": "build",
+          "isDefault": true
+      },
       "problemMatcher": {
-        "owner": "typescript",
-        "pattern": "$tsc",
-        "background": {
-          "activeOnStart": true,
-          "beginsPattern": {
-            "regexp": "(.*?)"
-          },
-          "endsPattern": {
-            "regexp": "bundle generation complete"
+          "owner": "typescript",
+          "source": "ts",
+          "applyTo": "closedDocuments",
+          "fileLocation": [
+              "relative",
+              "${cwd}"
+          ],
+          "pattern": "$tsc",
+          "background": {
+              "activeOnStart": true,
+              "beginsPattern": {
+                  "regexp": "(.*?)"
+              },
+              "endsPattern": {
+                  "regexp": "Compiled |Failed to compile."
+              }
           }
-        }
+      },
+      "options": {
+          "cwd": "${workspaceFolder}/Frontend/src"
+      },
+      "runOptions": {
+          "runOn": "folderOpen"
       }
     },
     {
-      "type": "npm",
-      "script": "test",
-      "isBackground": true,
-      "problemMatcher": {
-        "owner": "typescript",
-        "pattern": "$tsc",
-        "background": {
-          "activeOnStart": true,
-          "beginsPattern": {
-            "regexp": "(.*?)"
-          },
-          "endsPattern": {
-            "regexp": "bundle generation complete"
-          }
-        }
-      }
+      "label": "killnode",
+      "type": "process",
+      "command": "taskkill",
+      "args": [
+        "/F",
+        "/IM",
+        "node.exe"
+      ],
+      "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+      },
+      "group": {
+          "kind": "build",
+          "isDefault": true
+      },
+      "isBackground": false,
+      "dependsOrder": "sequence",
+      "dependsOn": "debugproj",
+      "problemMatcher": []
+    },
+    { 
+      "label": "Kill Azure Functions Process", 
+      "type": "shell", 
+      "command": "powershell", 
+      "args": [ "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", "Stop-Process -Id (Get-NetTCPConnection -LocalPort 7071).OwningProcess -Force" ], 
+      "problemMatcher": [] 
     }
   ]
 }
