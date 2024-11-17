@@ -1,6 +1,9 @@
 jQuery(document).ready(function () {
 
-      jQuery(document).foundation(); 
+  setTimeout(function () {
+    jQuery(document).foundation(); 
+  }, 1000);
+      
 
   /*
     START STRICT MODE

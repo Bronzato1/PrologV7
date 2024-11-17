@@ -3,8 +3,8 @@ export interface IPost {
     title: string;
     content: string;
     tags: string;
-    creationDate: Date;
-    modificationDate: Date;
+    creationDate?: Date;
+    modificationDate?: Date;
     status: number;
 }
 

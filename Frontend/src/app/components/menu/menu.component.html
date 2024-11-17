@@ -1,0 +1,12 @@
+<div class="menu-button-container">
+    <button class="menu-button" (click)="toggleMenu()">
+        &#x22EE;
+    </button>
+    <div class="menu" *ngIf="isMenuOpen">
+        <ul>
+            <li *ngFor="let item of menuItems">
+                <a (click)="item.action()">{{ item.label }}</a>
+            </li>
+        </ul>
+    </div>
+</div>

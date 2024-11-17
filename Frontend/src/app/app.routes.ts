@@ -19,14 +19,12 @@ import { CocaColaComponent } from './components/clients/coca-cola/coca-cola.comp
 import { KjsComponent } from './components/clients/kjs/kjs.component';
 import { EditorComponent } from './components/editor/editor.component';
 import { MsalGuard } from '@azure/msal-angular';
-import { ProtectedComponent } from './components/protected/protected.component';
 import { LoginFailedComponent } from './components/login-failed/login-failed.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'main', pathMatch: 'full' },
     { path: 'main', component: MainComponent },
-    { path: 'editor', component: EditorComponent },
-    { path: 'protected', component: ProtectedComponent, canActivate: [MsalGuard] },
+    { path: 'editor', component: EditorComponent, canActivate: [MsalGuard] },
     { path: 'login-failed', component: LoginFailedComponent },
     { path: 'clients/equans', component: EquansComponent },
     { path: 'clients/akzonobel', component: AkzonobelComponent },
