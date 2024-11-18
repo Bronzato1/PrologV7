@@ -4,8 +4,9 @@ import { BaseComponent } from '../base.component';
 import { MenuComponent } from "../menu/menu.component";
 import { AuthenticationService } from '../../services/authentication.service';
 import { Subscription } from 'rxjs';
+import adze from 'adze';
 
-declare var Foundation: any;
+const logger = adze.namespace('MainComponent').seal();
 
 @Component({
     selector: 'app-main',
@@ -27,7 +28,7 @@ export class MainComponent extends BaseComponent implements OnInit, OnDestroy {
         this.authService.ngOnInit();
         this.initializeMenu();
         this.authStatusSubscription = this.authService.getAuthStatus().subscribe(status => {
-            console.log('Authentication status:', status);
+            logger.label('ngOnInit').info('Authentication status: ' + status);
             this.initializeMenu()
         });
     }

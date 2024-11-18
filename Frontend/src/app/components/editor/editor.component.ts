@@ -90,7 +90,6 @@ export class EditorComponent extends BaseComponent  implements OnInit {
   
   public override ngOnInit() {
     super.ngOnInit();
-    debugger;
     const id = this.route.snapshot.params['id'];
     if (id !== '0') {
       this.operationText = 'Update';
@@ -101,7 +100,6 @@ export class EditorComponent extends BaseComponent  implements OnInit {
     this.postDataService.getPost(id)
       .subscribe({
         next: (post: IPost) => {
-          debugger;
           this.post = post;
         },
         error: (err) => {
@@ -113,7 +111,6 @@ export class EditorComponent extends BaseComponent  implements OnInit {
       });
   }
    protected submit() {
-    debugger;
     if (this.post.id) {
       //* Updating the post 
       this.postDataService.updatePost(this.post)

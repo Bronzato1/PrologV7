@@ -10,6 +10,7 @@ export class BaseComponent implements OnInit {
     constructor() { }
 
     ngOnInit(): void {
+        console.log('BaseComponent initialized by ', this.constructor.name.replace(/^_/, ''));
         this.initializeWithAnimation();
     }
     /**
