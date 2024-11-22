@@ -25,8 +25,12 @@ export class BaseComponent implements OnInit {
             if (scrollTo) {
                 const element = document.getElementById(scrollTo);
                 if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => {
+                        element.scrollIntoView({ behavior: 'smooth' });  
+                    }, 2000);
                 }
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         });
     }

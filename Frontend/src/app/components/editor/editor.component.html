@@ -1,15 +1,21 @@
 <app-menu [menuItems]="menuItems"></app-menu>
 
 <div id="inner-page">
+    
     <!-- Background Stars-->
     <div class="bg">
-        <div class="stars"><img class="animated infinite flash" src="./assets/images/illustrations/stars-inner.svg"
-                alt="stars background"></div>
+        <div class="stars">
+            <img class="animated infinite flash" 
+                 src="./assets/images/illustrations/stars-inner.svg"
+                 alt="stars background">
+        </div>
     </div>
+
     <!-- Single App-->
     <div id="single-app">
         <div class="row">
             <div class="small-16 columns">
+
                 <!-- Start App Card-->
                 <article class="card">
                     <a class="back-button"
@@ -17,16 +23,28 @@
                         <img src="assets/images/icons/icon-close.svg" alt="go back">
                     </a>
                     <header>
-                        <h1 class="text-center uppercase">my title...</h1>
+                         <input type="text" class="h2 title-editor text-center uppercase" [(ngModel)]="post.title" placeholder="my title...">
                     </header>
                     <div>
-                        <ckeditor [editor]="Editor" [config]="config" data="<h1>Hello from CKEditor 5!</h1>"></ckeditor>
+                        <ckeditor [editor]="editor" [config]="config" [(ngModel)]="post.content"></ckeditor>
                     </div>
                     <footer>
-                        <div class="text-center">
-                            <a class="button hollow-button tiny-button" data-open="modal-sql-server">aaa</a>
-                            <a class="button hollow-button tiny-button" data-open="modal-mainframe">bbbbb</a>
-                            <a class="button hollow-button tiny-button" data-open="modal-crystal-reports">cccccc</a>
+
+                        <div class="tag-list-editor text-center">
+
+                            @if (post.tags.length > 0)
+                            {
+                                @for (tag of post.tags.split(';'); track $index)
+                                {
+                                    <a class="button hollow-button tiny-button" (click)="removeTag(tag)">{{ tag.trim() }}</a>
+                                }    
+                            }
+                            
+                        </div>
+                        <div class="add-tag-editor">
+                            <input type="text" #tagInput placeholder="Add new tag" (keydown.enter)="addTag(tagInput.value); tagInput.value=''">
+                            <!-- <input type="text" [(ngModel)]="newTag" placeholder="Add new tag">
+                            <button (click)="addTag()">Add Tag</button> -->
                         </div>
                     </footer>
                 </article>
