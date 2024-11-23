@@ -20,11 +20,13 @@ import { KjsComponent } from './components/clients/kjs/kjs.component';
 import { EditorComponent } from './components/editor/editor.component';
 import { MsalGuard } from '@azure/msal-angular';
 import { LoginFailedComponent } from './components/login-failed/login-failed.component';
+import { ViewerComponent } from './components/viewer/viewer.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'main', pathMatch: 'full' },
     { path: 'main', component: MainComponent },
     { path: 'editor/:id', component: EditorComponent, canActivate: [MsalGuard] },
+    { path: 'viewer/:id', component: ViewerComponent },
     { path: 'login-failed', component: LoginFailedComponent },
     { path: 'clients/equans', component: EquansComponent },
     { path: 'clients/akzonobel', component: AkzonobelComponent },

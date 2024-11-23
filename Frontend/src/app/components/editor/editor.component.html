@@ -25,11 +25,12 @@
                     <header>
                          <input type="text" class="h2 title-editor text-center uppercase" [(ngModel)]="post.title" placeholder="my title...">
                     </header>
+
                     <div>
                         <ckeditor [editor]="editor" [config]="config" [(ngModel)]="post.content"></ckeditor>
                     </div>
-                    <footer>
 
+                    <footer>
                         <div class="tag-list-editor text-center">
 
                             @if (post.tags.length > 0)
@@ -47,6 +48,7 @@
                             <button (click)="addTag()">Add Tag</button> -->
                         </div>
                     </footer>
+
                 </article>
             </div>
         </div>

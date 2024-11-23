@@ -1,0 +1,65 @@
+<app-menu [menuItems]="menuItems"></app-menu>
+
+<div id="inner-page">
+
+    <!-- Background Stars-->
+    <div class="bg">
+        <div class="stars">
+            <img class="animated infinite flash" src="./assets/images/illustrations/stars-inner.svg"
+                alt="stars background">
+        </div>
+    </div>
+
+    <!-- Single App-->
+    <div id="single-app">
+        <div class="row">
+            <div class="small-16 columns">
+
+                <!-- Start App Card-->
+                <article class="card">
+                    <a class="back-button"
+                        (click)="navigateWithAnimation(['main'], {queryParams: { scrollTo: 'projects' } })">
+                        <img src="assets/images/icons/icon-close.svg" alt="go back">
+                    </a>
+
+                    <header>
+                        <h2 class="text-center uppercase">{{ post.title }}</h2>
+                    </header>
+
+                    <div class="text-center">
+                        @if (post.tags.length > 0)
+                        {
+                            @for (tag of post.tags.split(';'); track $index)
+                            {
+                                <a class="button hollow-button tiny-button">{{ tag.trim() }}</a>
+                            }
+                        }
+                    </div>
+
+                    <hr class="spacer">
+
+                    <div [innerHTML]="post.content | bypassHtmlSanitizer"></div>
+
+                    <footer>
+
+                    </footer>
+
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="main-footer">
+    <div class="copyright">
+        <div class="row">
+            <div class="small-16 columns">
+                <p class="text-center copy">Copyright &copy; 2025 <a href="#/">Prolog.Red</a>
+                    <img src="./assets/images/icons/icon-rocket.svg" alt="">
+                    <span class="hide-on-mobile">
+                        All Rights Reserved
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

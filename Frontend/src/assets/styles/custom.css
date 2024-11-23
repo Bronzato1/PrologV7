@@ -458,6 +458,7 @@ html {
 }
 
 .callout.success,
+.callout.warning,
 .callout.alert {
   font-size: 1.3125rem;
 }
@@ -471,6 +472,11 @@ html {
   width: 30px;
   height: 30px;
   font-size: inherit;
+}
+
+.callout div.close-button {
+  padding-left: 7px;
+  padding-top: 3px;
 }
 
 .callout.success .close-button {
@@ -500,7 +506,26 @@ mark {
   padding: 2px 4px;
 }
 
-mark.red {
+mark.pen-red {
+  background-color: unset;
+  color: #e53935;
+}
+
+mark.pen-green {
+  background-color: unset;
+  color: #3adb76;
+}
+
+mark.marker-pink {
+  background-color: #f9caca;
+}
+
+mark.marker-blue {
+  background-color: #a7b8ff;
+}
+
+mark.red,
+mark.marker-red {
   background-color: #f8e2e2;
 }
 
@@ -508,12 +533,21 @@ mark.green {
   background-color: rgb(221, 255, 221);
 }
 
-mark.blue {
+mark.marker-green {
+  background-color: #cbf9cb;
+}
+
+mark.blue,
+mark.marker.blue {
   background-color: rgb(228, 228, 255);
 }
 
 mark.yellow {
   background-color: #fff3d9;
+}
+
+mark.marker-yellow {
+  background-color: #ffe7b3;
 }
 
 .ck.ck-editor__editable:not(.ck-editor__nested-editable) {
@@ -525,16 +559,19 @@ mark.yellow {
   display: none;
 }
 
-.title-editor {
+.title-editor,
+.title-editor:focus {
   border: none;
   box-shadow: none;
   width: 100%;
   font-size: 2rem;
 }
 
-.title-editor:focus {
+.resume-editor,
+.resume-editor:focus {
   border: none;
   box-shadow: none;
+  outline: none;
 }
 
 .tag-list-editor {

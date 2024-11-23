@@ -37,7 +37,7 @@ namespace PrologV7
                 
                 Warning! 
                 Don't forget to set environment variable first like below:
-                $env:ConnectionStrings:SQLConnectionString="Server=tcp:one-plus-one.database.windows.net,1433;Initial Catalog=one-plus-one_db;Persist Security Info=False;User ID=admin-test;Password=C0mplexPwd;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+                $env: .... = ....
                 
                 Why? 
                 Because local.settings.json is not accessible when executing from the terminal.

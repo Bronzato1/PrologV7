@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -7,8 +7,10 @@ import { AppComponent } from '@src/app/app.component';
 import { IBackendResponse, IPost } from '@src/app/interfaces/post.interface';
 import { PostDataService } from '@src/app/services/post-data-service';
 import { AlertService } from '@src/app/services/alert.service';
+import { Observable } from 'rxjs';
 import {
-    BalloonEditor,
+    ClassicEditor,
+    GeneralHtmlSupport,
     Bold,
     Essentials,
     Heading,
@@ -21,7 +23,14 @@ import {
     MediaEmbed,
     Paragraph,
     Undo,
-    CodeBlock
+    CodeBlock,
+    Highlight,
+    HtmlEmbed,
+    SourceEditing,
+    Editor,
+    EditorUI,
+    EditorUIView,
+    View
 } from 'ckeditor5';
 
 import 'ckeditor5/ckeditor5.css';
@@ -38,7 +47,9 @@ import { AlertType } from '@src/app/enumerations/alert-type.enumeration';
 })
 export class EditorComponent extends BaseComponent implements OnInit {
 
-    protected editor = BalloonEditor;
+    @ViewChild('resumeEditor') resumeEditor?: ElementRef;
+
+    protected editor = ClassicEditor;
     protected errorMessage = '';
     protected deleteMessageEnabled = false;
     protected operationText = 'Insert';
@@ -47,21 +58,31 @@ export class EditorComponent extends BaseComponent implements OnInit {
 
     protected menuItems = [
         { label: 'Save', action: () => this.submit() }
-    ];
+    ]
     protected post: IPost = {
         title: '...',
         content: '...',
-        tags: 'aaa, bbb, ccc',
+        tags: 'aaa; bbb; ccc',
         status: 0
-    };
+    }
     public config = {
+        htmlSupport: {
+            allow: [ {
+                name: /.*/,
+                attributes: /.*/,
+                classes: /.*/,
+                styles: /.*/
+            } ],
+            disallow: [ /* HTML features to disallow. */ ]
+        },
         toolbar: [
             'undo', 'redo', '|',
             'heading', '|', 'bold', 'italic', 'underline', '|',
-            'link', 'mediaEmbed', 'codeBlock', '|',
+            'link', 'mediaEmbed', 'codeBlock', 'highlight', 'htmlEmbed', 'sourceEditing', '|',
             'bulletedList', 'numberedList', 'indent', 'outdent'
         ],
         plugins: [
+            GeneralHtmlSupport,
             Bold,
             Essentials,
             Heading,
@@ -74,7 +95,10 @@ export class EditorComponent extends BaseComponent implements OnInit {
             MediaEmbed,
             Paragraph,
             Undo,
-            CodeBlock
+            CodeBlock,
+            Highlight,
+            HtmlEmbed,
+            SourceEditing
         ],
         codeBlock: {
             languages: [
@@ -92,26 +116,18 @@ export class EditorComponent extends BaseComponent implements OnInit {
         const id = this.route.snapshot.params['id'];
         if (id !== '0') {
             this.operationText = 'Update';
-            this.getPost(id);
-        }
-    }
-    private getPost(id: string) {
-        this.postDataService.getPost(id)
-            .subscribe({
-                next: (post: IPost) => {
-                    this.post = post;
-                },
-                error: (err) => {
-                    console.log(err)
-                },
-                complete: () => {
-                    // ...
-                }
+            this.getPost(id).subscribe(() => {
+                // ...
             });
+        }
     }
     protected submit() {
         if (this.post.id) {
-            //* Updating the post 
+
+            // ....
+            this.post.content = this.post.content.replace('<div class="close-button"></div>', '<button class="close-button" aria-label="Dismiss alert" type="button" data-close=""><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 3.44 3.44"><path fill="#000" fill-rule="evenodd" d="M3.23.59L2.096 1.717 3.23 2.85c.103.104.103.273 0 .38-.106.102-.274.102-.38 0L1.72 2.096.588 3.23c-.104.102-.273.102-.377 0-.102-.107-.102-.276 0-.38l1.134-1.13L.21.588C.108.484.108.315.21.21.316.107.485.107.59.21l1.13 1.133L2.85.21c.106-.103.274-.103.38 0 .103.104.103.273 0 .38z" clip-rule="evenodd"></path></svg></span></button>');
+
+            // Updating the post 
             this.postDataService.updatePost(this.post)
                 .subscribe({
                     next: (post: IPost) => {
@@ -121,7 +137,7 @@ export class EditorComponent extends BaseComponent implements OnInit {
                                 type: AlertType.success,
                                 message: 'The post has been updated successfully'
                             });
-                            this.router.navigate(['/main']);
+                            this.router.navigate(['/viewer', this.post.id]);
                         } else {
                             this.errorMessage = 'Unable to save customer';
                         }
@@ -158,6 +174,21 @@ export class EditorComponent extends BaseComponent implements OnInit {
                     }
                 });
         }
+    }
+    private getPost(id: string): Observable<IPost> {
+        const postObservable = this.postDataService.getPost(id);
+        postObservable.subscribe({
+            next: (post: IPost) => {
+                this.post = post;
+            },
+            error: (err) => {
+                console.log(err)
+            },
+            complete: () => {
+                // ...
+            }
+        });
+        return postObservable;
     }
     protected addTag(tagToAdd: string) {
         if (tagToAdd.trim()) {
