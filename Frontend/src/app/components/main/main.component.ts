@@ -41,7 +41,7 @@ export class MainComponent extends BaseComponent implements OnInit, OnDestroy {
         this.menuItems = [];
         if (this.authService.isLoggedIn) {
             this.menuItems.push({ label: 'Logout', action: () => this.authService.logout() });
-            this.menuItems.push({ label: 'Create new post', action: () => this.router.navigateByUrl('/editor/0') });
+            this.menuItems.push({ label: 'Create new post', action: () => this.router.navigateByUrl('/editor/') });
         } else {
             this.menuItems.push({ label: 'Login', action: () => this.authService.loginRedirect() });
         }

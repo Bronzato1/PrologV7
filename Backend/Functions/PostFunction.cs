@@ -39,26 +39,49 @@ namespace PrologV7.Functions
             }
         }
 
-        [Function("GetPost")]
+        [Function("GetPostById")]
         //*                     
-        //* GET api/posts/5 
+        //* GET api/posts/id/5 
         //*                     
-        public async Task<IActionResult> GetPost([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "posts/{id}")] HttpRequest req, int id)
+        public async Task<IActionResult> GetPostById([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "posts/id/{id}")] HttpRequest req, int id)
         {
             try
             {
-                Console.WriteLine($"▀▄▀▄▀▄ Called {nameof(PostFunction)}.{nameof(GetPost)} with GET request");
-                _Logger.LogInformation($"▀▄▀▄▀▄ Called {nameof(PostFunction)}.{nameof(GetPost)} with GET request");
+                Console.WriteLine($"▀▄▀▄▀▄ Called {nameof(PostFunction)}.{nameof(GetPostById)} with GET request");
+                _Logger.LogInformation($"▀▄▀▄▀▄ Called {nameof(PostFunction)}.{nameof(GetPostById)} with GET request");
 
                 var post = await _postRepository.GetPostByIdAsync(id);
                 return new OkObjectResult(post);
             }
             catch (Exception ex)
             {
-                _Logger.LogError($"▀▄▀▄▀▄ Exception catch in {nameof(PostFunction)}.{nameof(GetPost)}: " + ex.Message);
+                _Logger.LogError($"▀▄▀▄▀▄ Exception catch in {nameof(PostFunction)}.{nameof(GetPostById)}: " + ex.Message);
                 return new BadRequestObjectResult(ex.Message);
             }
         }
+
+        [Function("GetPostBySlug")]
+        //*                     
+        //* GET api/posts/slug/my_post_title
+        //*                     
+        public async Task<IActionResult> GetPostBySlug([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "posts/slug/{slug}")] HttpRequest req, string slug)
+        {
+            try
+            {
+                Console.WriteLine($"▀▄▀▄▀▄ Called {nameof(PostFunction)}.{nameof(GetPostBySlug)} with GET request");
+                _Logger.LogInformation($"▀▄▀▄▀▄ Called {nameof(PostFunction)}.{nameof(GetPostBySlug)} with GET request");
+
+                var post = await _postRepository.GetPostBySlugAsync(slug);
+                return new OkObjectResult(post);
+            }
+            catch (Exception ex)
+            {
+                _Logger.LogError($"▀▄▀▄▀▄ Exception catch in {nameof(PostFunction)}.{nameof(GetPostBySlug)}: " + ex.Message);
+                return new BadRequestObjectResult(ex.Message);
+            }
+        }
+
+
 
         [Function("CreatePost")]
         //*                     

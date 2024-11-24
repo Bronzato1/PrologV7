@@ -6,6 +6,7 @@ namespace PrologV7.Interfaces
     {
         Task<IEnumerable<Post>> GetPostsAsync();
         Task<Post> GetPostByIdAsync(int id);
+        Task<Post> GetPostBySlugAsync(string slug);
         Task<Post> AddPostAsync(Post post);
         Task<bool> UpdatePostAsync(Post post);
         Task<bool> DeletePostAsync(int id);

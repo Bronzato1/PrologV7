@@ -25,8 +25,8 @@ import { ViewerComponent } from './components/viewer/viewer.component';
 export const routes: Routes = [
     { path: '', redirectTo: 'main', pathMatch: 'full' },
     { path: 'main', component: MainComponent },
-    { path: 'editor/:id', component: EditorComponent, canActivate: [MsalGuard] },
-    { path: 'viewer/:id', component: ViewerComponent },
+    { path: 'editor/:slug?', component: EditorComponent, canActivate: [MsalGuard] },
+    { path: 'viewer/:slug', component: ViewerComponent },
     { path: 'login-failed', component: LoginFailedComponent },
     { path: 'clients/equans', component: EquansComponent },
     { path: 'clients/akzonobel', component: AkzonobelComponent },

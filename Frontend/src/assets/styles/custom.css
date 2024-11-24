@@ -494,6 +494,8 @@ html {
 pre {
   background-color: #f1f1f1;
   border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #d9d8d8;
 }
 
 code {
@@ -534,7 +536,7 @@ mark.green {
 }
 
 mark.marker-green {
-  background-color: #cbf9cb;
+  background-color: #cbf9cb !important;
 }
 
 mark.blue,
@@ -547,7 +549,11 @@ mark.yellow {
 }
 
 mark.marker-yellow {
-  background-color: #ffe7b3;
+  background-color: #ffe7b3 !important;
+}
+
+.ck .ck-sticky-panel__content {
+  border: none !important;
 }
 
 .ck.ck-editor__editable:not(.ck-editor__nested-editable) {

@@ -37,10 +37,22 @@ export class PostDataService {
      * @param id - The ID of the post to fetch.
      * @returns An Observable of the IPost object.
      */
-    getPost(id: string): Observable<IPost> {
-        return this.http.get<IPost>(this.basePostUrl + '/' + id)
+    getPostById(id: number): Observable<IPost> {
+        return this.http.get<IPost>(this.basePostUrl + '/id/' + id)
             .pipe(
-                tap(() => logger.label('getPost').info(`post id ${id} fetched successfully`)),
+                tap(() => logger.label('getPostById').info(`post id ${id} fetched successfully`)),
+                catchError(this.handleError)
+            );
+    }
+    /**
+     * Fetches a single post by slug.
+     * @param slug - The slug of the post to fetch.
+     * @returns An Observable of the IPost object.
+     */
+    getPostBySlug(slug: string): Observable<IPost> {
+        return this.http.get<IPost>(this.basePostUrl + '/slug/' + slug)
+            .pipe(
+                tap(() => logger.label('getPostBySlug').info(`post ${slug} fetched successfully`)),
                 catchError(this.handleError)
             );
     }

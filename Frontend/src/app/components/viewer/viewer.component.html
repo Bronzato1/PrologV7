@@ -18,30 +18,40 @@
                 <!-- Start App Card-->
                 <article class="card">
                     <a class="back-button"
-                        (click)="navigateWithAnimation(['main'], {queryParams: { scrollTo: 'projects' } })">
+                        (click)="navigateWithAnimation(['main'], {queryParams: { scrollTo: 'blog' } })">
                         <img src="assets/images/icons/icon-close.svg" alt="go back">
                     </a>
 
                     <header>
                         <h2 class="text-center uppercase">{{ post.title }}</h2>
-                    </header>
 
-                    <div class="text-center">
-                        @if (post.tags.length > 0)
-                        {
-                            @for (tag of post.tags.split(';'); track $index)
+                        <div class="text-center">
+                            @if (post.tags.length > 0)
                             {
-                                <a class="button hollow-button tiny-button">{{ tag.trim() }}</a>
+                                @for (tag of post.tags.split(';'); track $index)
+                                {
+                                    <a class="button hollow-button tiny-button" [attr.data-open]="'modal-' + tag.trim().replace(' ','-')">{{ tag.trim() }}</a>
+                                }
                             }
-                        }
-                    </div>
+                        </div>
+                    </header>
 
                     <hr class="spacer">
 
                     <div [innerHTML]="post.content | bypassHtmlSanitizer"></div>
 
+                    <hr class="spacer">
+                    
                     <footer>
-
+                        <div class="text-center">
+                            @if (post.tags.length > 0)
+                            {
+                                @for (tag of post.tags.split(';'); track $index)
+                                {
+                                    <a class="button hollow-button tiny-button" [attr.data-open]="'modal-' + tag.trim().replace(' ','-')">{{ tag.trim() }}</a>
+                                }
+                            }
+                        </div>
                     </footer>
 
                 </article>

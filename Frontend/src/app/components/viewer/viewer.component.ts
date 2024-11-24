@@ -27,13 +27,13 @@ export class ViewerComponent extends BaseComponent implements OnInit {
   }
   public override ngOnInit() {
     super.ngOnInit();
-    const id = this.route.snapshot.params['id'];
-    if (id !== '0') {
-      this.getPost(id);
+    const slug = this.route.snapshot.params['slug'];
+    if (slug !== undefined) {
+      this.getPost(slug);
     }
   }
-  private getPost(id: string) {
-    this.postDataService.getPost(id)
+  private getPost(slug: string) {
+    this.postDataService.getPostBySlug(slug)
       .subscribe({
         next: (post: IPost) => {
           this.post = post;
@@ -47,6 +47,7 @@ export class ViewerComponent extends BaseComponent implements OnInit {
       });
   }
   private edit() {
-    this.router.navigate(['/editor', this.post.id]);
+    const title_ = this.post.title.toLocaleLowerCase().replace(/\s+/g, '_');
+    this.router.navigate(['/editor', title_]);
   }
 }

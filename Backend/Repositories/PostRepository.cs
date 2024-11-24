@@ -27,6 +27,15 @@ namespace PrologV7.Repositories
             await _context.SaveChangesAsync();
             return post;
         }
+        public async Task<Post> GetPostBySlugAsync(string slug)
+        {
+            var title = slug.Replace("_", " ");
+            var post = await _context.Posts.FirstOrDefaultAsync(f => f.Title!.ToLower() == title.ToLower());
+            if (post == null) throw new Exception($"Post {slug} not found");
+            await _context.SaveChangesAsync();
+            return post;
+        }
+
         public async Task<Post> AddPostAsync(Post post)
         {
             post.CreationDate = DateTime.Now;

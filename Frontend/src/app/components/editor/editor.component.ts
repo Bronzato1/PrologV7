@@ -113,10 +113,10 @@ export class EditorComponent extends BaseComponent implements OnInit {
     }
     public override ngOnInit() {
         super.ngOnInit();
-        const id = this.route.snapshot.params['id'];
-        if (id !== '0') {
+        const slug = this.route.snapshot.params['slug?'];
+        if (slug !== undefined) {
             this.operationText = 'Update';
-            this.getPost(id).subscribe(() => {
+            this.getPost(slug).subscribe(() => {
                 // ...
             });
         }
@@ -137,7 +137,8 @@ export class EditorComponent extends BaseComponent implements OnInit {
                                 type: AlertType.success,
                                 message: 'The post has been updated successfully'
                             });
-                            this.router.navigate(['/viewer', this.post.id]);
+                            const title_ = this.post.title.toLocaleLowerCase().replace(/\s+/g, '_');
+                            this.router.navigate(['/viewer', title_]);
                         } else {
                             this.errorMessage = 'Unable to save customer';
                         }
@@ -175,8 +176,8 @@ export class EditorComponent extends BaseComponent implements OnInit {
                 });
         }
     }
-    private getPost(id: string): Observable<IPost> {
-        const postObservable = this.postDataService.getPost(id);
+    private getPost(slug: string): Observable<IPost> {
+        const postObservable = this.postDataService.getPostBySlug(slug);
         postObservable.subscribe({
             next: (post: IPost) => {
                 this.post = post;
