@@ -30,7 +30,7 @@
                             {
                                 @for (tag of post.tags.split(';'); track $index)
                                 {
-                                    <a class="button hollow-button tiny-button" [attr.data-open]="'modal-' + tag.trim().replace(' ','-')">{{ tag.trim() }}</a>
+                                    <a class="button hollow-button tiny-button" [attr.data-open]="'modal-' + tag.trim().replaceAll(' ','-')">{{ tag.trim() }}</a>
                                 }
                             }
                         </div>
@@ -48,7 +48,7 @@
                             {
                                 @for (tag of post.tags.split(';'); track $index)
                                 {
-                                    <a class="button hollow-button tiny-button" [attr.data-open]="'modal-' + tag.trim().replace(' ','-')">{{ tag.trim() }}</a>
+                                    <a class="button hollow-button tiny-button" [attr.data-open]="'modal-' + tag.trim().replaceAll(' ','-')">{{ tag.trim() }}</a>
                                 }
                             }
                         </div>
