@@ -158,8 +158,8 @@ article h4 {
   color: #48355B;
 }
 
-.button.purple-button {
-  background-color: #ff52d4;
+.button.pink-button {
+  background-color: #F60A48;
   color: #48355B;
 }
 
@@ -171,6 +171,11 @@ article h4 {
 .button.darkgreen-button {
   background-color: #2EC4B6;
   color: #48355B;
+}
+
+.button.purple-button {
+  background-color: #48355B;
+  color: #FFF;
 }
 
 .button.shadow-button {
@@ -496,6 +501,8 @@ pre {
   border-radius: 5px;
   padding: 10px;
   border: 1px solid #d9d8d8;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 code {
@@ -602,4 +609,19 @@ mark.marker-yellow {
 .add-tag-editor input:focus {
   border: none;
   box-shadow: none;
+}
+
+#blog .tiny-button {
+  background-color: #48355B;
+  color: #fff;
+  font-size: small;
+  letter-spacing: 2px;
+  font-family: Raleway, Arial, sans-serif;
+}
+
+#blog .hollow-button:hover .tiny-button {
+  background-color: #fff !important;
+  color: #48355B !important;
+  font-size: small;
+  font-family: Raleway, Arial, sans-serif;
 }
