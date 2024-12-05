@@ -21,10 +21,12 @@ import { EditorComponent } from './components/editor/editor.component';
 import { MsalGuard } from '@azure/msal-angular';
 import { LoginFailedComponent } from './components/login-failed/login-failed.component';
 import { ViewerComponent } from './components/viewer/viewer.component';
+import { ListComponent } from './components/list/list.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'main', pathMatch: 'full' },
     { path: 'main', component: MainComponent },
+    { path: 'list', component: ListComponent, canActivate: [MsalGuard] },
     { path: 'editor/:slug?', component: EditorComponent, canActivate: [MsalGuard] },
     { path: 'viewer/:slug', component: ViewerComponent },
     { path: 'login-failed', component: LoginFailedComponent },

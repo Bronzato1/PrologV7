@@ -1,0 +1,62 @@
+<app-menu [menuItems]="menuItems"></app-menu>
+
+<div id="inner-page">
+    
+    <!-- Background Stars-->
+    <div class="bg">
+        <div class="stars">
+            <img class="animated infinite flash" 
+                 src="./assets/images/illustrations/stars-inner.svg"
+                 alt="stars background">
+        </div>
+    </div>
+
+    <!-- Single App-->
+    <div id="single-app">
+        <div class="row">
+            <div class="small-16 columns">
+
+                <!-- Start App Card-->
+                <article class="card">
+                    <a class="back-button"
+                        (click)="navigateWithAnimation(['main'], {queryParams: { scrollTo: 'projects' } })">
+                        <img src="assets/images/icons/icon-close.svg" alt="go back">
+                    </a>
+                    <header>
+                        <h2 class="title-editor text-center uppercase">List of posts</h2>
+                    </header>
+
+                    <div class="">
+                        <ul *ngFor="let post of posts" class="">
+                            <li>
+                                {{ post.title }}
+                    
+                                <a class="button hollow-button tiny-button grid-item" (click)="editPost(post.title)">Edit</a>
+                                <a class="button hollow-button tiny-button grid-item" (click)="viewPost(post.title)">View</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <footer>
+                        
+                    </footer>
+
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="main-footer">
+    <div class="copyright">
+        <div class="row">
+            <div class="small-16 columns">
+                <p class="text-center copy">Copyright &copy; 2025 <a href="#/">Prolog.Red</a>
+                    <img src="./assets/images/icons/icon-rocket.svg" alt="">
+                    <span class="hide-on-mobile">
+                        All Rights Reserved
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

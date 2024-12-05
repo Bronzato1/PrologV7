@@ -57,7 +57,9 @@ export class EditorComponent extends BaseComponent implements OnInit {
     private alertService = inject(AlertService);
 
     protected menuItems = [
-        { label: 'Save', action: () => this.submit() }
+        { label: 'Save', action: () => this.submit() },
+        { label: 'View post', action: () => this.viewPost() },
+        { label: 'List posts', action: () => this.router.navigateByUrl('/list') }
     ]
     protected post: IPost = {
         title: '...',
@@ -67,13 +69,13 @@ export class EditorComponent extends BaseComponent implements OnInit {
     }
     public config = {
         htmlSupport: {
-            allow: [ {
+            allow: [{
                 name: /.*/,
                 attributes: /.*/,
                 classes: /.*/,
                 styles: /.*/
-            } ],
-            disallow: [ /* HTML features to disallow. */ ]
+            }],
+            disallow: [ /* HTML features to disallow. */]
         },
         toolbar: [
             'undo', 'redo', '|',
@@ -190,6 +192,10 @@ export class EditorComponent extends BaseComponent implements OnInit {
             }
         });
         return postObservable;
+    }
+    private viewPost() {
+        const title_ = this.post.title.toLocaleLowerCase().replace(/\s+/g, '_');
+        this.router.navigate(['/viewer', title_]);
     }
     protected addTag(tagToAdd: string) {
         if (tagToAdd.trim()) {

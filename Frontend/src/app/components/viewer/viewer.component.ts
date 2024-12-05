@@ -17,7 +17,8 @@ export class ViewerComponent extends BaseComponent implements OnInit {
   private postDataService = inject(PostDataService);
 
   protected menuItems = [
-    { label: 'Edit', action: () => this.edit() }
+    { label: 'Edit post', action: () => this.edit() },
+    { label: 'List posts', action: () => this.router.navigateByUrl('/list') }
   ]
   protected post: IPost = {
     title: '...',
