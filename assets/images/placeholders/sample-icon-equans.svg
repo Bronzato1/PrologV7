@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 123 123" width="123px" height="123px" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <path d="M122.674 30.88c0-16.869-13.695-30.564-30.564-30.564H30.982C14.113.316.418 14.011.418 30.88v61.128c0 16.869 13.695 30.564 30.564 30.564H92.11c16.869 0 30.564-13.695 30.564-30.564V30.88z" fill="#b0bec5"/>
+    <path d="M 65.5 38.5 L 82.5 38.5 L 84 40 L 76.5 51.5 C 60.463 49.797 49.63 53.297 44 62 L 41 72 L 42 77 L 41 77 L 39 70 L 39 60 C 40.41 53.744 43.244 48.911 47.5 45.5 L 54.5 41.5 L 65.5 38.5 Z" style="paint-order: stroke; fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255);"/>
+    <path d="M 62.5 56.5 L 73 57 L 68.5 63.5 C 59.516 62.849 53.016 64.683 49 69 C 46.319 71.986 44.819 76.153 44.5 81.5 L 44 70 L 48 62.5 L 57.5 57.5 L 62.5 56.5 Z" style="paint-order: stroke; fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255);"/>
+    <path d="M 56.5 69.5 L 65 70 L 61.5 74.5 L 55.5 74.5 L 48 81 L 46.5 84.5 L 46 83 L 48 76 L 53.5 70.5 L 56.5 69.5 Z" style="paint-order: stroke; fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255);"/>
+  </g>
+</svg>
