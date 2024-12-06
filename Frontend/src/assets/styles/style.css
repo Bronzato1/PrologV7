@@ -2607,10 +2607,10 @@ h6, .h6 {
     font-size: 3rem;
   }
   h2, .h2 {
-    font-size: 2.25rem;
+    font-size: 2.1rem;
   }
   h3, .h3 {
-    font-size: 1.5rem;
+    font-size: 1.65rem;
   }
   h4, .h4 {
     font-size: 1.375rem;
@@ -9112,7 +9112,6 @@ article header .app-icon {
 
 article h3 {
   color: #37474F;
-  margin: 2.1875rem 0 1.5625rem 0;
 }
 
 article ul li {

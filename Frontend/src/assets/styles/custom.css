@@ -153,12 +153,12 @@ article h4 {
   color: #48355B;
 }
 
-.button.red-button {
+.button.magenta-button {
   background-color: #c57df4;
   color: #48355B;
 }
 
-.button.pink-button {
+.button.red-button {
   background-color: #F60A48;
   color: #48355B;
 }
@@ -173,9 +173,89 @@ article h4 {
   color: #48355B;
 }
 
-.button.purple-button {
+.button.purple-tint1-button {
   background-color: #48355B;
-  color: #FFF;
+  color: #fff;
+}
+
+.button.purple-tint2-button {
+  background-color: #4D3A62;
+  color: #fff;
+}
+
+.button.purple-tint3-button {
+  background-color: #533F68;
+  color: #fff;
+}
+
+.button.purple-tint4-button {
+  background-color: #59446F;
+  color: #fff;
+}
+
+.button.purple-tint5-button {
+  background-color: #5F4A76;
+  color: #fff;
+}
+
+.button.purple-tint6-button {
+  background-color: #654F7C;
+  color: #fff;
+}
+
+.button.purple-tint7-button {
+  background-color: #6A5483;
+  color: #fff;
+}
+
+.button.purple-tint8-button {
+  background-color: #705989;
+  color: #fff;
+}
+
+.button.purple-tint9-button {
+  background-color: #765F90;
+  color: #fff;
+}
+
+.button.purple-tint10-button {
+  background-color: #7C6496;
+  color: #fff;
+}
+
+.button.purple-tint11-button {
+  background-color: #82699D;
+  color: #fff;
+}
+
+.button.purple-tint12-button {
+  background-color: #886FA3;
+  color: #fff;
+}
+
+.button.purple-tint13-button {
+  background-color: #8D74AA;
+  color: #fff;
+}
+
+.button.purple-tint14-button {
+  background-color: #9379B0;
+  color: #fff;
+}
+
+.button.purple-tint15-button {
+  background-color: #997FB7;
+  color: #fff;
+}
+
+.button.purple-tint16-button {
+  background-color: #9F84BD;
+  color: #fff;
+}
+
+.button.purple-tint17-button {
+  background-color: #a48dbe;
+  color: #fff;
 }
 
 .button.shadow-button {

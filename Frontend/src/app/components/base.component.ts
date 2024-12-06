@@ -1,11 +1,13 @@
 import { Directive, inject, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Directive()
 export class BaseComponent implements OnInit {
-    
+
     protected route = inject(ActivatedRoute);
     protected router = inject(Router);
+    private location = inject(Location);
 
     constructor() { }
 
@@ -17,19 +19,21 @@ export class BaseComponent implements OnInit {
      * Scroll to the element with the id passed in the query parameter 'scrollTo'
      */
     initializeWithAnimation() {
-        document.body.classList.remove("animate-out");
-        document.body.classList.add("animate-in");
+
+
 
         this.route.queryParams.subscribe(params => {
             const scrollTo = params['scrollTo'];
             if (scrollTo) {
                 const element = document.getElementById(scrollTo);
                 if (element) {
-                    setTimeout(() => {
-                        element.scrollIntoView({ behavior: 'smooth' });  
-                    }, 2000);
+                    document.body.classList.remove("animate-out");
+                    document.body.classList.add("animate-in");
+                    element.scrollIntoView({ behavior: 'auto' });
                 }
             } else {
+                document.body.classList.remove("animate-out");
+                document.body.classList.add("animate-in");
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         });
@@ -44,6 +48,9 @@ export class BaseComponent implements OnInit {
         document.body.classList.add("animate-out");
         setTimeout(() => {
             this.router.navigate(commands, extras);
-        }, 500);
+        }, 400);
+    }
+    protected goBack() {
+        this.location.back();
     }
 }

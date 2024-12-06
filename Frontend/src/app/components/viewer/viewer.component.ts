@@ -15,7 +15,7 @@ import { BypassHtmlSanitizerPipe } from '@src/app/pipes/sanitizer.pipe';
 export class ViewerComponent extends BaseComponent implements OnInit {
 
   private postDataService = inject(PostDataService);
-
+  
   protected menuItems = [
     { label: 'Edit post', action: () => this.edit() },
     { label: 'List posts', action: () => this.router.navigateByUrl('/list') }
