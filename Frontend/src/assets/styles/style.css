@@ -4000,6 +4000,11 @@ select[multiple] {
   color: #37474F;
 }
 
+.callout.info {
+  background-color: #b7c5fe;
+  color: #37474F;
+}
+
 .callout.success {
   background-color: #e1faea;
   color: #37474F;
