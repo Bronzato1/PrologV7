@@ -19,10 +19,9 @@ Once you've added the library, you can use the deploy command to deploy your Ang
 ng deploy --base-href=/test-deploy/
 ```
 
-Replace "test-deploy" with your <repositoryname>. 
-Ex: ng deploy --base-href=/PrologV7/ (lower/uppercase are important!)
-Since I'm hosting my files on GitHub but there is a custom domain name (www.prolog.red), in that case, just put slash.
-Ex: ng deploy --base-href=/
+Replace _"test-deploy"_ with your <repositoryname>. 
+
+Ex: _ng deploy --base-href=/PrologV7/_ (lower/uppercase are important!)
 
 Attention: if you have a custom domain name attached to your repository, you have to run:
 
@@ -30,7 +29,9 @@ Attention: if you have a custom domain name attached to your repository, you hav
 ng deploy --base-href=https://www.domain.com/
 ```
 
-Replace "www.domain.com" with your <domain name>. In my case, prolog.red
+Replace "www.domain.com" with your <domain name>. 
+
+Ex: _ng deploy --base-href=https://www.prolog.red_
 
 This command will deploy your current Angular application to GitHub Pages, making it accessible to the public. The index file serves as the main entry point for a website or application and publishing source determines the branch, folder, or directory from which GitHub Pages serves site's files.
 
