@@ -1,7 +1,5 @@
 # PrologV7
 
-**2 folders :**
-
 - Backend : Azure Functions
 - Frontend: Angular
 
@@ -21,7 +19,10 @@ Once you've added the library, you can use the deploy command to deploy your Ang
 ng deploy --base-href=/test-deploy/
 ```
 
-Replace "test-deploy" with your <repositoryname>. In my case, PrologV7 (lower/uppercase are important!)
+Replace "test-deploy" with your <repositoryname>. 
+Ex: ng deploy --base-href=/PrologV7/ (lower/uppercase are important!)
+Since I'm hosting my files on GitHub but there is a custom domain name (www.prolog.red), in that case, just put slash.
+Ex: ng deploy --base-href=/
 
 Attention: if you have a custom domain name attached to your repository, you have to run:
 
