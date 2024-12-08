@@ -11,8 +11,8 @@ export function loggerCallback(logLevel: LogLevel, message: string) {
       auth: {
         clientId: environment.msalConfig.auth.clientId,
         authority: environment.msalConfig.auth.authority,
-        redirectUri: '/',
-        postLogoutRedirectUri: '/'
+        redirectUri: environment.msalConfig.auth.redirectUri,
+        postLogoutRedirectUri: environment.msalConfig.auth.postLogoutRedirectUri
       },
       cache: {
         cacheLocation: BrowserCacheLocation.LocalStorage

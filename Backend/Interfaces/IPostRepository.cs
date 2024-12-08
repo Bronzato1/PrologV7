@@ -10,5 +10,6 @@ namespace PrologV7.Interfaces
         Task<Post> AddPostAsync(Post post);
         Task<bool> UpdatePostAsync(Post post);
         Task<bool> DeletePostAsync(int id);
+        Task<UploadResponse> UploadPostImageAsync(Stream stream, string filename);
     }
 }

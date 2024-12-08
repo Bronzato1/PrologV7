@@ -81,8 +81,6 @@ namespace PrologV7.Functions
             }
         }
 
-
-
         [Function("CreatePost")]
         //*                     
         //* POST api/posts  
@@ -170,5 +168,88 @@ namespace PrologV7.Functions
                 return new BadRequestObjectResult(ex.Message);
             }
         }
+
+        [Function("UploadImage")]
+        //*                     
+        //* POST api/posts/upload-image
+        //*                     
+        public async Task<IActionResult> UploadImage([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "posts/upload-image")] HttpRequest req, [FromForm] IFormFile upload)
+        {
+            try
+            {
+                Console.WriteLine($"▀▄▀▄▀▄ Called {nameof(PostFunction)}.{nameof(UploadImage)} with POST request");
+                _Logger.LogInformation($"▀▄▀▄▀▄ Called {nameof(PostFunction)}.{nameof(UploadImage)} with POST request");
+
+                var file = req.Form.Files.FirstOrDefault();
+
+                if (file is null) throw new Exception("File to upload not found");
+                if (file.Length > 10 * 1024 * 1024) throw new Exception("Max file size exceeded.");
+                if (file.Length == 0) throw new Exception("Empty file");
+
+                var allowedExtensions = new[] { ".Jpg", ".png", ".PNG", ".JPG", "JPEG", ".jpg", ".jpeg", ".Heif", ".tiff" };
+                var ext = Path.GetExtension(file.FileName);
+                if (!allowedExtensions.Contains(ext, StringComparer.OrdinalIgnoreCase)) throw new Exception("Invalid Image type.");
+
+                Stream stream = file.OpenReadStream();
+                UploadResponse response = await _postRepository.UploadPostImageAsync(stream, file.FileName);
+
+                return new JsonResult(response);
+            }
+            catch (Exception ex)
+            {
+                _Logger.LogError($"▀▄▀▄▀▄ Exception catch in {nameof(PostFunction)}.{nameof(UploadImage)}: " + ex.Message);
+                return new BadRequestObjectResult(ex.Message);
+            }
+        }
+
+        [Function("DownloadDatabase")]
+        //*                     
+        //* GET api/posts/download-database
+        //*                     
+        public async Task<IActionResult> DownloadDatabase([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "posts/download-database")] HttpRequest req)
+        {
+            try
+            {
+                Console.WriteLine($"▀▄▀▄▀▄ Called {nameof(PostFunction)}.{nameof(DownloadDatabase)} with GET request");
+                _Logger.LogInformation($"▀▄▀▄▀▄ Called {nameof(PostFunction)}.{nameof(DownloadDatabase)} with GET request");
+
+                string? database_path = Environment.GetEnvironmentVariable("database_path");
+
+                if (string.IsNullOrEmpty(database_path))
+                {
+                    throw new Exception("Database path not found.");
+                }
+
+                string azure_D_path = @"D:\home";              // RW access - where Azure function store his content per deployment
+                string azure_D_DB_path = Path.Combine(azure_D_path, database_path);
+
+                if (string.IsNullOrEmpty(azure_D_DB_path) || !System.IO.File.Exists(azure_D_DB_path))
+                {
+                    throw new Exception("Database file not found.");
+                }
+
+                var memory = new MemoryStream();
+                using (var stream = new FileStream(azure_D_DB_path, FileMode.Open, FileAccess.Read, FileShare.Read))
+                {
+                    await stream.CopyToAsync(memory);
+                }
+
+                memory.Position = 0;
+
+                var contentType = "application/octet-stream";
+                var fileName = Path.GetFileName(azure_D_DB_path);
+
+                return new FileStreamResult(memory, contentType)
+                {
+                    FileDownloadName = fileName
+                };
+            }
+            catch (Exception ex)
+            {
+                _Logger.LogError($"▀▄▀▄▀▄ Exception catch in {nameof(PostFunction)}.{nameof(DownloadDatabase)}: " + ex.Message);
+                return new BadRequestObjectResult(ex.Message);
+            }
+        }
+
     }
 }

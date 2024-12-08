@@ -14,6 +14,12 @@ import {
     Bold,
     Essentials,
     Heading,
+    Image,
+    ImageCaption,
+    ImageResize,
+    ImageStyle,
+    ImageToolbar,
+    ImageUpload,
     Indent,
     IndentBlock,
     Italic,
@@ -33,10 +39,11 @@ import {
     View
 } from 'ckeditor5';
 
-import 'ckeditor5/ckeditor5.css';
 import { MenuComponent } from "../menu/menu.component";
 import { BaseComponent } from '../base.component';
 import { AlertType } from '@src/app/enumerations/alert-type.enumeration';
+import { UploadAdapterPlugin } from '@src/app/services/upload-adapter';
+import { FileRepository } from '@ckeditor/ckeditor5-upload';
 
 @Component({
     standalone: true,
@@ -80,7 +87,7 @@ export class EditorComponent extends BaseComponent implements OnInit {
         toolbar: [
             'undo', 'redo', '|',
             'heading', '|', 'bold', 'italic', 'underline', '|',
-            'link', 'mediaEmbed', 'codeBlock', 'highlight', 'htmlEmbed', 'sourceEditing', '|',
+            'link', 'mediaEmbed', 'uploadImage', 'codeBlock', 'highlight', 'htmlEmbed', 'sourceEditing', '|',
             'bulletedList', 'numberedList', 'indent', 'outdent'
         ],
         plugins: [
@@ -88,6 +95,12 @@ export class EditorComponent extends BaseComponent implements OnInit {
             Bold,
             Essentials,
             Heading,
+            Image,
+            ImageCaption,
+            ImageResize,
+            ImageStyle,
+            ImageToolbar,
+            ImageUpload,
             Indent,
             IndentBlock,
             Italic,
@@ -100,7 +113,8 @@ export class EditorComponent extends BaseComponent implements OnInit {
             CodeBlock,
             Highlight,
             HtmlEmbed,
-            SourceEditing
+            SourceEditing,
+            UploadAdapterPlugin
         ],
         codeBlock: {
             languages: [

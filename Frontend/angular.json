@@ -34,7 +34,8 @@
             ],
             "styles": [
               "src/assets/styles/style.css",
-              "src/assets/styles/custom.css"
+              "src/assets/styles/custom.css",
+              "node_modules/ckeditor5/dist/ckeditor5.css"
             ],
             "scripts": [
               "src/assets/scripts/app-min.js",
@@ -43,6 +44,12 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",

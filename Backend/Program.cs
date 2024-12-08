@@ -43,7 +43,6 @@ builder.Services
     .AddApplicationInsightsTelemetryWorkerService()
     .ConfigureFunctionsApplicationInsights()
     .AddDbContextFactory<ApplicationDbContext>(options => options.UseSqlite($"Data Source={(isDevEnv ? database_path : azure_D_DB_path)}"))
-    .AddDbContextFactory<ApplicationDbContext>(options => options.UseSqlite($"Data Source={(isDevEnv ? database_path : azure_D_DB_path)}"))
     .AddScoped<IPostRepository, PostRepository>();
 
 builder.Build().Run();

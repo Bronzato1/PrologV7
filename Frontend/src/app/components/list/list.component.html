@@ -29,6 +29,7 @@
                     <div class="">
                         <ul *ngFor="let post of posts" class="">
                             <li>
+                                {{ post.id }}
                                 {{ post.title }}
                     
                                 <a class="button hollow-button tiny-button grid-item" (click)="editPost(post.title)">Edit</a>

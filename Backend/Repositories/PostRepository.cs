@@ -1,3 +1,4 @@
+using Azure.Storage.Blobs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PrologV7.Interfaces;
@@ -73,6 +74,25 @@ namespace PrologV7.Repositories
                 _logger.LogError($"Error in {nameof(DeletePostAsync)}: " + exp.Message);
             }
             return false;
+        }
+        public async Task<UploadResponse> UploadPostImageAsync(Stream stream, string filename)
+        {
+            string? Connection = Environment.GetEnvironmentVariable("AzureWebJobsStorage");
+            string? containerName = Environment.GetEnvironmentVariable("ContainerName");
+
+            var blobClient = new BlobContainerClient(Connection, containerName);
+            var ext = Path.GetExtension(filename);
+            var blob = blobClient.GetBlobClient($"image_{DateTime.Now.ToString("yyyy_MM_yy_HH_mm")}{ext}");
+
+            await blob.UploadAsync(stream);
+
+            var response = new UploadResponse
+            {
+                Uploaded = 1,
+                FileName = blob.Name,
+                Url = blob.Uri.ToString()
+            };
+            return response;
         }
     }
 }
