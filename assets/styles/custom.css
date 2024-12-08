@@ -642,7 +642,7 @@ mark.marker-green {
 }
 
 mark.blue,
-mark.marker.blue {
+mark.marker-blue {
     background-color: #ebebeb !important;
 }
 
