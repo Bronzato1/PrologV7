@@ -717,6 +717,10 @@ mark.marker-yellow {
         padding: 0;
     }
 
+    .no-margin-on-mobile {
+        margin: 0;
+    }
+
     .no-inner-page-bg-for-mobile {
         background: none !important;
     }
