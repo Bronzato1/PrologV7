@@ -515,6 +515,10 @@ html {
         background: none !important;
     }
 
+    figure.image {
+        width: 100%;
+    }
+
     section#links img {
         display: inline-block;
         margin-left: 10px;
@@ -628,7 +632,7 @@ mark.marker-pink {
 }
 
 mark.marker-blue {
-    background-color: #a7b8ff;
+    background-color: #48355B;
 }
 
 mark.red,
@@ -722,4 +726,8 @@ mark.marker-yellow {
     color: #48355B !important;
     font-size: small;
     font-family: Raleway, Arial, sans-serif;
+}
+
+figure.image {
+    margin: 0 auto;
 }
