@@ -82,7 +82,7 @@ namespace PrologV7.Repositories
 
             var blobClient = new BlobContainerClient(Connection, containerName);
             var ext = Path.GetExtension(filename);
-            var blob = blobClient.GetBlobClient($"image_{DateTime.Now.ToString("yyyy_MM_yy_HH_mm")}{ext}");
+            var blob = blobClient.GetBlobClient($"image_{Guid.NewGuid().ToString()}{ext}");
 
             await blob.UploadAsync(stream);
 
