@@ -7,7 +7,6 @@ export default class UploadAdapter {
   xhr: any;
 
   constructor(loader: FileLoader) {
-    debugger;
     // The file loader instance to use during the upload. It sounds scary but do not
     // worry — the loader will be passed into the adapter later on in this guide.
     this.loader = loader;
@@ -32,7 +31,6 @@ export default class UploadAdapter {
     }
   }
   _initRequest() {
-    debugger;
     const baseUrl = environment.apiUrl;
     console.log('Request was initiated');
     const xhr = (this.xhr = new XMLHttpRequest());

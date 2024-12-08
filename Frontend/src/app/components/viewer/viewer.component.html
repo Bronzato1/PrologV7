@@ -1,6 +1,6 @@
 <app-menu [menuItems]="menuItems"></app-menu>
 
-<div id="inner-page">
+<div id="inner-page" class="no-inner-page-bg-for-mobile">
 
     <!-- Background Stars-->
     <div class="bg">
@@ -13,10 +13,10 @@
     <!-- Single App-->
     <div id="single-app">
         <div class="row">
-            <div class="small-16 columns">
+            <div class="small-16 columns no-padding-on-mobile">
 
                 <!-- Start App Card-->
-                <article class="card">
+                <article class="card no-margin-on-mobile">
                     <a class="back-button"
                         (click)="navigateWithAnimation(['main'], {queryParams: { scrollTo: 'blog' } })">
                         <img src="assets/images/icons/icon-close.svg" alt="go back">

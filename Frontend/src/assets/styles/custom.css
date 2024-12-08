@@ -359,7 +359,8 @@ html {
     display: grid;
     grid-gap: 6px;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-auto-rows: 100px; /*14vh*/
+    grid-auto-rows: 100px;
+    /*14vh*/
     grid-auto-flow: dense;
     margin: 0px;
 }
@@ -502,6 +503,22 @@ html {
         width: 100%;
     }
 
+    .no-padding-on-mobile {
+        padding: 0;
+    }
+
+    .no-margin-on-mobile {
+        margin: 0;
+    }
+
+    .no-inner-page-bg-for-mobile {
+        background: none !important;
+    }
+
+    figure.image {
+        width: 100% !important;
+    }
+
     section#links img {
         display: inline-block;
         margin-left: 10px;
@@ -611,35 +628,25 @@ mark.pen-green {
 }
 
 mark.marker-pink {
-    background-color: #f9caca;
-}
-
-mark.marker-blue {
-    background-color: #a7b8ff;
+    background-color: #f9caca !important;
 }
 
 mark.red,
 mark.marker-red {
-    background-color: #f8e2e2;
+    background-color: #f8e2e2 !important;
 }
 
-mark.green {
-    background-color: rgb(221, 255, 221);
-}
-
+mark.green,
 mark.marker-green {
-    background-color: #cbf9cb !important;
+    background-color: #ddffdd !important;
 }
 
 mark.blue,
-mark.marker.blue {
-    background-color: rgb(228, 228, 255);
+mark.marker-blue {
+    background-color: #ebebeb !important;
 }
 
-mark.yellow {
-    background-color: #fff3d9;
-}
-
+mark.yellow,
 mark.marker-yellow {
     background-color: #ffe7b3 !important;
 }
@@ -709,4 +716,8 @@ mark.marker-yellow {
     color: #48355B !important;
     font-size: small;
     font-family: Raleway, Arial, sans-serif;
+}
+
+figure.image {
+    margin: 0 auto;
 }

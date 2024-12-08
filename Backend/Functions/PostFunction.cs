@@ -229,7 +229,7 @@ namespace PrologV7.Functions
                 }
 
                 var memory = new MemoryStream();
-                using (var stream = new FileStream(azure_D_DB_path, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (var stream = new FileStream(azure_D_DB_path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
                     await stream.CopyToAsync(memory);
                 }
