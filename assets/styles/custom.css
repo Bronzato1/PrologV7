@@ -503,6 +503,18 @@ html {
         width: 100%;
     }
 
+    .no-padding-on-mobile {
+        padding: 0;
+    }
+
+    .no-margin-on-mobile {
+        margin: 0;
+    }
+
+    .no-inner-page-bg-for-mobile {
+        background: none !important;
+    }
+
     section#links img {
         display: inline-block;
         margin-left: 10px;
@@ -710,18 +722,4 @@ mark.marker-yellow {
     color: #48355B !important;
     font-size: small;
     font-family: Raleway, Arial, sans-serif;
-}
-
-@media screen and (max-width: 39.9375em) {
-    .no-padding-on-mobile {
-        padding: 0;
-    }
-
-    .no-margin-on-mobile {
-        margin: 0;
-    }
-
-    .no-inner-page-bg-for-mobile {
-        background: none !important;
-    }
 }
