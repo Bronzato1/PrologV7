@@ -516,7 +516,7 @@ html {
     }
 
     figure.image {
-        width: 100%;
+        width: 100% !important;
     }
 
     section#links img {
