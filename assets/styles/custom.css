@@ -628,35 +628,25 @@ mark.pen-green {
 }
 
 mark.marker-pink {
-    background-color: #f9caca;
-}
-
-mark.marker-blue {
-    background-color: #ebebeb;
+    background-color: #f9caca !important;
 }
 
 mark.red,
 mark.marker-red {
-    background-color: #f8e2e2;
+    background-color: #f8e2e2 !important;
 }
 
-mark.green {
-    background-color: rgb(221, 255, 221);
-}
-
+mark.green,
 mark.marker-green {
-    background-color: #cbf9cb !important;
+    background-color: #ddffdd !important;
 }
 
 mark.blue,
 mark.marker.blue {
-    background-color: rgb(228, 228, 255);
+    background-color: #ebebeb !important;
 }
 
-mark.yellow {
-    background-color: #fff3d9;
-}
-
+mark.yellow,
 mark.marker-yellow {
     background-color: #ffe7b3 !important;
 }
