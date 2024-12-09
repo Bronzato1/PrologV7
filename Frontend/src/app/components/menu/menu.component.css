@@ -10,6 +10,16 @@
   font-size: 24px;
   cursor: pointer;
   color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+.menu-button:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .menu {
@@ -30,7 +40,7 @@
 }
 
 .menu li {
-  padding: 10px;
+  padding: 0px;
 }
 
 .menu li a {

@@ -72,7 +72,10 @@ export class EditorComponent extends BaseComponent implements OnInit {
         title: '...',
         content: '...',
         tags: 'aaa; bbb; ccc',
-        status: 0
+        status: 0,
+        span: 3,
+        height: 1,
+        color: 0
     }
     public config = {
         htmlSupport: {
@@ -139,7 +142,6 @@ export class EditorComponent extends BaseComponent implements OnInit {
     }
     protected submit() {
         if (this.post.id) {
-
             // ....
             this.post.content = this.post.content.replace('<div class="close-button"></div>', '<button class="close-button" aria-label="Dismiss alert" type="button" data-close=""><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 3.44 3.44"><path fill="#000" fill-rule="evenodd" d="M3.23.59L2.096 1.717 3.23 2.85c.103.104.103.273 0 .38-.106.102-.274.102-.38 0L1.72 2.096.588 3.23c-.104.102-.273.102-.377 0-.102-.107-.102-.276 0-.38l1.134-1.13L.21.588C.108.484.108.315.21.21.316.107.485.107.59.21l1.13 1.133L2.85.21c.106-.103.274-.103.38 0 .103.104.103.273 0 .38z" clip-rule="evenodd"></path></svg></span></button>');
 
@@ -153,8 +155,7 @@ export class EditorComponent extends BaseComponent implements OnInit {
                                 type: AlertType.success,
                                 message: 'The post has been updated successfully'
                             });
-                            const title_ = this.post.title.toLocaleLowerCase().replace(/\s+/g, '_');
-                            this.router.navigate(['/viewer', title_]);
+                            this.router.navigateByUrl('/list');
                         } else {
                             this.errorMessage = 'Unable to save customer';
                         }

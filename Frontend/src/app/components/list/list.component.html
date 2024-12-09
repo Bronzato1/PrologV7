@@ -23,19 +23,44 @@
                         <img src="assets/images/icons/icon-close.svg" alt="go back">
                     </a>
                     <header>
-                        <h2 class="title-editor text-center uppercase">List of posts</h2>
+                        
                     </header>
 
-                    <div class="">
-                        <ul *ngFor="let post of posts" class="">
-                            <li>
-                                {{ post.id }}
-                                {{ post.title }}
-                    
-                                <a class="button hollow-button tiny-button grid-item" (click)="editPost(post.title)">Edit</a>
-                                <a class="button hollow-button tiny-button grid-item" (click)="viewPost(post.title)">View</a>
-                            </li>
-                        </ul>
+                    <div class="row">
+                        <header class="small-16 columns">
+                            <h2>List of posts</h2>
+                        </header>
+                        <div class="small-16 columns">
+                            <div class="table table-striped">
+                
+                                @for (post of posts; track $index )
+                                {
+                                    <div class="trow">
+                                        <div class="tcol first hide-on-mobile">
+                                            <a class="button purple-tint1-button hollow-button shadow-button"
+                                            (click)="editPost(post.title)"> {{ post.id }} </a>
+                                        </div>
+                                        
+                                        @if (post.tags.trim().length > 0)
+                                        {
+                                            <div class="tcol last hide-on-mobile">
+                                                @for (tag of post.tags.split(';'); track $index)
+                                                {
+                                                    <a class="button hollow-button"> {{ tag.trim() }} </a>
+                                                }
+                                            </div>
+                                        }
+                                        
+                                        <div class="tcol adjust">
+                                            <a (click)="viewPost(post.title)" class="link">
+                                                <strong> {{ post.title }} </strong>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                                
+                            </div>
+                        </div>
                     </div>
 
                     <footer>

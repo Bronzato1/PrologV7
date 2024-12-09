@@ -23,7 +23,19 @@
                         <img src="assets/images/icons/icon-close.svg" alt="go back">
                     </a>
                     <header>
-                         <input type="text" class="h2 title-editor text-center uppercase" [(ngModel)]="post.title" placeholder="my title...">
+                        <input type="text" class="h2 title-editor text-center" [(ngModel)]="post.title" placeholder="my title...">
+
+                        <div class="editor-input-container">    
+                            <input id="span" type="number" [(ngModel)]="post.span" title="Span">
+                            <input id="height" type="number" [(ngModel)]="post.height" title="Height">
+                            <select id="color" [(ngModel)]="post.color" title="Color">
+                                <option value="0"></option>
+                                <option value="1">White</option>
+                                <option value="2">Purple</option>
+                                <option value="3">Green</option>
+                                <option value="4">Red</option>
+                            </select>
+                        </div>
                     </header>
 
                     <div>
@@ -31,6 +43,7 @@
                     </div>
 
                     <footer>
+                        
                         <div class="tag-list-editor text-center">
 
                             @if (post.tags.length > 0)
@@ -40,13 +53,23 @@
                                     <a class="button hollow-button tiny-button" (click)="removeTag(tag)">{{ tag.trim() }}</a>
                                 }    
                             }
-                            
                         </div>
                         <div class="add-tag-editor">
                             <input type="text" #tagInput placeholder="Add new tag" (keydown.enter)="addTag(tagInput.value); tagInput.value=''">
                             <!-- <input type="text" [(ngModel)]="newTag" placeholder="Add new tag">
                             <button (click)="addTag()">Add Tag</button> -->
                         </div>
+
+                        <hr class="spacer">
+
+                        <div class="profile-container">
+                            <img src="../../../assets/images/illustrations/picture-profile.jpg" alt="Profile Picture" class="profile-picture">
+                            <div class="profile-text">
+                                <div class="title">Thierry Langie</div>
+                                <div class="sub-title">Fullstack .Net Angular</div>
+                            </div>
+                        </div>
+
                     </footer>
 
                 </article>

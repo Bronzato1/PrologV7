@@ -23,7 +23,7 @@
                     </a>
 
                     <header>
-                        <h2 class="text-center uppercase">{{ post.title }}</h2>
+                        <h2 class="text-center">{{ post.title }}</h2>
 
                         <div class="text-center">
                             @if (post.tags.length > 0)
@@ -40,9 +40,8 @@
 
                     <div [innerHTML]="post.content | bypassHtmlSanitizer"></div>
 
-                    <hr class="spacer">
-                    
                     <footer>
+
                         <div class="text-center">
                             @if (post.tags.length > 0)
                             {
@@ -52,6 +51,17 @@
                                 }
                             }
                         </div>
+
+                        <hr class="spacer">
+
+                        <div class="profile-container">
+                            <img src="../../../assets/images/illustrations/picture-profile.jpg" alt="Profile Picture" class="profile-picture">
+                            <div class="profile-text">
+                                <div class="title">Thierry Langie</div>
+                                <div class="sub-title">Fullstack .Net Angular</div>
+                            </div>
+                        </div>
+                        
                     </footer>
 
                 </article>

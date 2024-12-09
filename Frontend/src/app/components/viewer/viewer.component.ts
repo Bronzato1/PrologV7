@@ -24,7 +24,10 @@ export class ViewerComponent extends BaseComponent implements OnInit {
     title: '...',
     content: '...',
     tags: 'aaa; bbb; ccc',
-    status: 0
+    status: 0,
+    span: 0,
+    height: 0,
+    color: 0
   }
   public override ngOnInit() {
     super.ngOnInit();
