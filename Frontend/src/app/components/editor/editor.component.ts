@@ -65,8 +65,7 @@ export class EditorComponent extends BaseComponent implements OnInit {
 
     protected menuItems = [
         { label: 'Save', action: () => this.submit() },
-        { label: 'View post', action: () => this.viewPost() },
-        { label: 'List posts', action: () => this.router.navigateByUrl('/list') }
+        { label: 'View post', action: () => this.viewPost() }
     ]
     protected post: IPost = {
         title: '...',

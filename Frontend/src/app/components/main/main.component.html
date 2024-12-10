@@ -704,6 +704,104 @@
     </div>
 </section>
 
+<section id="blog">
+    <hr class="spacer">
+    <div class="row">
+        <header class="small-16 columns">
+            <h2>Blog</h2>
+        </header>
+
+        <!-- Rounded switch -->
+        <label class="switch">
+            <input type="checkbox" [value]="blogViewMode" (change)="toggleBlogView()">
+            <span class="sslider round"></span>
+        </label>
+
+        @if (blogViewMode == 'masonry')
+        {
+            <div class="small-16 columns masonry">
+                <ul>
+                    @for (post of posts; track $index ) 
+                    {
+                        @if (post.content != '')
+                        {
+                            <li class="span{{post.span}} height{{ post.height }} button tint{{ post.color }}-button no-border hollow-button">
+                                <a [routerLink]="['/viewer/', getSlug(post.title)]">
+                                    <h2> {{ post.title }} </h2>
+                                    @if (post.tags !== '')
+                                    {
+                                        <div>
+                                            @for (tag of post.tags.split(';'); track $index)
+                                            {
+                                                <a class="button hollow-button tint{{ post.color }}-button tiny-button no-border">{{ tag.trim() }}</a>
+                                            }  
+                                        </div>
+                                    }
+                                </a>
+                            </li>
+                        }
+                        @else
+                        {
+                            <li class="span{{post.span}} height{{ post.height }}">
+                                <h2> {{ post.title }} </h2>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        }
+        @else
+        {
+            <div class="small-16 columns list">
+                <div class="table table-striped">
+    
+                    @for (post of posts; track $index)
+                    {
+                        <div class="trow">
+                            <div class="tcol first hide-on-mobile">
+                                <a (click)="editPost(post.title)" class="button purple-tint1-button hollow-button shadow-button"> 
+                                    {{ post.id }} 
+                                </a>
+                            </div>
+                            
+                            @if (post.tags.trim().length > 0)
+                            {
+                                <div class="tcol last hide-on-mobile">
+                                    @for (tag of post.tags.split(';'); track $index)
+                                    {
+                                        <a class="button hollow-button"> {{ tag.trim() }} </a>
+                                    }
+                                </div>
+                            }
+                            
+                            <div class="tcol adjust">
+                                <a (click)="viewPost(post.title)" class="link">
+                                    <strong> {{ post.title }} </strong>
+                                </a>
+                            
+                                @if (post.color > 1) 
+                                {
+                                    ●
+                                    <a (click)="viewPost(post.title)" class="link">
+                                        {{ stripHtmlTags(post.content) }}
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    }
+                    
+                </div>
+            </div>
+        }
+
+    </div>
+
+    <footer>
+        
+    </footer>
+
+</section>
+
 <footer class="main-footer">
     <div class="row"></div>
     <div class="copyright">
@@ -717,42 +815,3 @@
         </div>
     </div>
 </footer>
-
-<section id="blog">
-    <hr class="spacer">
-    <div class="row">
-        <header class="small-16 columns">
-            <h2>Blog</h2>
-        </header>
-        <div class="small-16 columns masonry">
-            <ul>
-                @for (post of posts; track $index ) 
-                {
-                    @if (post.content != '')
-                    {
-                        <li class="span{{post.span}} height{{ post.height }} button tint{{ post.color }}-button no-border hollow-button">
-                            <a [routerLink]="['/viewer/', getSlug(post.title)]">
-                                <h2> {{ post.title }} </h2>
-                                @if (post.tags !== '')
-                                {
-                                    <div>
-                                        @for (tag of post.tags.split(';'); track $index)
-                                        {
-                                            <a class="button hollow-button tint{{ post.color }}-button tiny-button no-border">{{ tag.trim() }}</a>
-                                        }  
-                                    </div>
-                                }
-                            </a>
-                        </li>
-                    }
-                    @else
-                    {
-                        <li class="span{{post.span}} height{{ post.height }}">
-                            <h2> {{ post.title }} </h2>
-                        </li>
-                    }
-                }
-            </ul>
-        </div>
-    </div>
-</section>

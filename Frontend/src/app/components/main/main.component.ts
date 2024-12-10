@@ -24,6 +24,7 @@ export class MainComponent extends BaseComponent implements OnInit, OnDestroy {
 
     protected menuItems!: { label: string; action: () => void; }[];
     protected posts: IPost[] = [];
+    protected blogViewMode: 'masonry' | 'list' = 'masonry';
 
     constructor() {
         super();
@@ -47,8 +48,7 @@ export class MainComponent extends BaseComponent implements OnInit, OnDestroy {
         this.menuItems = [];
         if (this.authService.isLoggedIn) {
             this.menuItems.push({ label: 'Logout', action: () => this.authService.logout() });
-            this.menuItems.push({ label: 'Create new post', action: () => this.router.navigateByUrl('/editor/') });
-            this.menuItems.push({ label: 'List posts', action: () => this.router.navigateByUrl('/list') });
+            this.menuItems.push({ label: 'Create new post', action: () => this.router.navigateByUrl('/editor/') })
         } else {
             this.menuItems.push({ label: 'Login', action: () => this.authService.loginRedirect() });
         }
@@ -67,7 +67,27 @@ export class MainComponent extends BaseComponent implements OnInit, OnDestroy {
                 }
             });
     }
+    protected editPost(title: string) {
+        if (!this.authService.isLoggedIn)  {
+            // unauthenticated users can only view posts
+            this.viewPost(title);
+            return;
+        }
+        const title_ = title.toLocaleLowerCase().replace(/\s+/g, '_');
+        this.router.navigate(['/editor', title_]);
+    }
+    protected viewPost(title: string) {
+        const title_ = title.toLocaleLowerCase().replace(/\s+/g, '_');
+        this.router.navigate(['/viewer', title_]);
+    }
     protected getSlug(title: string) {
         return title.toLocaleLowerCase().replace(/\s+/g, '_')
+    }
+    protected toggleBlogView() {
+        this.blogViewMode = this.blogViewMode === 'masonry' ? 'list' : 'masonry';
+    }
+    protected stripHtmlTags(html: string) {
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        return doc.body.textContent || "";
     }
 }
