@@ -268,7 +268,9 @@ article h4 {
 }
 
 .button.tint0-button,
-.button.tint1-button {
+.button.tint0-button:hover,
+.button.tint1-button,
+.button.tint1-button:hover {
     background-color: #fff;
     color: #48355B;
 }
@@ -351,7 +353,7 @@ hr.thick {
 
 .tiny-button {
     padding: 0.3rem 0.4rem 0.3rem;
-    margin: 2px 2px;
+    margin: 0px 3px;
     font-size: 1rem;
 }
 
