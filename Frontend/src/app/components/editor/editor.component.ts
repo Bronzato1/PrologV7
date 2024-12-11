@@ -41,7 +41,7 @@ import {
 
 import { MenuComponent } from "../menu/menu.component";
 import { BaseComponent } from '../base.component';
-import { AlertType } from '@src/app/enumerations/alert-type.enumeration';
+import { AlertTypeEnum } from '@src/app/enumerations/alert-type.enumeration';
 import { UploadAdapterPlugin } from '@src/app/services/upload-adapter';
 import { FileRepository } from '@ckeditor/ckeditor5-upload';
 
@@ -74,7 +74,8 @@ export class EditorComponent extends BaseComponent implements OnInit {
         status: 0,
         span: 3,
         height: 1,
-        color: 0
+        color: 0,
+        heading: 2
     }
     public config = {
         htmlSupport: {
@@ -151,7 +152,7 @@ export class EditorComponent extends BaseComponent implements OnInit {
                         if (post) {
                             this.alertService.showAlert({
                                 title: 'UPDATE',
-                                type: AlertType.success,
+                                type: AlertTypeEnum.success,
                                 message: 'The post has been updated successfully'
                             });
                             this.router.navigateByUrl('/list');
@@ -174,7 +175,7 @@ export class EditorComponent extends BaseComponent implements OnInit {
                         if (post) {
                             this.alertService.showAlert({
                                 title: 'CREATE',
-                                type: AlertType.success,
+                                type: AlertTypeEnum.success,
                                 message: 'The post has been added successfully'
                             });
                             this.router.navigate(['/main']);

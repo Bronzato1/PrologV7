@@ -9,6 +9,7 @@ export interface IPost {
     span: number;
     height: number;
     color: number;
+    heading: number;
 }
 
 export interface IBackendResponse {

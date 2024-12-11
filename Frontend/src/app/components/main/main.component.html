@@ -723,29 +723,20 @@
                 <ul>
                     @for (post of posts; track $index ) 
                     {
-                        @if (post.content != '')
-                        {
-                            <li class="span{{post.span}} height{{ post.height }} button tint{{ post.color }}-button no-border hollow-button">
-                                <a [routerLink]="['/viewer/', getSlug(post.title)]">
-                                    <h2> {{ post.title }} </h2>
-                                    @if (post.tags !== '')
-                                    {
-                                        <div>
-                                            @for (tag of post.tags.split(';'); track $index)
-                                            {
-                                                <a class="button hollow-button tint{{ post.color }}-button tiny-button no-border">{{ tag.trim() }}</a>
-                                            }  
-                                        </div>
-                                    }
-                                </a>
-                            </li>
-                        }
-                        @else
-                        {
-                            <li class="span{{post.span}} height{{ post.height }}">
-                                <h2> {{ post.title }} </h2>
-                            </li>
-                        }
+                        <li class="span{{post.span}} height{{ post.height }} button tint{{ post.color }}-button no-border hollow-button">
+                            <a [routerLink]="['/viewer/', getSlug(post.title)]">
+                                <h2 [ngStyle]="{'font-size': post.heading + '%'}"> {{ post.title }} </h2>
+                                @if (post.tags !== '')
+                                {
+                                    <div>
+                                        @for (tag of post.tags.split(';'); track $index)
+                                        {
+                                            <a class="button hollow-button tint{{ post.color }}-button tiny-button no-border">{{ tag.trim() }}</a>
+                                        }  
+                                    </div>
+                                }
+                            </a>
+                        </li>
                     }
                 </ul>
             </div>
@@ -779,7 +770,7 @@
                                     <strong> {{ post.title }} </strong>
                                 </a>
                             
-                                @if (post.color > 1) 
+                                @if (post.content !== '') 
                                 {
                                     ●
                                     <a (click)="viewPost(post.title)" class="link">

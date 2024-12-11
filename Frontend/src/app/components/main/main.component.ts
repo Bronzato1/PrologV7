@@ -1,4 +1,5 @@
 import { Component, OnInit, Renderer2, AfterViewInit, ElementRef, OnDestroy, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { BaseComponent } from '../base.component';
 import { MenuComponent } from "../menu/menu.component";
@@ -7,13 +8,14 @@ import { Subscription } from 'rxjs';
 import adze from 'adze';
 import { PostDataService } from '@src/app/services/post-data-service';
 import { IPost } from '@src/app/interfaces/post.interface';
+import { PostColorEnum } from '@src/app/enumerations/post-color.enumeration';
 
 const logger = adze.namespace('MainComponent').seal();
 
 @Component({
     selector: 'app-main',
     standalone: true,
-    imports: [MenuComponent, RouterLink],
+    imports: [CommonModule, MenuComponent, RouterLink],
     templateUrl: './main.component.html'
 })
 export class MainComponent extends BaseComponent implements OnInit, OnDestroy {
@@ -25,6 +27,7 @@ export class MainComponent extends BaseComponent implements OnInit, OnDestroy {
     protected menuItems!: { label: string; action: () => void; }[];
     protected posts: IPost[] = [];
     protected blogViewMode: 'masonry' | 'list' = 'masonry';
+    protected PostColorEnum = PostColorEnum;
 
     constructor() {
         super();

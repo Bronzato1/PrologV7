@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from '@app/services/alert.service';
-import { AlertType } from '@app/enumerations/alert-type.enumeration';
+import { AlertTypeEnum } from '@app/enumerations/alert-type.enumeration';
 import { IAlert } from '@app/interfaces/alert.interface';
 import { debounceTime, tap } from 'rxjs';
 
@@ -25,7 +25,7 @@ export class AlertComponent implements OnInit {
   public incommingAlert: IAlert = {
     title: '',
     message: '',
-    type: AlertType.danger,
+    type: AlertTypeEnum.danger,
   };
   /**
    * Initialize the component

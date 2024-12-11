@@ -20,13 +20,14 @@ export class ViewerComponent extends BaseComponent implements OnInit {
     { label: 'Edit post', action: () => this.edit() }
   ]
   protected post: IPost = {
-    title: '...',
-    content: '...',
-    tags: 'aaa; bbb; ccc',
+    title: '',
+    content: '',
+    tags: '',
     status: 0,
     span: 0,
     height: 0,
-    color: 0
+    color: 0,
+    heading: 2
   }
   public override ngOnInit() {
     super.ngOnInit();

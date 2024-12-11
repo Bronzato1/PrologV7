@@ -28,6 +28,19 @@
                         <div class="editor-input-container">    
                             <input id="span" type="number" [(ngModel)]="post.span" title="Span">
                             <input id="height" type="number" [(ngModel)]="post.height" title="Height">
+                            <select id="heading" [(ngModel)]="post.heading" title="Color">
+                                <option value="70">70%</option>
+                                <option value="80">80%</option>
+                                <option value="90">90%</option>
+                                <option value="100">100%</option>
+                                <option value="110">110%</option>
+                                <option value="120">120%</option>
+                                <option value="130">130%</option>
+                                <option value="140">140%</option>
+                                <option value="150">150%</option>
+                                <option value="160">160%</option>
+                                <option value="170">170%</option>
+                            </select>
                             <select id="color" [(ngModel)]="post.color" title="Color">
                                 <option value="0"></option>
                                 <option value="1">White</option>
