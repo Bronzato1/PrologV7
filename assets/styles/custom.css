@@ -352,8 +352,8 @@ hr.thick {
 }
 
 .tiny-button {
-    padding: 0.3rem 0.4rem 0.3rem;
-    margin: 0px 3px;
+    padding: 0.5rem;
+    margin: 2px;
     font-size: 1rem;
 }
 
@@ -442,7 +442,7 @@ html {
 .masonry h3,
 .masonry h4 {
     text-align: center;
-    line-height: 140%;
+    line-height: normal;
     font-weight: 900;
     letter-spacing: 1px;
     color: inherit;
@@ -809,15 +809,23 @@ figure.image {
     border-bottom-left-radius: 10px;
     border-right: none;
     width: 50px;
+    height: auto;
 }
 .editor-input-container input#height {
     border-right: none;
     width: 50px;
+    height: auto;
+}
+.editor-input-container select#heading {
+    border-right: none;
+    width: auto;
+    height: auto;
 }
 .editor-input-container select#color {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-    width: 100px;
+    width: auto;
+    height: auto;
 }
 
 /* The switch - the box around the slider */
