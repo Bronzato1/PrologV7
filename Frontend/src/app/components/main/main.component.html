@@ -731,7 +731,9 @@
                                     <div>
                                         @for (tag of post.tags.split(';'); track $index)
                                         {
-                                            <a class="button hollow-button tint{{ post.color }}-button tiny-button no-border">{{ tag.trim() }}</a>
+                                            <a class="button hollow-button tint{{ post.color }}-button tiny-button no-border">
+                                                {{ tag.trim() }}
+                                            </a>
                                         }  
                                     </div>
                                 }
@@ -760,7 +762,9 @@
                                 <div class="tcol last hide-on-mobile">
                                     @for (tag of post.tags.split(';'); track $index)
                                     {
-                                        <a class="button hollow-button"> {{ tag.trim() }} </a>
+                                        <a class="button hollow-button" [attr.data-open]="'modal-' + tag.trim().replace(' ', '-')"> 
+                                            {{ tag.trim() }} 
+                                        </a>
                                     }
                                 </div>
                             }
