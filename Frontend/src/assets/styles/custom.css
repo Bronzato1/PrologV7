@@ -635,8 +635,12 @@ html {
     background-color: #E1FAEA;
 }
 
-.callout.info .close-button {
-    background-color: #b7c5fe;
+.callout.info,
+.callout.info .close-button,
+.callout.info .close-button svg path {
+    background-color: #48355B;
+    color: #FFF;
+    fill:#fff;
 }
 
 .callout.warning .close-button {
