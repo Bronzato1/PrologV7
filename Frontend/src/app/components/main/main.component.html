@@ -711,17 +711,20 @@
             <h2>Blog</h2>
         </header>
 
-        <!-- Rounded switch -->
-        <label class="switch">
-            <input type="checkbox" [value]="blogViewMode" (change)="toggleBlogView()">
-            <span class="sslider round"></span>
-        </label>
+        <!-- Search input and switch -->
+        <div class="search-switch-container">
+            <input type="text" class="search" [(ngModel)]="blogSearchText" placeholder="Search">
+            <label class="switch">
+                <input type="checkbox" class="check" [value]="blogViewMode" (change)="toggleBlogView()">
+                <span class="sslider round"></span>
+            </label>
+        </div>
 
         @if (blogViewMode == 'masonry')
         {
             <div class="small-16 columns masonry">
                 <ul>
-                    @for (post of posts; track $index ) 
+                    @for (post of filteredPosts; track $index ) 
                     {
                         <li class="span{{post.span}} height{{ post.height }} button tint{{ post.color }}-button no-border hollow-button">
                             <a [routerLink]="['/viewer/', getSlug(post.title)]">
@@ -748,7 +751,7 @@
             <div class="small-16 columns list">
                 <div class="table table-striped">
     
-                    @for (post of posts; track $index)
+                    @for (post of filteredPosts; track $index)
                     {
                         <div class="trow">
                             <div class="tcol first hide-on-mobile">

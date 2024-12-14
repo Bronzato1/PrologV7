@@ -1,5 +1,6 @@
 import { Component, OnInit, Renderer2, AfterViewInit, ElementRef, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { BaseComponent } from '../base.component';
 import { MenuComponent } from "../menu/menu.component";
@@ -15,7 +16,7 @@ const logger = adze.namespace('MainComponent').seal();
 @Component({
     selector: 'app-main',
     standalone: true,
-    imports: [CommonModule, MenuComponent, RouterLink],
+    imports: [CommonModule, FormsModule, MenuComponent, RouterLink],
     templateUrl: './main.component.html'
 })
 export class MainComponent extends BaseComponent implements OnInit, OnDestroy {
@@ -27,7 +28,19 @@ export class MainComponent extends BaseComponent implements OnInit, OnDestroy {
     protected menuItems!: { label: string; action: () => void; }[];
     protected posts: IPost[] = [];
     protected blogViewMode: 'masonry' | 'list' = 'masonry';
+    protected blogSearchText: string = '';
     protected PostColorEnum = PostColorEnum;
+
+    // Getter to filter posts based on blogSearchText
+    get filteredPosts(): IPost[] {
+        if (!this.blogSearchText) {
+            return this.posts;
+        }
+        return this.posts.filter(post =>
+            post.title.toLowerCase().includes(this.blogSearchText.toLowerCase()) ||
+            post.content.toLowerCase().includes(this.blogSearchText.toLowerCase())
+        );
+    }
 
     constructor() {
         super();
