@@ -872,15 +872,7 @@ figure.image {
     -webkit-transition: .4s;
     transition: .4s;
   }
-  
-  input:checked + .sslider {
-    background-color: #48355B;
-  }
-  
-  input:focus + .sslider {
-    box-shadow: 0 0 1px #48355B;
-  }
-  
+   
   input:checked + .sslider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
@@ -895,3 +887,24 @@ figure.image {
   .sslider.round:before {
     border-radius: 50%;
   }
+
+  input.search {
+    position: absolute;
+    right: 95px;
+    width: 100px;
+    margin-top: 15px;
+    height: 34px;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    box-shadow: none !important;
+    border: 3px solid #ccc; 
+    font-size: 20px;
+  }
+
+  input.search:focus {
+    border: 3px solid #ccc; 
+  }
+
+   input.search::placeholder {
+    font-size: 20px;
+}
