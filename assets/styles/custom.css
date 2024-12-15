@@ -390,127 +390,6 @@ html {
     overflow-x: hidden;
 }
 
-.masonry {
-    overflow-x: scroll;
-    scrollbar-width: none; /* For Firefox */
-    -ms-overflow-style: none; 
-    width: 100%;
-    height: 700px;
-    writing-mode: vertical-lr;
-    padding-bottom: 40px;
-}
-
-.masonry::-webkit-scrollbar {
-    display: none; /* For Chrome, Safari, and Opera */
-}
-
-.masonry ul {
-    display: grid;
-    grid-gap: 30px;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-auto-rows: 100px;
-    /*14vh*/
-    grid-auto-flow: dense;
-    margin: 0px;
-}
-
-.masonry li {
-    display: block;
-    overflow: hidden;
-    writing-mode: horizontal-tb;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2vh;
-    margin: 0;
-}
-
-.masonry li .button {
-    cursor: pointer;
-}
-
-.masonry li.pic-profile {
-    padding: 0;
-    align-items: center;
-    display: flex;
-}
-
-
-.masonry p,
-.masonry a,
-.masonry h2,
-.masonry h3,
-.masonry h4 {
-    text-align: center;
-    line-height: normal;
-    font-weight: 900;
-    letter-spacing: 1px;
-    color: inherit;
-}
-
-.masonry li:nth-child(3n+2) {
-    /* background-color: #FF9F1C;
-  color: #48355B; */
-}
-
-.masonry li:nth-child(3n+1) {
-    /* background-color: #E71D36;
-  color: #48355B; */
-}
-
-.masonry li:nth-child(3n) {
-    /* background-color: #2EC4B6;
-  color: #48355B;
-  box-shadow: 2px 4px 8px gray;
-  border: unset; */
-}
-
-.masonry .span2 {
-    grid-row-end: span 2;
-}
-
-.masonry .span3 {
-    grid-row-end: span 3;
-}
-
-.masonry .span4 {
-    grid-row-end: span 4;
-}
-
-.masonry .span5 {
-    grid-row-end: span 5;
-}
-
-.masonry .span6 {
-    grid-row-end: span 6;
-}
-
-.masonry .height2 {
-    grid-column-end: span 2;
-}
-
-.masonry .height3 {
-    grid-column-end: span 3;
-}
-
-.masonry .height4 {
-    grid-column-end: span 4;
-}
-
-.masonry .height5 {
-    grid-column-end: span 5;
-}
-
-.masonry li:hover .button {
-    background-color: #48355B !important;
-    color: #fff !important;
-    -webkit-transition: all 0.2s ease-in;
-    -moz-transition: all 0.2s ease-in;
-    -ms-transition: all 0.2s ease-in;
-    -o-transition: all 0.2s ease-in;
-    transition: all 0.2s ease-in;
-}
-
 @media (max-height:500px) {
     ul {
         grid-gap: 8px;
@@ -835,7 +714,7 @@ figure.image {
 /* The switch - the box around the slider */
 .switch {
     position: absolute;
-    right: 25px;
+    right: 40px;
     margin-top: 15px;
     width: 60px;
     height: 34px;
@@ -890,7 +769,7 @@ figure.image {
 
   input.search {
     position: absolute;
-    right: 70px;
+    right: 80px;
     width: 100px;
     margin-top: 15px;
     height: 34px;
