@@ -23,7 +23,7 @@ namespace Backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("Color")
+                    b.Property<int?>("Category")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Content")
@@ -32,17 +32,8 @@ namespace Backend.Migrations
                     b.Property<DateTime?>("CreationDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("Heading")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Height")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime?>("ModificationDate")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("Span")
-                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("Status")
                         .HasColumnType("INTEGER");

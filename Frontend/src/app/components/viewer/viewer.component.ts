@@ -4,6 +4,7 @@ import { PostDataService } from '@src/app/services/post-data-service';
 import { BaseComponent } from '../base.component';
 import { MenuComponent } from '../menu/menu.component';
 import { BypassHtmlSanitizerPipe } from '@src/app/pipes/sanitizer.pipe';
+import { PostCategoryEnum } from '@src/app/enumerations/post-category.enumeration';
 
 @Component({
   standalone: true,
@@ -15,7 +16,7 @@ import { BypassHtmlSanitizerPipe } from '@src/app/pipes/sanitizer.pipe';
 export class ViewerComponent extends BaseComponent implements OnInit {
 
   private postDataService = inject(PostDataService);
-  
+  protected PostCategoryEnum = PostCategoryEnum;
   protected menuItems = [
     { label: 'Edit post', action: () => this.edit() }
   ]
@@ -24,10 +25,7 @@ export class ViewerComponent extends BaseComponent implements OnInit {
     content: '',
     tags: '',
     status: 0,
-    span: 0,
-    height: 0,
-    color: 0,
-    heading: 2
+    category: 0
   }
   public override ngOnInit() {
     super.ngOnInit();

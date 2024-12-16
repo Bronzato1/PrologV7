@@ -1,8 +1,12 @@
 namespace PrologV7
 {
-    public enum PostStatusEnum
+    public enum PostCategoryEnum
     {
-        Draft,
-        Published
+        Angular,
+        TypeScript,
+        JavaScript,
+        CSharp,
+        DotNet,
+        Azure
     }
 }

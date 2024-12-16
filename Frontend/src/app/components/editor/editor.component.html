@@ -19,36 +19,11 @@
                 <!-- Start App Card-->
                 <article class="card">
                     <a class="back-button"
-                        (click)="navigateWithAnimation(['main'], {queryParams: { scrollTo: 'projects' } })">
+                        (click)="navigateWithAnimation(['main'], {queryParams: { scrollTo: 'blog' } })">
                         <img src="assets/images/icons/icon-close.svg" alt="go back">
                     </a>
                     <header>
                         <input type="text" class="h2 title-editor text-center" [(ngModel)]="post.title" placeholder="my title...">
-
-                        <div class="editor-input-container">    
-                            <input id="span" type="number" [(ngModel)]="post.span" title="Span">
-                            <input id="height" type="number" [(ngModel)]="post.height" title="Height">
-                            <select id="heading" [(ngModel)]="post.heading" title="Color">
-                                <option value="70">70%</option>
-                                <option value="80">80%</option>
-                                <option value="90">90%</option>
-                                <option value="100">100%</option>
-                                <option value="110">110%</option>
-                                <option value="120">120%</option>
-                                <option value="130">130%</option>
-                                <option value="140">140%</option>
-                                <option value="150">150%</option>
-                                <option value="160">160%</option>
-                                <option value="170">170%</option>
-                            </select>
-                            <select id="color" [(ngModel)]="post.color" title="Color">
-                                <option value="0"></option>
-                                <option value="1">White</option>
-                                <option value="2">Purple</option>
-                                <option value="3">Green</option>
-                                <option value="4">Red</option>
-                            </select>
-                        </div>
                     </header>
 
                     <div>
@@ -56,6 +31,17 @@
                     </div>
 
                     <footer>
+
+                        <div class="editor-input-container">    
+                            <select id="category" [(ngModel)]="post.category" title="Color">
+                                <option value="0">Angular</option>
+                                <option value="1">TypeScript</option>
+                                <option value="2">JavaScript</option>
+                                <option value="3">CSharp</option>
+                                <option value="4">.Net</option>
+                                <option value="5">Azure</option>
+                            </select>
+                        </div>
                         
                         <div class="tag-list-editor text-center">
 

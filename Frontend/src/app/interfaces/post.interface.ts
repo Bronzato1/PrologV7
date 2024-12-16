@@ -6,10 +6,7 @@ export interface IPost {
     creationDate?: Date;
     modificationDate?: Date;
     status: number;
-    span: number;
-    height: number;
-    color: number;
-    heading: number;
+    category: number;
 }
 
 export interface IBackendResponse {

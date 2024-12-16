@@ -72,10 +72,7 @@ export class EditorComponent extends BaseComponent implements OnInit {
         content: '...',
         tags: 'aaa; bbb; ccc',
         status: 0,
-        span: 3,
-        height: 1,
-        color: 0,
-        heading: 2
+        category: 0
     }
     public config = {
         htmlSupport: {

@@ -10,13 +10,14 @@ import adze from 'adze';
 import { PostDataService } from '@src/app/services/post-data-service';
 import { IPost } from '@src/app/interfaces/post.interface';
 import { PostColorEnum } from '@src/app/enumerations/post-color.enumeration';
+import { PostCategoryEnum } from '@src/app/enumerations/post-category.enumeration';
 
 const logger = adze.namespace('MainComponent').seal();
 
 @Component({
     selector: 'app-main',
     standalone: true,
-    imports: [CommonModule, FormsModule, MenuComponent, RouterLink],
+    imports: [CommonModule, FormsModule, MenuComponent],
     templateUrl: './main.component.html'
 })
 export class MainComponent extends BaseComponent implements OnInit, OnDestroy {
@@ -30,6 +31,7 @@ export class MainComponent extends BaseComponent implements OnInit, OnDestroy {
     protected blogViewMode: 'masonry' | 'list' = 'masonry';
     protected blogSearchText: string = '';
     protected PostColorEnum = PostColorEnum;
+    protected PostCategoryEnum = PostCategoryEnum;
 
     // Getter to filter posts based on blogSearchText
     get filteredPosts(): IPost[] {

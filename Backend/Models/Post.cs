@@ -12,9 +12,6 @@ namespace PrologV7.Models
         public DateTime? CreationDate { get; set; }
         public DateTime? ModificationDate { get; set; }
         public PostStatusEnum? Status { get; set; }
-        public PostColorEnum? Color { get; set; }
-        public PostHeadingEnum? Heading { get; set; }
-        public int Span { get; set; }
-        public int Height { get; set; }
+        public PostCategoryEnum? Category { get; set; }
     }
 }

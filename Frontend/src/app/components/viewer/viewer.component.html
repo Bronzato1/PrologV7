@@ -26,6 +26,9 @@
                         <h2 class="text-center">{{ post.title }}</h2>
 
                         <div class="text-center">
+
+                            <a class="button hollow-button tiny-button" [attr.data-open]="'modal-' + PostCategoryEnum[post.category].toLocaleLowerCase()">{{ PostCategoryEnum[post.category].toLocaleLowerCase() }}</a>
+                                
                             @if (post.tags.length > 0)
                             {
                                 @for (tag of post.tags.split(';'); track $index)
@@ -43,6 +46,9 @@
                     <footer>
 
                         <div class="text-center">
+
+                            <a class="button hollow-button tiny-button" [attr.data-open]="'modal-' + PostCategoryEnum[post.category].toLocaleLowerCase()">{{ PostCategoryEnum[post.category].toLocaleLowerCase() }}</a>
+                            
                             @if (post.tags.length > 0)
                             {
                                 @for (tag of post.tags.split(';'); track $index)

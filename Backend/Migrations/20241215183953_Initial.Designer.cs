@@ -11,8 +11,8 @@ using PrologV7;
 namespace Backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241209095805_SpanHeight")]
-    partial class SpanHeight
+    [Migration("20241215183953_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,20 +26,17 @@ namespace Backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("Category")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Content")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("CreationDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Height")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime?>("ModificationDate")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("Span")
-                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("Status")
                         .HasColumnType("INTEGER");
