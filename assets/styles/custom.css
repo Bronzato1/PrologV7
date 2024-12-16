@@ -701,8 +701,7 @@ figure.image {
 
 /* The switch - the box around the slider */
 .switch {
-    position: absolute;
-    right: 40px;
+    float: right;
     margin-top: 15px;
     width: 60px;
     height: 34px;
@@ -756,8 +755,8 @@ figure.image {
   }
 
   input.search {
-    position: absolute;
-    right: 80px;
+    float: right;
+    margin-right: -15px;
     width: 100px;
     margin-top: 15px;
     height: 34px;
