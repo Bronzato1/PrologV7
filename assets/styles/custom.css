@@ -613,7 +613,7 @@ mark.marker-yellow {
 
 .tag-list-editor {
     display: inline-block;
-    margin-left: 7px;
+    margin-left: 2px;
 }
 
 .add-tag-editor {
@@ -682,33 +682,21 @@ figure.image {
 }
 
 .editor-input-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: inline-block;
 }
 
-.editor-input-container input#span {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-right: none;
-    width: 50px;
-    height: auto;
-}
-.editor-input-container input#height {
-    border-right: none;
-    width: 50px;
-    height: auto;
-}
-.editor-input-container select#heading {
-    border-right: none;
+.editor-input-container select#category {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-color: #48355B;
     width: auto;
     height: auto;
-}
-.editor-input-container select#color {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    width: auto;
-    height: auto;
+    padding-top: 0.23rem;
+    padding-bottom: 0.36rem;
+    font-weight: bold;
+    color: #48355B
 }
 
 /* The switch - the box around the slider */
