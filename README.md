@@ -26,12 +26,12 @@ Ex: _ng deploy --base-href=/PrologV7/_ (lower/uppercase are important!)
 Attention: if you have a custom domain name attached to your repository, you have to run:
 
 ```
-ng deploy --base-href=https://www.domain.com/
+ng deploy --cname=www.domain.com
 ```
 
 Replace "www.domain.com" with your <domain name>. 
 
-Ex: _ng deploy --base-href=https://www.prolog.red_
+Ex: _ng deploy --cname=www.prolog.red_
 
 This command will deploy your current Angular application to GitHub Pages, making it accessible to the public. The index file serves as the main entry point for a website or application and publishing source determines the branch, folder, or directory from which GitHub Pages serves site's files.
 
@@ -42,6 +42,3 @@ You can find more information about GitHub Pages in the Settings tab of your rep
 To streamline your development workflow for web applications hosted on GitHub Pages, it's essential to maintain separate branches for your source code and final static files. Here we can use the master branch to manage application's source code, where we can make frequent updates, improvements, and extensions as needed.
 
 Once the changes are complete, deploy them to the gh-pages branch, which is reserved for the final static files of your application. This approach allows you to keep your source code organized and easily deploy updates. GitHub pages support is necessary, to ensure a smooth and efficient development process.
-
-
-
