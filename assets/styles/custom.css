@@ -545,6 +545,7 @@ code {
 }
 
 mark {
+    color: #48355B;
     border-radius: 5px;
     padding: 2px 4px;
 }
