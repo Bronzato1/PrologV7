@@ -19,17 +19,16 @@ export class BaseComponent implements OnInit {
      * Scroll to the element with the id passed in the query parameter 'scrollTo'
      */
     initializeWithAnimation() {
-
-
-
         this.route.queryParams.subscribe(params => {
             const scrollTo = params['scrollTo'];
             if (scrollTo) {
                 const element = document.getElementById(scrollTo);
                 if (element) {
-                    document.body.classList.remove("animate-out");
-                    document.body.classList.add("animate-in");
-                    element.scrollIntoView({ behavior: 'auto' });
+                    setTimeout(() => {
+                        document.body.classList.add("animate-in");    
+                        document.body.classList.remove("animate-out");    
+                        element.scrollIntoView({ behavior: 'auto' });
+                    }, 400);
                 }
             } else {
                 document.body.classList.remove("animate-out");
@@ -45,7 +44,7 @@ export class BaseComponent implements OnInit {
      */
     navigateWithAnimation(commands: any[], extras?: NavigationExtras) {
         document.body.classList.remove("animate-in");
-        document.body.classList.add("animate-out");
+        document.body.classList.add("animate-out");        
         setTimeout(() => {
             this.router.navigate(commands, extras);
         }, 400);

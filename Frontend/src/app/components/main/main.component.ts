@@ -1,48 +1,31 @@
 import { Component, OnInit, Renderer2, AfterViewInit, ElementRef, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { BaseComponent } from '../base.component';
 import { MenuComponent } from "../menu/menu.component";
 import { AuthenticationService } from '../../services/authentication.service';
 import { Subscription } from 'rxjs';
+import { BlogComponent } from './blog/blog.component';
+import { ProjectsComponent } from "./projects/projects.component";
 import adze from 'adze';
-import { PostDataService } from '@src/app/services/post-data-service';
-import { IPost } from '@src/app/interfaces/post.interface';
-import { PostColorEnum } from '@src/app/enumerations/post-color.enumeration';
-import { PostCategoryEnum } from '@src/app/enumerations/post-category.enumeration';
+import { ProfileComponent } from "./profile/profile.component";
+import { LinksComponent } from "./links/links.component";
+import { AboutComponent } from "./about/about.component";
 
 const logger = adze.namespace('MainComponent').seal();
 
 @Component({
     selector: 'app-main',
     standalone: true,
-    imports: [CommonModule, FormsModule, MenuComponent],
+    imports: [CommonModule, FormsModule, MenuComponent, BlogComponent, ProjectsComponent, ProfileComponent, LinksComponent, AboutComponent],
     templateUrl: './main.component.html'
 })
 export class MainComponent extends BaseComponent implements OnInit, OnDestroy {
 
     private authStatusSubscription!: Subscription;
-    private postDataService = inject(PostDataService);
     private authService = inject(AuthenticationService);
 
     protected menuItems!: { label: string; action: () => void; }[];
-    protected posts: IPost[] = [];
-    protected blogViewMode: 'masonry' | 'list' = 'masonry';
-    protected blogSearchText: string = '';
-    protected PostColorEnum = PostColorEnum;
-    protected PostCategoryEnum = PostCategoryEnum;
-
-    // Getter to filter posts based on blogSearchText
-    get filteredPosts(): IPost[] {
-        if (!this.blogSearchText) {
-            return this.posts;
-        }
-        return this.posts.filter(post =>
-            post.title.toLowerCase().includes(this.blogSearchText.toLowerCase()) ||
-            post.content.toLowerCase().includes(this.blogSearchText.toLowerCase())
-        );
-    }
 
     constructor() {
         super();
@@ -51,7 +34,6 @@ export class MainComponent extends BaseComponent implements OnInit, OnDestroy {
         super.ngOnInit();
         this.authService.ngOnInit();
         this.initializeMenu();
-        this.getPosts();
         this.authStatusSubscription = this.authService.getAuthStatus().subscribe(status => {
             logger.label('ngOnInit').info('Authentication status: ' + status);
             this.initializeMenu()
@@ -70,42 +52,5 @@ export class MainComponent extends BaseComponent implements OnInit, OnDestroy {
         } else {
             this.menuItems.push({ label: 'Login', action: () => this.authService.loginRedirect() });
         }
-    }
-    private getPosts() {
-        this.postDataService.getPosts()
-            .subscribe({
-                next: (posts: IPost[]) => {
-                    this.posts = posts;
-                },
-                error: (err) => {
-                    console.log(err)
-                },
-                complete: () => {
-                    // ...
-                }
-            });
-    }
-    protected editPost(title: string) {
-        if (!this.authService.isLoggedIn)  {
-            // unauthenticated users can only view posts
-            this.viewPost(title);
-            return;
-        }
-        const title_ = title.toLocaleLowerCase().replace(/\s+/g, '_');
-        this.router.navigate(['/editor', title_]);
-    }
-    protected viewPost(title: string) {
-        const title_ = title.toLocaleLowerCase().replace(/\s+/g, '_');
-        this.router.navigate(['/viewer', title_]);
-    }
-    protected getSlug(title: string) {
-        return title.toLocaleLowerCase().replace(/\s+/g, '_')
-    }
-    protected toggleBlogView() {
-        this.blogViewMode = this.blogViewMode === 'masonry' ? 'list' : 'masonry';
-    }
-    protected stripHtmlTags(html: string) {
-        var doc = new DOMParser().parseFromString(html, 'text/html');
-        return doc.body.textContent || "";
     }
 }

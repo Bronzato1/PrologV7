@@ -720,7 +720,7 @@ figure.image {
   }
   
   /* The slider */
-  .sslider {
+  .sliding {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -732,7 +732,7 @@ figure.image {
     transition: .4s;
   }
   
-  .sslider:before {
+  .sliding:before {
     position: absolute;
     content: "";
     height: 26px;
@@ -744,18 +744,18 @@ figure.image {
     transition: .4s;
   }
    
-  input:checked + .sslider:before {
+  input:checked + .sliding:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
   }
   
   /* Rounded sliders */
-  .sslider.round {
+  .sliding.round {
     border-radius: 34px;
   }
   
-  .sslider.round:before {
+  .sliding.round:before {
     border-radius: 50%;
   }
 
