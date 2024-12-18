@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from "@angular/core";
+import { Component, HostBinding, inject, OnDestroy, OnInit } from "@angular/core";
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { IPost } from "@src/app/interfaces/post.interface";
 import { PostColorEnum } from "@src/app/enumerations/post-color.enumeration";
@@ -17,22 +17,22 @@ import { BaseComponent } from "../../base.component";
     templateUrl: './blog.component.html',
     animations: [
         trigger('toggleSelect', [
-          state('hidden', style({
-            opacity: 0,
-            width: '0px',
-            padding: '0px',
-            border: '0px solid #ccc',
-            overflow: 'hidden'
-          })),
-          state('visible', style({
-            opacity: 1,
-            width: '*'
-          })),
-          transition('hidden <=> visible', [
-            animate('300ms ease-in-out')
-          ])
+            state('hidden', style({
+                opacity: 0,
+                width: '0px',
+                padding: '0px',
+                border: '0px solid #ccc',
+                overflow: 'hidden'
+            })),
+            state('visible', style({
+                opacity: 1,
+                width: '*'
+            })),
+            transition('hidden <=> visible', [
+                animate('300ms ease-in-out')
+            ])
         ])
-      ]
+    ]
 })
 export class BlogComponent extends BaseComponent implements OnInit {
 
@@ -42,7 +42,6 @@ export class BlogComponent extends BaseComponent implements OnInit {
     protected blogFilterCategoryVisible: boolean = false;
     protected blogFilterCategory?: number;
     protected blogFilterText: string = '';
-
     protected PostColorEnum = PostColorEnum;
     protected PostCategoryEnum = PostCategoryEnum;
 
@@ -64,7 +63,7 @@ export class BlogComponent extends BaseComponent implements OnInit {
             });
     }
     protected editPost(title: string) {
-        if (!this.authService.isLoggedIn)  {
+        if (!this.authService.isLoggedIn) {
             // unauthenticated users can only view posts
             this.viewPost(title);
             return;
@@ -89,11 +88,10 @@ export class BlogComponent extends BaseComponent implements OnInit {
     }
     get filteredPosts(): IPost[] {
         var posts = this.posts;
-        if (this.blogFilterText)
-        {
+        if (this.blogFilterText) {
             posts = posts.filter(post =>
-                    post.title.toLowerCase().includes(this.blogFilterText.toLowerCase()) ||
-                    post.content.toLowerCase().includes(this.blogFilterText.toLowerCase())
+                post.title.toLowerCase().includes(this.blogFilterText.toLowerCase()) ||
+                post.content.toLowerCase().includes(this.blogFilterText.toLowerCase())
             );
         }
         console.log(this.blogFilterCategory);
