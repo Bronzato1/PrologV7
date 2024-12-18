@@ -6,15 +6,15 @@ import { MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG, MsalBroadcas
 import { MSALGuardConfigFactory, MSALInstanceFactory, MSALInterceptorConfigFactory } from './app.factory';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     importProvidersFrom(
-      BrowserModule
+      BrowserAnimationsModule
     ),
-    provideNoopAnimations(),
     provideHttpClient(withInterceptorsFromDi(), withFetch()),
     // Code below block any http request if user is not authenticated
     // {

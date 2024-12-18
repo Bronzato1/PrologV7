@@ -7,10 +7,18 @@
             </div>
             <div style="float: right;">
                 <label class="switch">
-                    <input type="checkbox" class="check" [value]="blogViewMode" (change)="toggleBlogView()">
+                    <input type="checkbox" class="check" [value]="blogFilterCategoryVisible" (change)="toggleBlogFilterView()">
                     <span class="sliding round"></span>
                 </label>
-                <input type="text" class="search" [(ngModel)]="blogSearchText" placeholder="Search">
+                <input type="text" class="filterText" [(ngModel)]="blogFilterText" placeholder="Search">
+                <select class="filterCategory" [(ngModel)]="blogFilterCategory" [@toggleSelect]="blogFilterCategoryVisible ? 'visible' : 'hidden'">
+                    <option value="0">Angular</option>
+                    <option value="1">TypeScript</option>
+                    <option value="2">JavaScript</option>
+                    <option value="3">CSharp</option>
+                    <option value="4">.Net</option>
+                    <option value="5">Azure</option>
+                </select>
             </div>
         </header>
 

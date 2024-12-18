@@ -709,7 +709,7 @@ figure.image {
     float: right;
     margin-top: 15px;
     width: 60px;
-    height: 34px;
+    height: 36px;
   }
   
   /* Hide default HTML checkbox */
@@ -735,8 +735,8 @@ figure.image {
   .sliding:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
+    height: 28px;
+    width: 28px;
     left: 4px;
     bottom: 4px;
     background-color: white;
@@ -745,37 +745,53 @@ figure.image {
   }
    
   input:checked + .sliding:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    -webkit-transform: translateX(28px);
+    -ms-transform: translateX(28px);
+    transform: translateX(24px);
   }
   
   /* Rounded sliders */
   .sliding.round {
-    border-radius: 34px;
+    border-radius: 36px;
   }
   
   .sliding.round:before {
     border-radius: 50%;
   }
 
-  input.search {
+  input.filterText {
     float: right;
+    margin-left: 15px;
     margin-right: -15px;
-    width: 100px;
     margin-top: 15px;
-    height: 34px;
-    border-bottom-left-radius: 15px;
-    border-top-left-radius: 15px;
+    padding-left: 17px;
+    width: 110px;
+    height: 36px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
     box-shadow: none !important;
     border: 3px solid #ccc; 
     font-size: 20px;
   }
 
-  input.search:focus {
+  select.filterCategory {
+    float: right;
+    margin-right: -30px;
+    margin-top: 15px;
+    padding: 0 20px 0 10px;
+    width: 135px;
+    height: 36px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    box-shadow: none !important;
+    border: 3px solid #ccc; 
+    font-size: 20px;
+  }
+
+  input.filterText:focus {
     border: 3px solid #ccc; 
   }
 
-   input.search::placeholder {
+   input.filterText::placeholder {
     font-size: 20px;
 }
