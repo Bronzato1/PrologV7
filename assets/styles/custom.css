@@ -795,3 +795,17 @@ figure.image {
    input.filterText::placeholder {
     font-size: 20px;
 }
+
+@media only screen and (max-width: 800px) {
+
+    .switch,
+    .sliding {
+        display: none;
+    }
+
+    input.filterText {
+        margin-right: 0;
+        border-bottom-right-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+}
