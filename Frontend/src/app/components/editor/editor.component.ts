@@ -68,9 +68,9 @@ export class EditorComponent extends BaseComponent implements OnInit {
         { label: 'View post', action: () => this.viewPost() }
     ]
     protected post: IPost = {
-        title: '...',
-        content: '...',
-        tags: 'aaa; bbb; ccc',
+        title: '',
+        content: '',
+        tags: '',
         status: 0,
         category: 0
     }
