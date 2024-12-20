@@ -445,6 +445,7 @@ html {
 
     .no-inner-page-bg-for-mobile {
         background: none !important;
+        padding-top: unset !important;
         padding-bottom: unset !important;
     }
 
