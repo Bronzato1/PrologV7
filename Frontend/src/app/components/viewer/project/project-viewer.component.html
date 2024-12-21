@@ -1,0 +1,93 @@
+<app-menu [menuItems]="menuItems"></app-menu>
+
+<div id="inner-page" class="no-inner-page-bg-for-mobile">
+
+    <!-- Background Stars-->
+    <div class="bg">
+        <div class="stars">
+            <img class="animated infinite flash" src="./assets/images/illustrations/stars-inner.svg"
+                alt="stars background">
+        </div>
+    </div>
+
+    <!-- Single App-->
+    <div id="single-app">
+        <div class="row">
+            <div class="small-16 columns no-padding-on-mobile">
+
+                <!-- Start App Card-->
+                <article class="card no-margin-on-mobile">
+                    <a class="back-button"
+                        (click)="navigateWithAnimation(['main'], {queryParams: { scrollTo: 'blog' } })">
+                        <img src="assets/images/icons/icon-close.svg" alt="go back">
+                    </a>
+
+                    <header>
+                        <h2 class="text-center">{{ item.title }}</h2>
+
+                        <div class="text-center">
+
+                            <a class="button hollow-button tiny-button" [attr.data-open]="'modal-' + ProjectCategoryEnum[item.category].toLocaleLowerCase()">{{ ProjectCategoryEnum[item.category].toLocaleLowerCase() }}</a>
+                                
+                            @if (item.tags.length > 0)
+                            {
+                                @for (tag of item.tags.split(';'); track $index)
+                                {
+                                    <a class="button hollow-button tiny-button" [attr.data-open]="'modal-' + tag.trim().replaceAll(' ','-')">{{ tag.trim() }}</a>
+                                }
+                            }
+                        </div>
+                    </header>
+
+                    <hr class="spacer">
+
+                    <div [innerHTML]="item.content | bypassHtmlSanitizer"></div>
+
+                    <hr class="spacer">
+
+                    <footer>
+
+                        <div class="text-center">
+
+                            <a class="button hollow-button tiny-button" [attr.data-open]="'modal-' + ProjectCategoryEnum[item.category].toLocaleLowerCase()">{{ ProjectCategoryEnum[item.category].toLocaleLowerCase() }}</a>
+                            
+                            @if (item.tags.length > 0)
+                            {
+                                @for (tag of item.tags.split(';'); track $index)
+                                {
+                                    <a class="button hollow-button tiny-button" [attr.data-open]="'modal-' + tag.trim().replaceAll(' ','-')">{{ tag.trim() }}</a>
+                                }
+                            }
+                        </div>
+
+                        <hr class="spacer">
+
+                        <div class="profile-container">
+                            <img src="../../../assets/images/illustrations/picture-profile.jpg" alt="Profile Picture" class="profile-picture">
+                            <div class="profile-text">
+                                <div class="title">Thierry Langie</div>
+                                <div class="sub-title">Fullstack .Net Angular</div>
+                            </div>
+                        </div>
+                        
+                    </footer>
+
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="main-footer">
+    <div class="copyright">
+        <div class="row">
+            <div class="small-16 columns">
+                <p class="text-center copy">Copyright &copy; 2025 <a href="#/">Prolog.Red</a>
+                    <img class="rocket" src="./assets/images/icons/icon-rocket.svg" alt="">
+                    <span class="hide-on-mobile">
+                        All Rights Reserved
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

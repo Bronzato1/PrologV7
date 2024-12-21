@@ -1,14 +1,13 @@
 import { Component, HostBinding, inject, OnDestroy, OnInit } from "@angular/core";
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { IPost } from "@src/app/interfaces/post.interface";
-import { PostColorEnum } from "@src/app/enumerations/post-color.enumeration";
 import { PostCategoryEnum } from "@src/app/enumerations/post-category.enumeration";
-import { PostDataService } from "@src/app/services/post-data-service";
+import { ENDPOINT, GenericDataService } from "@src/app/services/generic-data-service";
 import { AuthenticationService } from "@src/app/services/authentication.service";
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { BaseComponent } from "../../base.component";
+import { BaseComponent } from "@src/app/components/base/base.component";
 
 @Component({
     selector: 'app-blog',
@@ -32,24 +31,26 @@ import { BaseComponent } from "../../base.component";
                 animate('300ms ease-in-out')
             ])
         ])
+    ],
+    providers: [
+        { provide: ENDPOINT, useValue: 'posts' }, GenericDataService,
     ]
 })
 export class BlogComponent extends BaseComponent implements OnInit {
 
-    private postDataService = inject(PostDataService);
+    private genericDataService = inject(GenericDataService);
     private authService = inject(AuthenticationService);
     protected posts: IPost[] = [];
     protected blogFilterCategoryVisible: boolean = false;
     protected blogFilterCategory?: number;
     protected blogFilterText: string = '';
-    protected PostColorEnum = PostColorEnum;
     protected PostCategoryEnum = PostCategoryEnum;
 
     public override ngOnInit(): void {
         this.getPosts();
     }
     private getPosts() {
-        this.postDataService.getPosts()
+        this.genericDataService.getItems()
             .subscribe({
                 next: (posts: IPost[]) => {
                     this.posts = posts;
@@ -69,11 +70,11 @@ export class BlogComponent extends BaseComponent implements OnInit {
             return;
         }
         const title_ = title.toLocaleLowerCase().replace(/\s+/g, '_');
-        this.navigateWithAnimation(['/editor', title_]);
+        this.navigateWithAnimation(['/editor/post/', title_]);
     }
     protected viewPost(title: string) {
         const title_ = title.toLocaleLowerCase().replace(/\s+/g, '_');
-        this.navigateWithAnimation(['/viewer', title_]);
+        this.navigateWithAnimation(['/viewer/post/', title_]);
     }
     protected getSlug(title: string) {
         return title.toLocaleLowerCase().replace(/\s+/g, '_')

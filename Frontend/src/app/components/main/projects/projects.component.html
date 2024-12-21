@@ -1,425 +1,108 @@
-<section id="projects">
+<section id="blog">
     <hr class="spacer">
     <div class="row">
         <header class="small-16 columns">
-            <h2>Projects</h2>
+            <div style="float: left;">
+                <h2>Projects</h2>
+            </div>
+            <div style="float: right;">
+                <label class="switch">
+                    <input type="checkbox" class="check" [value]="projectsFilterCategoryVisible" (change)="toggleProjectsFilterView()">
+                    <span class="sliding round"></span>
+                </label>
+                <input type="text" class="filterText" [(ngModel)]="projectsFilterText" placeholder="Search">
+                <select class="filterCategory" [(ngModel)]="projectsFilterCategory" [@toggleSelect]="projectsFilterCategoryVisible ? 'visible' : 'hidden'">
+                    <option value="0">Nuclear</option>
+                    <option value="1">Energy</option>
+                    <option value="2">Industry</option>
+                    <option value="3">Sport</option>
+                    <option value="4">Pharma</option>
+                    <option value="5">Banking</option>
+                    <option value="6">Tech</option>
+                    <option value="7">Marketing</option>
+                    <option value="8">Telecom</option>
+                    <option value="9">Beverage</option>
+                    <option value="10">Food</option>
+                </select>
+            </div>
         </header>
-        <div class="small-16 columns">
+
+        <div class="small-16 columns list">
             <div class="table table-striped">
 
-                <!-- TRANSNUBEL -->
-                <div class="trow">
-                    <div class="tcol first hide-on-mobile">
-                        <a class="button purple-tint1-button hollow-button shadow-button"
-                            (click)="navigateWithAnimation(['/clients/transnubel'])">Nuclear</a>
-                        <span class="badge">5</span>
+                @for (project of filteredProjects; track $index)
+                {
+                    <div class="trow">
+                        <div class="tcol first hide-on-mobile">
+                            <a (click)="editProject(project.title)" class="button purple-tint1-button hollow-button shadow-button"> 
+                                @switch (project.category) {
+                                    @case (ProjectCategoryEnum.NUCLEAR) {
+                                        Nuclear
+                                    }
+                                    @case (ProjectCategoryEnum.ENERGY) {
+                                        Energy
+                                    }
+                                    @case (ProjectCategoryEnum.INDUSTRY) {
+                                        Industry
+                                    }
+                                    @case (ProjectCategoryEnum.SPORT) {
+                                        Sport
+                                    }
+                                    @case (ProjectCategoryEnum.PHARMA) {
+                                        Pharma
+                                    }
+                                    @case (ProjectCategoryEnum.BANKING) {
+                                        Banking
+                                    }
+                                    @case (ProjectCategoryEnum.TECH) {
+                                        Tech
+                                    }
+                                    @case (ProjectCategoryEnum.MARKETING) {
+                                        Marketing
+                                    }
+                                    @case (ProjectCategoryEnum.TELECOM) {
+                                        Telecom
+                                    }
+                                    @case (ProjectCategoryEnum.BEVERAGE) {
+                                        Beverage
+                                    }
+                                    @case (ProjectCategoryEnum.FOOD) {
+                                        Food
+                                    }
+                                }
+                            </a>
+                        </div>
+                        
+                        @if (project.tags.trim().length > 0)
+                        {
+                            <div class="tcol last hide-on-mobile">
+                                @for (tag of project.tags.split(';'); track $index)
+                                {
+                                    <a class="button hollow-button" [attr.data-open]="'modal-' + tag.trim().replace(' ', '-')"> 
+                                        {{ tag.trim() }} 
+                                    </a>
+                                }
+                            </div>
+                        }
+                        
+                        <div class="tcol adjust">
+                            <a (click)="viewProject(project.title)" class="link">
+                                <strong> {{ project.title }} </strong>
+                            </a>
+                        
+                            @if (project.content !== '') 
+                            {
+                                ●
+                                <a (click)="viewProject(project.title)" class="link">
+                                    {{ stripHtmlTags(project.content) }}
+                                </a>
+                            }
+                        </div>
                     </div>
-                    <div class="tcol last hide-on-mobile">
-                        <a class="button hollow-button" data-open="modal-dot-net">.Net</a>
-                        <a class="button hollow-button" data-open="modal-sql-server">Sql Server</a>
-                        <a class="button hollow-button" data-open="modal-digipass">Digipass</a>
-                        <a class="button hollow-button" data-open="modal-on-premise">On premise</a>
-                    </div>
-                    <div class="tcol adjust">
-                        <img class="width-20" src="assets/images/icons/icon-nuclear.svg" alt="">
-                        <a (click)="navigateWithAnimation(['/clients/transnubel'])" class="link">
-                            <strong>Transnubel</strong>
-                        </a>
-                        ●
-                        <a (click)="navigateWithAnimation(['/clients/transnubel'])" class="link">
-                            Web applications for Transport / Packing / Content Management Systems
-                        </a>
-                    </div>
-                </div>
+                }
                 
-                <!-- ENGIE SOLUTIONS -->
-                <div class="trow">
-                    <div class="tcol first hide-on-mobile">
-                        <a class="button purple-tint1-button hollow-button shadow-button"
-                            (click)="navigateWithAnimation(['/clients/engie'])">Energy</a>
-                        <span class="badge">4</span>
-                    </div>
-                    <div class="tcol last hide-on-mobile">
-                        <a class="button hollow-button" data-open="modal-dot-net-core">.Net Framework</a>
-                        <a class="button hollow-button" data-open="modal-sql-server">Sql Server</a>
-                        <a class="button hollow-button" data-open="modal-okta">Okta</a>
-                        <a class="button hollow-button" data-open="modal-ubikey">Ubikey</a>
-                        <a class="button hollow-button" data-open="modal-csharp">C#</a>
-                    </div>
-                    <div class="tcol adjust">
-                        <img class="width-20" src="assets/images/icons/icon-energy.svg" alt="">
-                        <a (click)="navigateWithAnimation(['/clients/engie'])" class="link">
-                            <strong>Engie Solutions</strong>
-                        </a>
-                        ●
-                        <a (click)="navigateWithAnimation(['/clients/engie'])" class="link">
-                            Migration tasks from on-premises infrastructure to Azure cloud servers plus implemented
-                            effective strategies to ensure seamless transition
-                        </a>
-                    </div>
-                </div>
-
-                <!-- EQUANS BELGIUM -->
-                <div class="trow">
-                    <div class="tcol first hide-on-mobile">
-                        <a class="button purple-tint1-button hollow-button shadow-button"
-                            (click)="navigateWithAnimation(['/clients/equans'])">Industry</a>
-                        <span class="badge">3</span>
-                    </div>
-                    <div class="tcol last hide-on-mobile">
-                        <a class="button hollow-button" data-open="modal-dot-net-framework">.Net Framework</a>
-                        <a class="button hollow-button" data-open="modal-sql-server">Sql Server</a>
-                        <a class="button hollow-button" data-open="modal-okta">Okta</a>
-                        <a class="button hollow-button" data-open="modal-ubikey">Ubikey</a>
-                        <a class="button hollow-button" data-open="modal-csharp">C#</a>
-                    </div>
-                    <div class="tcol adjust">
-                        <img class="width-20" src="assets/images/icons/icon-service.svg" alt="">
-                        <a (click)="navigateWithAnimation(['/clients/equans'])" class="link"><strong>Equans
-                                Belgium</strong></a>
-                        ●
-                        <a (click)="navigateWithAnimation(['/clients/equans'])" class="link">Okta integration with
-                            existing web applications
-                            for simplifying the process of securing sensitive data</a>
-                    </div>
-                </div>
-
-                <!-- AKZONOBEL -->
-                <div class="trow">
-                    <div class="tcol first hide-on-mobile">
-                        <a class="button purple-tint1-button hollow-button shadow-button"
-                            (click)="navigateWithAnimation(['/clients/akzonobel'])">Industry</a>
-                        <span class="badge">1</span>
-                    </div>
-                    <div class="tcol last hide-on-mobile">
-                        <a class="button hollow-button" data-open="modal-excel-vba">Excel® VBA</a>
-                        <a class="button hollow-button" data-open="modal-mainframe">Mainframe</a>
-                        <a class="button hollow-button" data-open="modal-crystal-reports">Crystal Reports</a>
-                    </div>
-                    <div class="tcol adjust">
-                        <img class="width-20" src="assets/images/icons/icon-industry.svg" alt="">
-                        <a (click)="navigateWithAnimation(['/clients/akzonobel'])" class="link">
-                            <strong>AkzoNobel</strong>
-                        </a>
-                        ●
-                        <a (click)="navigateWithAnimation(['/clients/akzonobel'])" class="link">
-                            Production Management Template for Microsoft Excel®
-                        </a>
-                    </div>
-                </div>
-
-                <!-- BELGIUM OLYMPIC COMMITTEE -->
-                <div class="trow">
-                    <div class="tcol first hide-on-mobile">
-                        <a class="button purple-tint1-button hollow-button shadow-button"
-                            (click)="navigateWithAnimation(['/clients/olympic'])">Sport</a>
-                        <span class="badge">1</span>
-                    </div>
-                    <div class="tcol last hide-on-mobile">
-                        <a class="button hollow-button" data-open="modal-sql-server">Sql Server</a>
-                        <a class="button hollow-button" data-open="modal-access-vba">Access® VBA</a>
-                    </div>
-                    <div class="tcol adjust">
-                        <img class="width-20" src="assets/images/icons/icon-medal.svg" alt="">
-                        <a (click)="navigateWithAnimation(['/clients/olympic'])" class="link">
-                            <strong>Belgian Olympic Committee</strong>
-                        </a>
-                        ●
-                        <a (click)="navigateWithAnimation(['/clients/olympic'])" class="link">
-                            Sport Information Management for recording individual athlete's profiles
-                        </a>
-                    </div>
-                </div>
-
-                <!-- BAXTER BELGIUM -->
-                <div class="trow">
-                    <div class="tcol first hide-on-mobile">
-                        <a class="button purple-tint1-button hollow-button shadow-button"
-                            (click)="navigateWithAnimation(['/clients/baxter'])">Pharma</a>
-                        <span class="badge">1</span>
-                    </div>
-                    <div class="tcol last hide-on-mobile">
-                        <a class="button hollow-button" data-open="modal-dot-net-framework">.Net Framework</a>
-                        <a class="button hollow-button" data-open="modal-sql-server">Sql Server</a>
-                        <a class="button hollow-button" data-open="modal-vb-dot-net">VB.Net</a>
-                    </div>
-                    <div class="tcol adjust">
-                        <img class="width-20" src="assets/images/icons/icon-pill.svg" alt="">
-                        <a (click)="navigateWithAnimation(['/clients/baxter'])" class="link">
-                            <strong>Baxter Belgium</strong>
-                        </a>
-                        ●
-                        <a (click)="navigateWithAnimation(['/clients/baxter'])" class="link">
-                            Environment Health Safety software and Industrial hygiene and chemical risk management
-                            solution
-                        </a>
-                    </div>
-                </div>
-
-                <!-- GLAXO SMITH KLINE -->
-                <div class="trow">
-                    <div class="tcol first hide-on-mobile">
-                        <a class="button purple-tint1-button hollow-button shadow-button"
-                            (click)="navigateWithAnimation(['/clients/gsk'])">Pharma</a>
-                        <span class="badge">3</span>
-                    </div>
-                    <div class="tcol last hide-on-mobile">
-                        <a class="button hollow-button" data-open="modal-barcode-reader">Barcode reader</a>
-                        <a class="button hollow-button" data-open="modal-dot-net">.Net</a>
-                        <a class="button hollow-button" data-open="modal-excel-vba">Excel® VBA</a>
-                        <a class="button hollow-button" data-open="modal-csharp">C#</a>
-                    </div>
-                    <div class="tcol adjust">
-                        <img class="width-20" src="assets/images/icons/icon-pill.svg" alt="">
-                        <a (click)="navigateWithAnimation(['/clients/gsk'])" class="link">
-                            <strong>Glaxo Smith Kline</strong>
-                        </a>
-                        ●
-                        <a (click)="navigateWithAnimation(['/clients/gsk'])" class="link">
-                            Scientific data collection and analysis software
-                        </a>
-                    </div>
-                </div>
-
-                <!-- LABIMA -->
-                <div class="trow">
-                    <div class="tcol first hide-on-mobile">
-                        <a class="button purple-tint1-button hollow-button shadow-button"
-                            (click)="navigateWithAnimation(['/clients/labima'])">Pharma</a>
-                        <span class="badge">1</span>
-                    </div>
-                    <div class="tcol last hide-on-mobile">
-                        <a class="button hollow-button" data-open="modal-access-vba">Access® VBA</a>
-                        <a class="button hollow-button" data-open="modal-access-database">Access® Database</a>
-                        <a class="button hollow-button" data-open="modal-access-reporting">Access® Reporting</a>
-                    </div>
-                    <div class="tcol adjust">
-                        <img class="width-20" src="assets/images/icons/icon-pill.svg" alt="">
-                        <a (click)="navigateWithAnimation(['/clients/labima'])" class="link">
-                            <strong>Labima</strong>
-                        </a>
-                        ●
-                        <a (click)="navigateWithAnimation(['/clients/labima'])" class="link">
-                            Sales Representative software for monitoring commercial delegates performance
-                        </a>
-                    </div>
-                </div>
-
-                <!-- FORTIS INSURANCE BELGIUM -->
-                <div class="trow">
-                    <div class="tcol first hide-on-mobile">
-                        <a class="button purple-tint1-button hollow-button shadow-button"
-                            (click)="navigateWithAnimation(['/clients/fib'])">Banking</a>
-                        <span class="badge">5</span>
-                    </div>
-                    <div class="tcol last hide-on-mobile">
-                        <a class="button hollow-button" data-open="modal-dot-net-framework">.Net Framework</a>
-                        <a class="button hollow-button" data-open="modal-vb-dot-net">VB.Net</a>
-                        <a class="button hollow-button" data-open="modal-digipass">Digipass</a>
-                        <a class="button hollow-button" data-open="modal-e-banking">e-Banking</a>
-                    </div>
-                    <div class="tcol adjust">
-                        <img class="width-20" src="assets/images/icons/icon-cash.svg" alt="">
-                        <a (click)="navigateWithAnimation(['/clients/fib'])" class="link">
-                            <strong>Fortis Insurance Belgium</strong>
-                        </a>
-                        ●
-                        <a (click)="navigateWithAnimation(['/clients/fib'])" class="link">
-                            Financial Operations software. Authentication modules.
-                        </a>
-                    </div>
-                </div>
-
-                <!-- CREDIT GENERAL -->
-                <div class="trow">
-                    <div class="tcol first hide-on-mobile">
-                        <a class="button purple-tint1-button hollow-button shadow-button"
-                            (click)="navigateWithAnimation(['/clients/credit-general'])">Banking</a>
-                        <span class="badge">1</span>
-                    </div>
-                    <div class="tcol last hide-on-mobile">
-                        <a class="button hollow-button" data-open="modal-visual-basic">Visual Basic</a>
-                        <a class="button hollow-button" data-open="modal-access-database">Access® Database</a>
-                        <a class="button hollow-button" data-open="modal-crystal-reports">Crystal Reports</a>
-                    </div>
-                    <div class="tcol adjust">
-                        <img class="width-20" src="assets/images/icons/icon-cash.svg" alt="">
-                        <a (click)="navigateWithAnimation(['/clients/credit-general'])" class="link">
-                            <strong>Credit General</strong>
-                        </a>
-                        ●
-                        <a (click)="navigateWithAnimation(['/clients/credit-general'])" class="link">
-                            Prospection Software designed for the Credit General
-                        </a>
-                    </div>
-                </div>
-
-                <!-- TOTT SYSTEMS -->
-                <div class="trow">
-                    <div class="tcol first hide-on-mobile">
-                        <a class="button purple-tint1-button hollow-button shadow-button"
-                            (click)="navigateWithAnimation(['/clients/tott-systems'])">Tech</a>
-                        <span class="badge">3</span>
-                    </div>
-                    <div class="tcol last hide-on-mobile">
-                        <a class="button hollow-button" data-open="modal-visual-basic">Visual Basic</a>
-                        <a class="button hollow-button" data-open="modal-excel-vba">Excel® VBA</a>
-                        <a class="button hollow-button" data-open="modal-word-vba">Word® VBA</a>
-                    </div>
-                    <div class="tcol adjust">
-                        <img class="width-20" src="assets/images/icons/icon-tech.svg" alt="">
-                        <a (click)="navigateWithAnimation(['/clients/tott-systems'])" class="link">
-                            <strong>Tott Systems</strong>
-                        </a>
-                        ●
-                        <a (click)="navigateWithAnimation(['/clients/tott-systems'])" class="link">
-                            Helpdesk Solution to streamline IT support processes
-                        </a>
-                    </div>
-                </div>
-
-                <!-- JPASS INTERNATIONAL -->
-                <div class="trow">
-                    <div class="tcol first hide-on-mobile">
-                        <a class="button purple-tint1-button hollow-button shadow-button"
-                            (click)="navigateWithAnimation(['/clients/jpass'])">Tech</a>
-                        <span class="badge">1</span>
-                    </div>
-                    <div class="tcol last hide-on-mobile">
-                        <a class="button hollow-button" data-open="modal-powerbuilder">PowerBuilder</a>
-                        <a class="button hollow-button" data-open="modal-omnis-studio">Omnis Studio</a>
-                    </div>
-                    <div class="tcol adjust">
-                        <img class="width-20" src="assets/images/icons/icon-tech.svg" alt="">
-                        <a (click)="navigateWithAnimation(['/clients/jpass'])" class="link">
-                            <strong>JPass International</strong>
-                        </a>
-                        ●
-                        <a (click)="navigateWithAnimation(['/clients/jpass'])" class="link">
-                            Material Safety Data Sheets (MSDS) expert software for Windows.
-                        </a>
-                    </div>
-                </div>
-
-                <!-- SOPRES -->
-                <div class="trow">
-                    <div class="tcol first hide-on-mobile">
-                        <a class="button purple-tint1-button hollow-button shadow-button"
-                            (click)="navigateWithAnimation(['/clients/sopres'])">Marketing</a>
-                        <span class="badge">1</span>
-                    </div>
-                    <div class="tcol last hide-on-mobile">
-                        <a class="button hollow-button" data-open="modal-visual-basic">Visual Basic</a>
-                        <a class="button hollow-button" data-open="modal-mainframe">Mainframe</a>
-                    </div>
-                    <div class="tcol adjust">
-                        <img class="width-20" src="assets/images/icons/icon-marketing.svg" alt="">
-                        <a (click)="navigateWithAnimation(['/clients/sopres'])" class="link">
-                            <strong>Sopres</strong>
-                        </a>
-                        ●
-                        <a (click)="navigateWithAnimation(['/clients/sopres'])" class="link">
-                            Rental Mailing List software designed with IT and business collaboration in mind
-                        </a>
-                    </div>
-                </div>
-
-                <!-- T PLAN -->
-                <div class="trow">
-                    <div class="tcol first hide-on-mobile">
-                        <a class="button purple-tint1-button hollow-button shadow-button"
-                            (click)="navigateWithAnimation(['/clients/tplan'])">Telecom</a>
-                        <span class="badge">1</span>
-                    </div>
-                    <div class="tcol last hide-on-mobile">
-                        <a class="button hollow-button" data-open="modal-visual-basic">Visual Basic</a>
-                        <a class="button hollow-button" data-open="modal-autocad-api">Autocad API</a>
-                    </div>
-                    <div class="tcol adjust">
-                        <img class="width-20" src="assets/images/icons/icon-connect.svg" alt="">
-                        <a (click)="navigateWithAnimation(['/clients/tplan'])" class="link">
-                            <strong>T Plan</strong>
-                        </a>
-                        ●
-                        <a (click)="navigateWithAnimation(['/clients/tplan'])" class="link">
-                            Geographic Information System (GIS) software used to establish routes for placement of optic
-                            fibers in the ground.
-                        </a>
-                    </div>
-                </div>
-
-                <!-- SCHENK HOLDING -->
-                <div class="trow">
-                    <div class="tcol first hide-on-mobile">
-                        <a class="button purple-tint1-button hollow-button shadow-button"
-                            (click)="navigateWithAnimation(['/clients/schenk'])">Beverage</a>
-                        <span class="badge">1</span>
-                    </div>
-                    <div class="tcol last hide-on-mobile">
-                        <a class="button hollow-button" data-open="modal-visual-basic">Visual Basic</a>
-                        <a class="button hollow-button" data-open="modal-access-database">Access® Database</a>
-                        <a class="button hollow-button" data-open="modal-crystal-reports">Crystal Reports</a>
-                    </div>
-                    <div class="tcol adjust">
-                        <img class="width-20" src="assets/images/icons/icon-wine.svg" alt="">
-                        <a (click)="navigateWithAnimation(['/clients/schenk'])" class="link">
-                            <strong>Schenk Holding</strong>
-                        </a>
-                        ●
-                        <a (click)="navigateWithAnimation(['/clients/schenk'])" class="link">
-                            Stock Management System with statistics and reports
-                        </a>
-                    </div>
-                </div>
-
-                <!-- COCA COLA -->
-                <div class="trow">
-                    <div class="tcol first hide-on-mobile">
-                        <a class="button purple-tint1-button hollow-button shadow-button"
-                            (click)="navigateWithAnimation(['/clients/coca-cola'])">Beverage</a>
-                        <span class="badge">1</span>
-                    </div>
-                    <div class="tcol last hide-on-mobile">
-                        <a class="button hollow-button" data-open="modal-excel-vba">Excel® VBA</a>
-                        <a class="button hollow-button" data-open="modal-mainframe">Mainframe</a>
-                        <a class="button hollow-button" data-open="modal-visual-basic">Visual Basic</a>
-                    </div>
-                    <div class="tcol adjust">
-                        <img class="width-20" src="assets/images/icons/icon-soda.svg" alt="">
-                        <a (click)="navigateWithAnimation(['/clients/coca-cola'])" class="link">
-                            <strong>Coca-Cola</strong>
-                        </a>
-                        ●
-                        <a (click)="navigateWithAnimation(['/clients/coca-cola'])" class="link">
-                            Y2K millennium bug ● Transition to the Euro ● Excel Macros migration
-                        </a>
-                    </div>
-                </div>
-
-                <!-- KRAFT JACOBS SUCHARD -->
-                <div class="trow">
-                    <div class="tcol first hide-on-mobile">
-                        <a class="button purple-tint1-button hollow-button shadow-button"
-                            (click)="navigateWithAnimation(['/clients/kjs'])">Food</a>
-                        <span class="badge">1</span>
-                    </div>
-                    <div class="tcol last hide-on-mobile">
-                        <a class="button hollow-button" data-open="modal-outlook-vba">Outlook® VBA</a>
-                        <a class="button hollow-button" data-open="modal-outlook-form">Outlook® Form</a>
-                    </div>
-                    <div class="tcol adjust">
-                        <img class="width-20" src="assets/images/icons/icon-chef.svg" alt="">
-                        <a (click)="navigateWithAnimation(['/clients/kjs'])" class="link">
-                            <strong>Kraft Jacobs Suchard</strong>
-                        </a>
-                        ●
-                        <a (click)="navigateWithAnimation(['/clients/kjs'])" class="link">
-                            European Survey on sales performance. Electronic forms dispatched via Outlook.
-                        </a>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
+
 </section>

@@ -1,0 +1,97 @@
+<app-menu [menuItems]="menuItems"></app-menu>
+
+<div id="inner-page">
+    
+    <!-- Background Stars-->
+    <div class="bg">
+        <div class="stars">
+            <img class="animated infinite flash" 
+                 src="./assets/images/illustrations/stars-inner.svg"
+                 alt="stars background">
+        </div>
+    </div>
+
+    <!-- Single App-->
+    <div id="single-app">
+        <div class="row">
+            <div class="small-16 columns">
+
+                <!-- Start App Card-->
+                <article class="card">
+                    <a class="back-button"
+                        (click)="navigateWithAnimation(['main'], {queryParams: { scrollTo: 'blog' } })">
+                        <img src="assets/images/icons/icon-close.svg" alt="go back">
+                    </a>
+                    <header>
+                        <input type="text" class="h2 title-editor text-center" [(ngModel)]="item.title" placeholder="my title...">
+                    </header>
+
+                    <div>
+                        <ckeditor [editor]="editor" [config]="config" [(ngModel)]="item.content"></ckeditor>
+                    </div>
+
+                    <footer>
+
+                        <div class="editor-input-container">    
+                            <select id="category" [(ngModel)]="item.category" title="Color">
+                                <option value="0">Nuclear</option>  
+                                <option value="1">Energy</option>
+                                <option value="2">Industry</option>
+                                <option value="3">Sport</option>
+                                <option value="4">Pharma</option>
+                                <option value="5">Banking</option>
+                                <option value="6">Tech</option>
+                                <option value="7">Marketing</option>
+                                <option value="8">Telecom</option>
+                                <option value="9">Beverage</option>
+                                <option value="10">Food</option>
+                            </select>
+                        </div>
+                        
+                        <div class="tag-list-editor text-center">
+
+                            @if (item.tags.length > 0)
+                            {
+                                @for (tag of item.tags.split(';'); track $index)
+                                {
+                                    <a class="button hollow-button tiny-button" (click)="removeTag(tag)">{{ tag.trim() }}</a>
+                                }    
+                            }
+                        </div>
+                        <div class="add-tag-editor">
+                            <input type="text" #tagInput placeholder="Add new tag" (keydown.enter)="addTag(tagInput.value); tagInput.value=''">
+                            <!-- <input type="text" [(ngModel)]="newTag" placeholder="Add new tag">
+                            <button (click)="addTag()">Add Tag</button> -->
+                        </div>
+
+                        <hr class="spacer">
+
+                        <div class="profile-container">
+                            <img src="../../../assets/images/illustrations/picture-profile.jpg" alt="Profile Picture" class="profile-picture">
+                            <div class="profile-text">
+                                <div class="title">Thierry Langie</div>
+                                <div class="sub-title">Fullstack .Net Angular</div>
+                            </div>
+                        </div>
+
+                    </footer>
+
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="main-footer">
+    <div class="copyright">
+        <div class="row">
+            <div class="small-16 columns">
+                <p class="text-center copy">Copyright &copy; 2025 <a href="#/">Prolog.Red</a>
+                    <img class="rocket" src="./assets/images/icons/icon-rocket.svg" alt="">
+                    <span class="hide-on-mobile">
+                        All Rights Reserved
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

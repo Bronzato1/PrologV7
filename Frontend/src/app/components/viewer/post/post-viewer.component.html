@@ -23,15 +23,15 @@
                     </a>
 
                     <header>
-                        <h2 class="text-center">{{ post.title }}</h2>
+                        <h2 class="text-center">{{ item.title }}</h2>
 
                         <div class="text-center">
 
-                            <a class="button hollow-button tiny-button" [attr.data-open]="'modal-' + PostCategoryEnum[post.category].toLocaleLowerCase()">{{ PostCategoryEnum[post.category].toLocaleLowerCase() }}</a>
+                            <a class="button hollow-button tiny-button" [attr.data-open]="'modal-' + PostCategoryEnum[item.category].toLocaleLowerCase()">{{ PostCategoryEnum[item.category].toLocaleLowerCase() }}</a>
                                 
-                            @if (post.tags.length > 0)
+                            @if (item.tags.length > 0)
                             {
-                                @for (tag of post.tags.split(';'); track $index)
+                                @for (tag of item.tags.split(';'); track $index)
                                 {
                                     <a class="button hollow-button tiny-button" [attr.data-open]="'modal-' + tag.trim().replaceAll(' ','-')">{{ tag.trim() }}</a>
                                 }
@@ -41,7 +41,7 @@
 
                     <hr class="spacer">
 
-                    <div [innerHTML]="post.content | bypassHtmlSanitizer"></div>
+                    <div [innerHTML]="item.content | bypassHtmlSanitizer"></div>
 
                     <hr class="spacer">
 
@@ -49,11 +49,11 @@
 
                         <div class="text-center">
 
-                            <a class="button hollow-button tiny-button" [attr.data-open]="'modal-' + PostCategoryEnum[post.category].toLocaleLowerCase()">{{ PostCategoryEnum[post.category].toLocaleLowerCase() }}</a>
+                            <a class="button hollow-button tiny-button" [attr.data-open]="'modal-' + PostCategoryEnum[item.category].toLocaleLowerCase()">{{ PostCategoryEnum[item.category].toLocaleLowerCase() }}</a>
                             
-                            @if (post.tags.length > 0)
+                            @if (item.tags.length > 0)
                             {
-                                @for (tag of post.tags.split(';'); track $index)
+                                @for (tag of item.tags.split(';'); track $index)
                                 {
                                     <a class="button hollow-button tiny-button" [attr.data-open]="'modal-' + tag.trim().replaceAll(' ','-')">{{ tag.trim() }}</a>
                                 }

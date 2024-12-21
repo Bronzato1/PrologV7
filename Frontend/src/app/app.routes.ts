@@ -17,16 +17,20 @@ import { TransnubelComponent } from './components/clients/transnubel/transnubel.
 import { SchenkComponent } from './components/clients/schenk/schenk.component';
 import { CocaColaComponent } from './components/clients/coca-cola/coca-cola.component';
 import { KjsComponent } from './components/clients/kjs/kjs.component';
-import { EditorComponent } from './components/editor/editor.component';
 import { MsalGuard } from '@azure/msal-angular';
 import { LoginFailedComponent } from './components/login-failed/login-failed.component';
-import { ViewerComponent } from './components/viewer/viewer.component';
+import { PostEditorComponent } from './components/editor/post/post-editor.component';
+import { ProjectEditorComponent } from './components/editor/project/project-editor.component';
+import { PostViewerComponent } from './components/viewer/post/post-viewer.component';
+import { ProjectViewerComponent } from './components/viewer/project/project-viewer.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'main', pathMatch: 'full' },
     { path: 'main', component: MainComponent },
-    { path: 'editor/:slug?', component: EditorComponent, canActivate: [MsalGuard] },
-    { path: 'viewer/:slug', component: ViewerComponent },
+    { path: 'editor/post/:slug?', component: PostEditorComponent, canActivate: [MsalGuard] },
+    { path: 'editor/project/:slug?', component: ProjectEditorComponent, canActivate: [MsalGuard] },
+    { path: 'viewer/post/:slug', component: PostViewerComponent },
+    { path: 'viewer/project/:slug', component: ProjectViewerComponent },
     { path: 'login-failed', component: LoginFailedComponent },
     { path: 'clients/equans', component: EquansComponent },
     { path: 'clients/akzonobel', component: AkzonobelComponent },

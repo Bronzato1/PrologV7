@@ -23,17 +23,17 @@
                         <img src="assets/images/icons/icon-close.svg" alt="go back">
                     </a>
                     <header>
-                        <input type="text" class="h2 title-editor text-center" [(ngModel)]="post.title" placeholder="my title...">
+                        <input type="text" class="h2 title-editor text-center" [(ngModel)]="item.title" placeholder="my title...">
                     </header>
 
                     <div>
-                        <ckeditor [editor]="editor" [config]="config" [(ngModel)]="post.content"></ckeditor>
+                        <ckeditor [editor]="editor" [config]="config" [(ngModel)]="item.content"></ckeditor>
                     </div>
 
                     <footer>
 
                         <div class="editor-input-container">    
-                            <select id="category" [(ngModel)]="post.category" title="Color">
+                            <select id="category" [(ngModel)]="item.category" title="Color">
                                 <option value="0">Angular</option>
                                 <option value="1">TypeScript</option>
                                 <option value="2">JavaScript</option>
@@ -45,9 +45,9 @@
                         
                         <div class="tag-list-editor text-center">
 
-                            @if (post.tags.length > 0)
+                            @if (item.tags.length > 0)
                             {
-                                @for (tag of post.tags.split(';'); track $index)
+                                @for (tag of item.tags.split(';'); track $index)
                                 {
                                     <a class="button hollow-button tiny-button" (click)="removeTag(tag)">{{ tag.trim() }}</a>
                                 }    

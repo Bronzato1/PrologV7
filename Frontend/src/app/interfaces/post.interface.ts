@@ -1,5 +1,5 @@
 export interface IPost {
-    id?: string;
+    id: number;
     title: string;
     content: string;
     tags: string;
@@ -11,5 +11,5 @@ export interface IPost {
 
 export interface IBackendResponse {
     status: boolean;
-    post: IPost;
+    entity: IPost;
 }

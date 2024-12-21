@@ -40,6 +40,8 @@ var builder = FunctionsApplication.CreateBuilder(args);
 builder.ConfigureFunctionsWebApplication();
 
 builder.Services
+	.AddScoped<IPostRepository, PostRepository>()
+	.AddScoped<IProjectRepository, ProjectRepository>()
     .AddApplicationInsightsTelemetryWorkerService()
     .ConfigureFunctionsApplicationInsights()
     .AddDbContextFactory<ApplicationDbContext>(options => options.UseSqlite($"Data Source={(isDevEnv ? database_path : azure_D_DB_path)}"))

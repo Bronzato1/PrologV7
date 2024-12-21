@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2, AfterViewInit, ElementRef, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { BaseComponent } from '../base.component';
+import { BaseComponent } from '@src/app/components/base/base.component';
 import { MenuComponent } from "../menu/menu.component";
 import { AuthenticationService } from '../../services/authentication.service';
 import { Subscription } from 'rxjs';
@@ -48,7 +48,8 @@ export class MainComponent extends BaseComponent implements OnInit, OnDestroy {
         this.menuItems = [];
         if (this.authService.isLoggedIn) {
             this.menuItems.push({ label: 'Logout', action: () => this.authService.logout() });
-            this.menuItems.push({ label: 'Create new post', action: () => this.router.navigateByUrl('/editor/') })
+            this.menuItems.push({ label: 'Create new post', action: () => this.router.navigateByUrl('/editor/post/') });
+            this.menuItems.push({ label: 'Create new project', action: () => this.router.navigateByUrl('/editor/project/') })
         } else {
             this.menuItems.push({ label: 'Login', action: () => this.authService.loginRedirect() });
         }

@@ -102,7 +102,7 @@ namespace PrologV7.Functions
                     return new BadRequestResult();
                 }
 
-                return new OkObjectResult(new BackendResponse { Status = true, Post = newPost });
+                return new OkObjectResult(new BackendResponse<Post> { Status = true, Entity = newPost });
             }
             catch (Exception ex)
             {
@@ -131,7 +131,7 @@ namespace PrologV7.Functions
                 {
                     return new BadRequestResult();
                 }
-                return new OkObjectResult(new BackendResponse { Status = true, Post = post });
+                return new OkObjectResult(new BackendResponse<Post> { Status = true, Entity = post });
             }
             catch (Exception ex)
             {
@@ -140,12 +140,12 @@ namespace PrologV7.Functions
             }
         }
 
-        [Function("DeleteCustomer")]
+        [Function("DeletePost")]
         //*                             
         //* DELETE api/posts/5      
         //*                             
         //! [Valid ateAntiForgeryToken] 
-        public async Task<IActionResult> DeletePost([HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "customers/{id}")] HttpRequest req, int id)
+        public async Task<IActionResult> DeletePost([HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "posts/{id}")] HttpRequest req, int id)
         {
             try
             {
@@ -160,7 +160,7 @@ namespace PrologV7.Functions
                     return new BadRequestResult();
                 }
 
-                return new OkObjectResult(new BackendResponse { Status = true });
+                return new OkObjectResult(new BackendResponse<Post> { Status = true });
             }
             catch (Exception ex)
             {

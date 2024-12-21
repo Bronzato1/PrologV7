@@ -7,6 +7,7 @@ namespace PrologV7
     public class ApplicationDbContext : DbContext
     {
         public DbSet<Post> Posts { get; set; }
+        public DbSet<Project> Projects { get; set; }
 
         private readonly ILogger<ApplicationDbContext> _logger;
 
