@@ -19,29 +19,31 @@ namespace PrologV7.Repositories
 
         public async Task<IEnumerable<Project>> GetProjectsAsync()
         {
-            return await _context.Projects.ToListAsync();
+            return await _context.Projects.AsNoTracking().ToListAsync();
         }
         public async Task<Project> GetProjectByIdAsync(int id)
         {
-            var project = await _context.Projects.FirstOrDefaultAsync(f => f.Id == id);
+            var project = await _context.Projects.AsNoTracking().FirstOrDefaultAsync(f => f.Id == id);
             if (project == null) throw new Exception($"Project #{id} not found");
-            await _context.SaveChangesAsync();
             return project;
         }
         public async Task<Project> GetProjectBySlugAsync(string slug)
         {
             var title = slug.Replace("_", " ");
-            var project = await _context.Projects.FirstOrDefaultAsync(f => f.Title!.ToLower() == title.ToLower());
+            var project = await _context.Projects.AsNoTracking().FirstOrDefaultAsync(f => f.Title!.ToLower() == title.ToLower());
             if (project == null) throw new Exception($"Project {slug} not found");
-            await _context.SaveChangesAsync();
             return project;
         }
 
         public async Task<Project> AddProjectAsync(Project project)
         {
             project.CreationDate = DateTime.Now;
-            await _context.Projects.AddAsync(project);
-            await _context.SaveChangesAsync();
+            using (var transaction = await _context.Database.BeginTransactionAsync())
+            {
+                await _context.Projects.AddAsync(project);
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+            }
             return project;
         }
         public async Task<bool> UpdateProjectAsync(Project project)
@@ -50,7 +52,12 @@ namespace PrologV7.Repositories
             _context.Update(project);
             try
             {
-                return (await _context.SaveChangesAsync() > 0 ? true : false);
+                using (var transaction = await _context.Database.BeginTransactionAsync())
+                {
+                    await _context.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                }
+                return true;
             }
             catch (Exception exp)
             {
@@ -67,7 +74,12 @@ namespace PrologV7.Repositories
             }
             try
             {
-                return (await _context.SaveChangesAsync() > 0 ? true : false);
+                using (var transaction = await _context.Database.BeginTransactionAsync())
+                {
+                    await _context.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                }
+                return true;
             }
             catch (System.Exception exp)
             {
