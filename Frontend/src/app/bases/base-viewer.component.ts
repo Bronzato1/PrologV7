@@ -1,6 +1,6 @@
 import { Directive, inject, OnInit } from "@angular/core";
-import { IPost } from "@src/app/interfaces/post.interface";
-import { IProject } from "@src/app/interfaces/project.interface";
+import { IPost } from "@src/app/types/post.type";
+import { IProject } from "@src/app/types/project.type";
 import { BaseComponent } from "./base.component";
 import { ENDPOINT, GenericDataService } from "@src/app/services/generic-data-service";
 

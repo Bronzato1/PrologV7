@@ -1,4 +1,4 @@
-export interface IProject {
+export type IPost = {
     id: number;
     title: string;
     content: string;
@@ -7,9 +7,4 @@ export interface IProject {
     modificationDate?: Date;
     status: number;
     category: number;
-}
-
-export interface IBackendResponse {
-    status: boolean;
-    entity: IProject;
 }

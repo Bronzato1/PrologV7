@@ -1,13 +1,13 @@
 import { Component, HostBinding, inject, OnDestroy, OnInit } from "@angular/core";
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { IPost } from "@src/app/interfaces/post.interface";
+import { IPost } from "@src/app/types/post.type";
 import { PostCategoryEnum } from "@src/app/enumerations/post-category.enumeration";
 import { ENDPOINT, GenericDataService } from "@src/app/services/generic-data-service";
 import { AuthenticationService } from "@src/app/services/authentication.service";
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { BaseComponent } from "@src/app/components/bases/base.component";
+import { BaseComponent } from "@src/app/bases/base.component";
 
 @Component({
     selector: 'app-blog',

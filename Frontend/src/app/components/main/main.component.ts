@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2, AfterViewInit, ElementRef, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { BaseComponent } from '@src/app/components/bases/base.component';
+import { BaseComponent } from '@src/app/bases/base.component';
 import { MenuComponent } from "../menu/menu.component";
 import { AuthenticationService } from '../../services/authentication.service';
 import { Subscription } from 'rxjs';

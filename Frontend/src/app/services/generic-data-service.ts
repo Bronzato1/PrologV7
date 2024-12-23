@@ -5,8 +5,8 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { IBackendResponse } from '@app/interfaces/backend-response.interface';
 import { environment } from '@src/environments/environment';
 import adze from 'adze';
-import { IPost } from '../interfaces/post.interface';
-import { IProject } from '../interfaces/project.interface';
+import { IPost } from '../types/post.type';
+import { IProject } from '../types/project.type';
 
 export const ENDPOINT = new InjectionToken<string>('endpoint');
 

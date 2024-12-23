@@ -1,10 +1,10 @@
 import { Component, inject } from "@angular/core";
-import { BaseEditorComponent } from "@src/app/components/bases/base-editor.component";
+import { BaseEditorComponent } from "@src/app/bases/base-editor.component";
 import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { MenuComponent } from "../../menu/menu.component";
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import { IPost } from "@src/app/interfaces/post.interface";
+import { IPost } from "@src/app/types/post.type";
 import { ENDPOINT, GenericDataService } from "@src/app/services/generic-data-service";
 
 @Component({

@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { IPost } from '@src/app/interfaces/post.interface';
+import { IPost } from '@src/app/types/post.type';
 import { MenuComponent } from "../../menu/menu.component";
 import { BypassHtmlSanitizerPipe } from '@src/app/pipes/sanitizer.pipe';
 import { PostCategoryEnum } from '@src/app/enumerations/post-category.enumeration';
-import { BaseViewerComponent } from '../../bases/base-viewer.component';
+import { BaseViewerComponent } from '../../../bases/base-viewer.component';
 import { ENDPOINT, GenericDataService } from '@src/app/services/generic-data-service';
 
 @Component({

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { AppComponent } from '@src/app/app.component';
-import { IBackendResponse, IPost } from '@src/app/interfaces/post.interface';
+import { IPost } from '@src/app/types/post.type';
 import { AlertService } from '@src/app/services/alert.service';
 import { Observable } from 'rxjs';
 import {
@@ -38,14 +38,14 @@ import {
     View
 } from 'ckeditor5';
 
-import { MenuComponent } from "../menu/menu.component";
-import { BaseComponent } from '@src/app/components/bases/base.component';
+import { BaseComponent } from '@src/app/bases/base.component';
 import { AlertTypeEnum } from '@src/app/enumerations/alert-type.enumeration';
 import { UploadAdapterPlugin } from '@src/app/services/upload-adapter';
 import { FileRepository } from '@ckeditor/ckeditor5-upload';
-import { IProject } from '@src/app/interfaces/project.interface';
+import { IProject } from '@src/app/types/project.type';
 import { InjectionToken } from '@angular/core';
 import { ENDPOINT, GenericDataService } from '@src/app/services/generic-data-service';
+import { IBackendResponse } from '../interfaces/backend-response.interface';
 
 @Directive()
 export abstract class BaseEditorComponent<T extends IPost | IProject> extends BaseComponent implements OnInit {
@@ -228,7 +228,7 @@ export abstract class BaseEditorComponent<T extends IPost | IProject> extends Ba
         event.preventDefault();
         this.genericDataService.deleteItem(this.item.id)
             .subscribe({
-                next: (resp: IBackendResponse) => {
+                next: (resp: IBackendResponse<T>) => {
                     if (resp.status) {
                         alert('The item has been deleted successfully');
                         this.router.navigate(['/main']);

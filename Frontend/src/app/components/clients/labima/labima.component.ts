@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BaseComponent } from '@src/app/components/bases/base.component';
+import { BaseComponent } from '@src/app/bases/base.component';
 
 @Component({
     selector: 'app-labima',

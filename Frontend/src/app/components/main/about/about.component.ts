@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { BaseComponent } from "@src/app/components/bases/base.component";
+import { BaseComponent } from "@src/app/bases/base.component";
 
 @Component({
     selector: 'app-about',
