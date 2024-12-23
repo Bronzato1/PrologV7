@@ -550,15 +550,15 @@ code {
     background-color: #f1f1f1;
 }
 
-mark {
-    color: #48355B;
-    border-radius: 5px;
-    padding: 2px 4px;
-}
-
 mark.pen-red {
     background-color: unset;
     color: #e53935;
+}
+
+mark[class^="marker-"] {
+    color: #48355B;
+    border-radius: 5px;
+    padding: 2px 4px;
 }
 
 mark.pen-green {
