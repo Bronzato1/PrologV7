@@ -1,5 +1,5 @@
 import { Component, inject } from "@angular/core";
-import { BaseEditorComponent } from "@src/app/components/base/base-editor.component";
+import { BaseEditorComponent } from "@src/app/components/bases/base-editor.component";
 import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { MenuComponent } from "../../menu/menu.component";
 import { FormsModule } from "@angular/forms";

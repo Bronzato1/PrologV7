@@ -3,7 +3,7 @@ import { IProject } from '@src/app/interfaces/project.interface';
 import { MenuComponent } from "../../menu/menu.component";
 import { BypassHtmlSanitizerPipe } from '@src/app/pipes/sanitizer.pipe';
 import { ProjectCategoryEnum } from '@src/app/enumerations/project-category.enumeration';
-import { BaseViewerComponent } from '../../base/base-viewer.component';
+import { BaseViewerComponent } from '../../bases/base-viewer.component';
 import { ENDPOINT, GenericDataService } from '@src/app/services/generic-data-service';
 
 @Component({

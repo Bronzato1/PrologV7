@@ -39,7 +39,7 @@ import {
 } from 'ckeditor5';
 
 import { MenuComponent } from "../menu/menu.component";
-import { BaseComponent } from '@src/app/components/base/base.component';
+import { BaseComponent } from '@src/app/components/bases/base.component';
 import { AlertTypeEnum } from '@src/app/enumerations/alert-type.enumeration';
 import { UploadAdapterPlugin } from '@src/app/services/upload-adapter';
 import { FileRepository } from '@ckeditor/ckeditor5-upload';

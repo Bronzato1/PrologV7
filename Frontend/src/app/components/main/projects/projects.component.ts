@@ -7,7 +7,7 @@ import { AuthenticationService } from "@src/app/services/authentication.service"
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { BaseComponent } from "@src/app/components/base/base.component";
+import { BaseComponent } from "@src/app/components/bases/base.component";
 import { IProject } from "@src/app/interfaces/project.interface";
 
 @Component({

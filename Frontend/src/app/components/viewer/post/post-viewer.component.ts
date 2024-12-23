@@ -3,7 +3,7 @@ import { IPost } from '@src/app/interfaces/post.interface';
 import { MenuComponent } from "../../menu/menu.component";
 import { BypassHtmlSanitizerPipe } from '@src/app/pipes/sanitizer.pipe';
 import { PostCategoryEnum } from '@src/app/enumerations/post-category.enumeration';
-import { BaseViewerComponent } from '../../base/base-viewer.component';
+import { BaseViewerComponent } from '../../bases/base-viewer.component';
 import { ENDPOINT, GenericDataService } from '@src/app/services/generic-data-service';
 
 @Component({
