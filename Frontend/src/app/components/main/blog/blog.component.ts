@@ -1,6 +1,6 @@
 import { Component, HostBinding, inject, OnDestroy, OnInit } from "@angular/core";
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { IPost } from "@src/app/types/post.type";
+import { TPost } from "@src/app/types/post.type";
 import { PostCategoryEnum } from "@src/app/enumerations/post-category.enumeration";
 import { ENDPOINT, GenericDataService } from "@src/app/services/generic-data-service";
 import { AuthenticationService } from "@src/app/services/authentication.service";
@@ -40,7 +40,7 @@ export class BlogComponent extends BaseComponent implements OnInit {
 
     private genericDataService = inject(GenericDataService);
     private authService = inject(AuthenticationService);
-    protected posts: IPost[] = [];
+    protected posts: TPost[] = [];
     protected blogFilterCategoryVisible: boolean = false;
     protected blogFilterCategory?: number;
     protected blogFilterText: string = '';
@@ -52,7 +52,7 @@ export class BlogComponent extends BaseComponent implements OnInit {
     private getPosts() {
         this.genericDataService.getItems()
             .subscribe({
-                next: (posts: IPost[]) => {
+                next: (posts: TPost[]) => {
                     this.posts = posts;
                 },
                 error: (err) => {
@@ -87,7 +87,7 @@ export class BlogComponent extends BaseComponent implements OnInit {
         var doc = new DOMParser().parseFromString(html, 'text/html');
         return doc.body.textContent || "";
     }
-    get filteredPosts(): IPost[] {
+    get filteredPosts(): TPost[] {
         var posts = this.posts;
         if (this.blogFilterText) {
             posts = posts.filter(post =>

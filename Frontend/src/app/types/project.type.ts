@@ -1,4 +1,4 @@
-export type IProject = {
+export type TProject = {
     id: number;
     title: string;
     content: string;

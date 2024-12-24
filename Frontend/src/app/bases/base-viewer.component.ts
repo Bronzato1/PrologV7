@@ -1,6 +1,6 @@
 import { Directive, inject, OnInit } from "@angular/core";
-import { IPost } from "@src/app/types/post.type";
-import { IProject } from "@src/app/types/project.type";
+import { TPost } from "@src/app/types/post.type";
+import { TProject } from "@src/app/types/project.type";
 import { BaseComponent } from "./base.component";
 import { ENDPOINT, GenericDataService } from "@src/app/services/generic-data-service";
 
@@ -11,7 +11,7 @@ import { ENDPOINT, GenericDataService } from "@src/app/services/generic-data-ser
     //     ]
     // }
 )
-export abstract class BaseViewerComponent<T extends IPost | IProject> extends BaseComponent implements OnInit {
+export abstract class BaseViewerComponent<T extends TPost | TProject> extends BaseComponent implements OnInit {
 
     protected abstract discriminant: 'post' | 'project';
     protected abstract genericDataService: GenericDataService<T>;

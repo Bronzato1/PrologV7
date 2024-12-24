@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { AppComponent } from '@src/app/app.component';
-import { IPost } from '@src/app/types/post.type';
+import { TPost } from '@src/app/types/post.type';
+import { TProject } from '@src/app/types/project.type';
 import { AlertService } from '@src/app/services/alert.service';
 import { Observable } from 'rxjs';
 import {
@@ -42,13 +43,12 @@ import { BaseComponent } from '@src/app/bases/base.component';
 import { AlertTypeEnum } from '@src/app/enumerations/alert-type.enumeration';
 import { UploadAdapterPlugin } from '@src/app/services/upload-adapter';
 import { FileRepository } from '@ckeditor/ckeditor5-upload';
-import { IProject } from '@src/app/types/project.type';
 import { InjectionToken } from '@angular/core';
 import { ENDPOINT, GenericDataService } from '@src/app/services/generic-data-service';
 import { IBackendResponse } from '../interfaces/backend-response.interface';
 
 @Directive()
-export abstract class BaseEditorComponent<T extends IPost | IProject> extends BaseComponent implements OnInit {
+export abstract class BaseEditorComponent<T extends TPost | TProject> extends BaseComponent implements OnInit {
 
     @ViewChild('resumeEditor') resumeEditor?: ElementRef;
 
@@ -187,7 +187,7 @@ export abstract class BaseEditorComponent<T extends IPost | IProject> extends Ba
                 });
         }
     }
-    private getItem(slug: string): Observable<IPost> {
+    private getItem(slug: string): Observable<TPost> {
         const itemObservable = this.genericDataService.getItemBySlug(slug);
         itemObservable.subscribe({
             next: (item: T) => {

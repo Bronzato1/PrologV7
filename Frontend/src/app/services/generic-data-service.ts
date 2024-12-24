@@ -5,8 +5,8 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { IBackendResponse } from '@app/interfaces/backend-response.interface';
 import { environment } from '@src/environments/environment';
 import adze from 'adze';
-import { IPost } from '../types/post.type';
-import { IProject } from '../types/project.type';
+import { TPost } from '../types/post.type';
+import { TProject } from '../types/project.type';
 
 export const ENDPOINT = new InjectionToken<string>('endpoint');
 
@@ -16,7 +16,7 @@ const logger = adze.namespace('GenericDataService').seal();
 @Injectable({
     providedIn: 'root'
 })
-export class GenericDataService<T extends (IPost | IProject) & { id: number }> {
+export class GenericDataService<T extends (TPost | TProject) & { id: number }> {
     baseUrl = environment.apiUrl;
 
     private http = inject(HttpClient);

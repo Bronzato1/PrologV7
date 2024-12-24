@@ -1,4 +1,4 @@
-export type IPost = {
+export type TPost = {
     id: number;
     title: string;
     content: string;

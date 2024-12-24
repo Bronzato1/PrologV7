@@ -1,6 +1,7 @@
 import { Component, HostBinding, inject, OnDestroy, OnInit } from "@angular/core";
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { IPost } from "@src/app/types/post.type";
+import { TPost } from "@src/app/types/post.type";
+import { TProject } from "@src/app/types/project.type";
 import { ProjectCategoryEnum } from "@src/app/enumerations/project-category.enumeration";
 import { ENDPOINT, GenericDataService } from "@src/app/services/generic-data-service";
 import { AuthenticationService } from "@src/app/services/authentication.service";
@@ -8,7 +9,6 @@ import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { BaseComponent } from "@src/app/bases/base.component";
-import { IProject } from "@src/app/types/project.type";
 
 @Component({
     selector: 'app-projects',
@@ -41,7 +41,7 @@ export class ProjectsComponent extends BaseComponent implements OnInit {
 
     private genericDataService = inject(GenericDataService);
     private authService = inject(AuthenticationService);
-    protected projects: IProject[] = [];
+    protected projects: TProject[] = [];
     protected projectsFilterCategoryVisible: boolean = false;
     protected projectsFilterCategory?: number;
     protected projectsFilterText: string = '';
@@ -53,7 +53,7 @@ export class ProjectsComponent extends BaseComponent implements OnInit {
     private getProjects() {
         this.genericDataService.getItems()
             .subscribe({
-                next: (projects: IProject[]) => {
+                next: (projects: TProject[]) => {
                     this.projects = projects;
                 },
                 error: (err) => {
@@ -88,7 +88,7 @@ export class ProjectsComponent extends BaseComponent implements OnInit {
         var doc = new DOMParser().parseFromString(html, 'text/html');
         return doc.body.textContent || "";
     }
-    get filteredProjects(): IPost[] {
+    get filteredProjects(): TPost[] {
         var projects = this.projects;
         if (this.projectsFilterText) {
             projects = projects.filter(project =>

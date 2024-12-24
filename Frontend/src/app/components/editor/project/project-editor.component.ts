@@ -4,7 +4,7 @@ import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { MenuComponent } from "../../menu/menu.component";
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import { IProject } from "@src/app/types/project.type";
+import { TProject } from "@src/app/types/project.type";
 import { ENDPOINT, GenericDataService } from "@src/app/services/generic-data-service";
 
 @Component({
@@ -17,7 +17,7 @@ import { ENDPOINT, GenericDataService } from "@src/app/services/generic-data-ser
         { provide: ENDPOINT, useValue: 'projects' }, GenericDataService,
     ]
 })
-export class ProjectEditorComponent<T> extends BaseEditorComponent<IProject> {
+export class ProjectEditorComponent<T> extends BaseEditorComponent<TProject> {
 
     protected discriminant: 'project' = 'project';
     protected genericDataService = inject(GenericDataService);

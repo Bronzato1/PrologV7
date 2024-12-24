@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { IProject } from '@src/app/types/project.type';
+import { TProject } from '@src/app/types/project.type';
 import { MenuComponent } from "../../menu/menu.component";
 import { BypassHtmlSanitizerPipe } from '@src/app/pipes/sanitizer.pipe';
 import { ProjectCategoryEnum } from '@src/app/enumerations/project-category.enumeration';
@@ -16,7 +16,7 @@ import { ENDPOINT, GenericDataService } from '@src/app/services/generic-data-ser
     { provide: ENDPOINT, useValue: 'projects' }, GenericDataService,
   ]
 })
-export class ProjectViewerComponent extends BaseViewerComponent<IProject> implements OnInit {
+export class ProjectViewerComponent extends BaseViewerComponent<TProject> implements OnInit {
 
   protected ProjectCategoryEnum = ProjectCategoryEnum;
   protected discriminant: 'project' = 'project';
