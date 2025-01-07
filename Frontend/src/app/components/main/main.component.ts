@@ -11,13 +11,14 @@ import adze from 'adze';
 import { ProfileComponent } from "./profile/profile.component";
 import { LinksComponent } from "./links/links.component";
 import { AboutComponent } from "./about/about.component";
+import { StackComponent } from './stack/stack.component';
 
 const logger = adze.namespace('MainComponent').seal();
 
 @Component({
     selector: 'app-main',
     standalone: true,
-    imports: [CommonModule, FormsModule, MenuComponent, BlogComponent, ProjectsComponent, ProfileComponent, LinksComponent, AboutComponent],
+    imports: [CommonModule, FormsModule, MenuComponent, BlogComponent, ProjectsComponent, ProfileComponent, StackComponent, LinksComponent, AboutComponent],
     templateUrl: './main.component.html'
 })
 export class MainComponent extends BaseComponent implements OnInit, OnDestroy {

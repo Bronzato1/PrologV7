@@ -361,7 +361,8 @@ hr.thick {
     font-size: 1rem;
 }
 
-#single-app .badge {
+#single-app .badge,
+#stack .badge {
     font-weight: 500;
     display: unset;
     min-width: 2.1em;
@@ -369,7 +370,6 @@ hr.thick {
     border-radius: 16px;
     font-size: small;
     text-align: center;
-    background: #E94365;
     color: #fff;
     border: 1px solid #48355b;
     font-family: monospace;
@@ -496,7 +496,9 @@ html {
 .callout.info,
 .callout.success,
 .callout.warning,
-.callout.alert {
+.callout.alert,
+.callout.primary,
+.callout.secondary {
     font-size: 1.3125rem;
 }
 
@@ -516,10 +518,6 @@ html {
     padding-top: 3px;
 }
 
-.callout.success .close-button {
-    background-color: #E1FAEA;
-}
-
 .callout.info,
 .callout.info .close-button,
 .callout.info .close-button svg path {
@@ -528,12 +526,20 @@ html {
     fill:#fff;
 }
 
+.callout.success .close-button {
+    background-color: #E1FAEA;
+}
+
 .callout.warning .close-button {
     background-color: #FFF3D9;
 }
 
 .callout.alert .close-button {
     background-color: #FBE1E1;
+}
+
+.callout.secondary .close-button {
+    background-color: #eaeaea;
 }
 
 pre {
@@ -588,6 +594,14 @@ mark.marker-blue {
 mark.yellow,
 mark.marker-yellow {
     background-color: #ffe7b3 !important;
+}
+
+u {
+    border-bottom-style: dotted;
+    border-bottom-width: thick;
+    text-decoration: unset;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 .ck .ck-sticky-panel__content {
@@ -801,7 +815,8 @@ figure.image {
 @media only screen and (max-width: 800px) {
 
     .switch,
-    .sliding {
+    .sliding,
+    #stack #blocks {
         display: none;
     }
 
@@ -810,4 +825,23 @@ figure.image {
         border-bottom-right-radius: 20px;
         border-top-right-radius: 20px;
     }
+}
+
+#blocks{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+
+#blocks .button {
+    cursor: initial;
+}
+
+#blocks .dots {
+    flex-grow: 1;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
 }
