@@ -36,9 +36,11 @@ import {
     Editor,
     EditorUI,
     EditorUIView,
-    View
+    View,
+    HighlightEditing
 } from 'ckeditor5';
 
+import { HighlightOptionTypeEnum } from '@src/app/enumerations/highlight-option-type.enumeration';
 import { BaseComponent } from '@src/app/bases/base.component';
 import { AlertTypeEnum } from '@src/app/enumerations/alert-type.enumeration';
 import { UploadAdapterPlugin } from '@src/app/services/upload-adapter';
@@ -113,6 +115,66 @@ export abstract class BaseEditorComponent<T extends TPost | TProject> extends Ba
             SourceEditing,
             UploadAdapterPlugin
         ],
+        highlight: { 
+            options: [ 
+                {
+                    model: 'pinkMarker',
+                    class: 'marker-pink',
+                    title: 'Pink Marker',
+                    color: 'var(--ck-highlight-marker-pink)',
+                    type: HighlightOptionTypeEnum.marker 
+                },
+                {
+                    model: 'yellowMarker',
+                    class: 'marker-yellow',
+                    title: 'Yellow Marker',
+                    color: 'var(--ck-highlight-marker-yellow)',
+                    type: HighlightOptionTypeEnum.marker 
+                },
+                {
+                    model: 'greenMarker',
+                    class: 'marker-green',
+                    title: 'Green Marker',
+                    color: 'var(--ck-highlight-marker-green)',
+                    type: HighlightOptionTypeEnum.marker 
+                },
+                {
+                    model: 'blueMarker',
+                    class: 'marker-blue',
+                    title: 'Blue Marker',
+                    color: 'var(--ck-highlight-marker-blue)',
+                    type: HighlightOptionTypeEnum.marker 
+                },
+                { 
+                    model: 'grayMarker', 
+                    class: 'marker-gray', 
+                    title: 'Gray Marker', 
+                    color: 'var(--ck-highlight-marker-gray)', 
+                    type: HighlightOptionTypeEnum.marker 
+                },
+                { 
+                    model: 'purpleMarker', 
+                    class: 'marker-purple', 
+                    title: 'Purple Marker', 
+                    color: 'var(--ck-highlight-marker-purple)', 
+                    type: HighlightOptionTypeEnum.marker 
+                },
+                { 
+                    model: 'redPen', 
+                    class: 'pen-red', 
+                    title: 'Red pen', 
+                    color: 'var(--ck-highlight-pen-red)', 
+                    type: HighlightOptionTypeEnum.marker 
+                },
+                { 
+                    model: 'greenPen', 
+                    class: 'pen-green', 
+                    title: 'Green pen', 
+                    color: 'var(--ck-highlight-pen-green)', 
+                    type: HighlightOptionTypeEnum.marker 
+                } 
+            ] 
+        },
         codeBlock: {
             languages: [
                 { language: 'cs', label: 'C#' },

@@ -588,12 +588,34 @@ mark.marker-green {
 
 mark.blue,
 mark.marker-blue {
-    background-color: #ebebeb !important;
+    background-color: #a7dfff !important;
 }
 
 mark.yellow,
 mark.marker-yellow {
     background-color: #ffe7b3 !important;
+}
+
+mark.gray,
+mark.marker-gray {
+    background-color: #ebebeb !important;
+}
+
+mark.purple,
+mark.marker-purple {
+    background-color: #48355B !important;
+    color: #fff;
+}
+
+:root {
+	--ck-highlight-marker-yellow: hsl(60, 97%, 73%);
+	--ck-highlight-marker-green: hsl(120, 93%, 68%);
+	--ck-highlight-marker-pink: hsl(345, 96%, 73%);
+	--ck-highlight-marker-blue: hsl(201, 97%, 72%);
+    --ck-highlight-marker-gray: hsl(0, 0%, 90%);
+    --ck-highlight-marker-purple: hsl(273, 100%, 36%);
+	--ck-highlight-pen-red: hsl(0, 85%, 49%);
+	--ck-highlight-pen-green: hsl(112, 100%, 27%);
 }
 
 u {
